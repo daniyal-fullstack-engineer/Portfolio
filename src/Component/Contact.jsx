@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Contact() {
   return (
-    <div className="faq section-padding">
+    <div className="faq section-padding" id="contact">
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-lg-8">
