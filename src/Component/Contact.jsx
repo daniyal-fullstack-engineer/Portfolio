@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { errorMessges, successMessges, validateInput } from "../CommonFunction";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ export default function Contact() {
     subject: "",
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const [status, setStatus] = useState("");
 
@@ -18,7 +20,15 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("Sending...");
+
+    const result = await validateInput(formData);
+
+    if (!result) {
+      return false;
+    }
+    setIsLoading(true);
+
+    // setStatus("Sending...");
 
     try {
       const response = await fetch("http://localhost:3001/send-email", {
@@ -32,7 +42,8 @@ export default function Contact() {
       const result = await response.json();
 
       if (result.success) {
-        setStatus("Email sent successfully!");
+        successMessges("Email sent successfully!");
+        setIsLoading(false);
         setFormData({
           name: "",
           email: "",
@@ -41,11 +52,13 @@ export default function Contact() {
           message: "",
         });
       } else {
-        setStatus("Failed to send email. Please try again.");
+        errorMessges("Failed to send email. Please try again.");
+        setIsLoading(false);
       }
     } catch (error) {
-      console.error("Error:", error);
-      setStatus("An error occurred. Please try again later.");
+      // console.error("Error:", error);
+      errorMessges("An error occurred. Please try again later.");
+      setIsLoading(false);
     }
   };
 
@@ -106,7 +119,7 @@ export default function Contact() {
                   <div className="col-lg-6">
                     <div className="form-group">
                       <input
-                        type="email"
+                        type="text"
                         name="email"
                         placeholder="Your Email"
                         className="form-control"
@@ -159,13 +172,31 @@ export default function Contact() {
                 </div>
                 <div className="row">
                   <div className="col-lg-12">
-                    <button type="submit" className="btn-2">
-                      Send Message
+                    <button
+                      type="submit"
+                      className="btn-2"
+                      disabled={isLoading ? true : false}
+                    >
+                      {isLoading ? (
+                        <>
+                          <span
+                            className="spinner-border spinner-border-sm"
+                            style={{
+                              width: "25px",
+                              height: "25px",
+                            }}
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                        </>
+                      ) : (
+                        "Send Message"
+                      )}
                     </button>
                   </div>
                 </div>
               </form>
-              {status && <p className="status-message">{status}</p>}
+              {/* {status && <p className="status-message">{status}</p>} */}
             </div>
           </div>
         </div>
