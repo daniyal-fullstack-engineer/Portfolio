@@ -3,14 +3,26 @@
 
 :root {
     --main-color: #a800a8;
-    --black100: #f7f7f7;
-    --black400: #555555;
-    --black900: #000000;
-    --white: #ffffff;
+    --black100: #f7f7f7; /* Light background */
+    --black400: #555555; /* Mid-gray */
+    --black900: #000000; /* Dark black */
+    --white: #ffffff;    /* Pure white */
 
-    --shadow-black100: 0 5px 15px rgba(0, 0, 0, 0.1);
-    --shadow-black300: 0 5px 15px rgba(0, 0, 0, 0.3);
-    --black-alpha100: 0 5px 15px rgba(0, 0, 0, 0.05);
+    --shadow-black100: 0 5px 15px rgba(0, 0, 0, 0.1); /* Light shadow */
+    --shadow-black300: 0 5px 15px rgba(0, 0, 0, 0.3); /* Darker shadow */
+    --black-alpha100: 0 5px 15px rgba(0, 0, 0, 0.05); /* Very light shadow */
+}
+
+[data-theme="dark"] {
+    --main-color: #a800a8;
+    --black100: #000000; /* Dark background */
+    --black400: #aaaaaa; /* Light gray */
+    --black900: #ffffff; /* Pure white text */
+    --white: #000000;    /* Background becomes black in dark mode */
+
+    --shadow-black100: 0 5px 15px rgba(255, 255, 255, 0.1); /* Light shadow in dark */
+    --shadow-black300: 0 5px 15px rgba(255, 255, 255, 0.3); /* Brighter shadow in dark */
+    --black-alpha100: 0 5px 15px rgba(255, 255, 255, 0.05); /* Very light shadow in dark */
 }
 
 body {
