@@ -1091,13 +1091,6 @@ a:hover {
     height: 24px;
 }
 /* darklightbutton */
-body.light-mode {
-    background-color: #ffffff;
-    color: #000000;
-  }
-  
- 
-  
   .mode-switcher button {
     z-index: 3;
     top: 180px;
