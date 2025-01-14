@@ -1104,14 +1104,17 @@ body.light-mode {
   .mode-switcher button {
     z-index: 3;
     top: 180px;
+    padding: 10px;
     position: fixed;
     right: 0px;
     cursor: pointer;
     border: none;
-    background-color: transparent;
+    background-color: black;
     display: flex;
     align-items: center;
+    color: #fff;
     gap: 8px;
+    border-radius: 10px 0px 0px 10px;
 }
   /* darklight  */
 /*MEDIA QUERIES*/
