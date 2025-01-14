@@ -1096,7 +1096,7 @@ a:hover {
     top: 180px;
     padding: 10px;
     position: fixed;
-    right: 0px;
+    right: -47px;
     cursor: pointer;
     border: none;
     background-color: black;
@@ -1105,6 +1105,10 @@ a:hover {
     color: #fff;
     gap: 8px;
     border-radius: 10px 0px 0px 10px;
+    transition: 0.3s;
+}
+.mode-switcher button:hover {
+    right: 0px;
 }
   /* darklight  */
 /*MEDIA QUERIES*/
