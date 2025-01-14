@@ -1,27 +1,10 @@
-
 import React, { useState, useEffect } from "react";
 
 const Header = () => {
-
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") || "light"
-  );
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
-  }
   return (
     <nav className="navbar navbar-expand-lg fixed-top">
       <div className="container">
-        <a  className="navbar-brand"
-        onClick={()=>{toggleTheme()}}>
-          Hamid Portfolio
-        </a>
+        <a href="" className="navbar-brand">Hamid Portfolio</a>
         <button
           className="navbar-toggler"
           type="button"
