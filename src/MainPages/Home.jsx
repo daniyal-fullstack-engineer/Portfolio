@@ -12,12 +12,14 @@ import Testimonials from '../Component/Testimonials';
 import Pricing from '../Component/Pricing';
 import Faq from '../Component/Faq';
 import Contact from '../Component/Contact';
+import DarkLightToggle from '../Component/DarkLightToggle';
 
 
 
 const Home = () => {
   return (
     <div className='main-wrapper'>
+          <DarkLightToggle />
       <div className='navbar-section'>
       <Header />
       </div>

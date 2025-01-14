@@ -1090,6 +1090,30 @@ a:hover {
     width: 24px;
     height: 24px;
 }
+/* darklightbutton */
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  .mode-switcher button {
+    z-index: 3;
+    top: 180px;
+    position: fixed;
+    right: 0px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+  /* darklight  */
 /*MEDIA QUERIES*/
 
 @media (max-width: 991px) {
