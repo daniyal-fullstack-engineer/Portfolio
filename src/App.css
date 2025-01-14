@@ -1096,10 +1096,7 @@ body.light-mode {
     color: #000000;
   }
   
-  body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-  }
+ 
   
   .mode-switcher button {
     z-index: 3;
