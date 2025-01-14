@@ -2,28 +2,30 @@
 
 
 :root {
-    --main-color: #a800a8;
-    --black100: #f7f7f7; /* Light background */
-    --black400: #555555; /* Mid-gray */
-    --black900: #000000; /* Dark black */
+    --main-color: #ff6f61; /* Soft coral for a fresh accent */
+    --black100: #f5f7fa; /* Very light gray for background */
+    --black400: #7d7d7d; /* Neutral gray for text */
+    --black900: #1e1e1e; /* Dark gray for headings */
     --white: #ffffff;    /* Pure white */
 
-    --shadow-black100: 0 5px 15px rgba(0, 0, 0, 0.1); /* Light shadow */
-    --shadow-black300: 0 5px 15px rgba(0, 0, 0, 0.3); /* Darker shadow */
-    --black-alpha100: 0 5px 15px rgba(0, 0, 0, 0.05); /* Very light shadow */
+    --shadow-black100: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-black300: 0 4px 12px rgba(0, 0, 0, 0.2);
+    --black-alpha100: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="dark"] {
-    --main-color: #a800a8;
-    --black100: #000000; /* Dark background */
-    --black400: #aaaaaa; /* Light gray */
-    --black900: #ffffff; /* Pure white text */
-    --white: #000000;    /* Background becomes black in dark mode */
+    --main-color: #ff6f61; /* Coral for accent */
+    --black100: #121212; /* Soft black background */
+    --black400: #aaaaaa; /* Smooth gray for text */
+    --black900: #f0f0f0; /* Light gray for headings */
+    --white: #1e1e1e;    /* Darker background */
 
-    --shadow-black100: 0 5px 15px rgba(255, 255, 255, 0.1); /* Light shadow in dark */
-    --shadow-black300: 0 5px 15px rgba(255, 255, 255, 0.3); /* Brighter shadow in dark */
-    --black-alpha100: 0 5px 15px rgba(255, 255, 255, 0.05); /* Very light shadow in dark */
+    --shadow-black100: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-black300: 0 4px 12px rgba(0, 0, 0, 0.6);
+    --black-alpha100: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
+
 
 body {
     font-family: Poppins;
