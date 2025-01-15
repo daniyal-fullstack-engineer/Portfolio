@@ -13,6 +13,7 @@ import Pricing from '../Component/Pricing';
 import Faq from '../Component/Faq';
 import Contact from '../Component/Contact';
 import DarkLightToggle from '../Component/DarkLightToggle';
+import DarkBanner from '../Component/DarkBanner';
 
 
 
@@ -25,6 +26,9 @@ const Home = () => {
       </div>
       <div className='banner-section'>
         <Banner />
+      </div>
+      <div className='darkbanner-section'>
+        <DarkBanner />
       </div>
       <div className='about-section'>
         <About />

@@ -405,7 +405,13 @@ a:hover {
 .about-content ul {
     padding-top: 15px;
 }
-
+.header-content-section {
+    background-color: #000;
+    height: 800px;
+    padding-top: 110px;
+    position: relative;
+    overflow: hidden;
+}
 .about-content ul li {
     width: 50%;
     float: left;
