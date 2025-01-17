@@ -22,7 +22,7 @@ export default function Testimonials() {
         <div className="testimonial-slider owl-carousel">
           <div className="testimonial-item">
             <div className="img-box">
-              <img src="https://i.postimg.cc/wBsx5R9q/1.jpg" alt="image" />
+              <img src="https://i.postimg.cc/1fSSmLsR/1.jpg" alt="image" />
               <i className="fa-solid fa-quote-right" />
             </div>
             <p>
@@ -42,7 +42,7 @@ export default function Testimonials() {
           </div>
           <div className="testimonial-item">
             <div className="img-box">
-              <img src="https://i.postimg.cc/qvW47By9/2.jpg" alt="image" />
+              <img src="https://i.postimg.cc/rzxcL86Y/2.jpg" alt="image" />
               <i className="fa-solid fa-quote-right" />
             </div>
             <p>
@@ -61,7 +61,7 @@ export default function Testimonials() {
           </div>
           <div className="testimonial-item">
             <div className="img-box">
-              <img src="https://i.postimg.cc/kGMdH2Pt/3.jpg" alt="image" />
+              <img src="https://i.postimg.cc/w7kp70jX/3.jpg" alt="image" />
               <i className="fa-solid fa-quote-right" />
             </div>
             <p>
@@ -80,7 +80,7 @@ export default function Testimonials() {
           </div>
           <div className="testimonial-item">
             <div className="img-box">
-              <img src="https://i.postimg.cc/wxWKvTd0/4.jpg" alt="image" />
+              <img src="https://i.postimg.cc/4YNTtVYr/4.jpg" alt="image" />
               <i className="fa-solid fa-quote-right" />
             </div>
             <p>
