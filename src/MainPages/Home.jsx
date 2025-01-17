@@ -27,9 +27,9 @@ const Home = () => {
       <div className='banner-section'>
         <Banner />
       </div>
-      <div className='darkbanner-section'>
+      {/* <div className='darkbanner-section'>
         <DarkBanner />
-      </div>
+      </div> */}
       <div className='about-section'>
         <About />
       </div>
