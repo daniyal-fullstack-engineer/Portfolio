@@ -24,12 +24,12 @@ const Home = () => {
       <div className='navbar-section'>
       <Header />
       </div>
-      {/* <div className='banner-section'>
+      <div className='banner-section'>
         <Banner />
-      </div> */}
-      <div className='darkbanner-section'>
-        <DarkBanner />
       </div>
+      {/* <div className='darkbanner-section'>
+        <DarkBanner />
+      </div> */}
       <div className='about-section'>
         <About />
       </div>
