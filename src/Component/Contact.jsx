@@ -86,7 +86,7 @@ export default function Contact() {
               <div className="contact-info-item">
                 <i className="fa-solid fa-location-arrow" />
                 <h4>Location</h4>
-                <p>Akbar Chowk, Faisal Town, Lahore, Punjab, Pakistan</p>
+                <p>B Block Township Lahore, Punjab, Pakistan</p>
               </div>
               <div className="contact-info-item">
                 <i className="fa-solid fa-envelope" />

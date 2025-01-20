@@ -84,7 +84,7 @@ const About = () => {
                     <div className="info-text">
                       <p>
                         <span>Degree:</span>
-                        <abbr title="Associate Web Designer"> Associate Web Designer</abbr>
+                        <abbr title="Associate Web Designer" style={{textDecoration: 'none'}}> Associate Web Designer</abbr>
                       </p>
                     </div>
                   </div>
