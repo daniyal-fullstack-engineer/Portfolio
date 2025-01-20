@@ -388,6 +388,7 @@ a:hover {
     font-weight: 600;
     text-transform: capitalize;
     padding-bottom: 15px;
+    color:  var(--black900);;
 }
 
 .about-content .about-title span {
@@ -406,7 +407,7 @@ a:hover {
     padding-top: 15px;
 }
 .header-content-section {
-    background-color: #000;
+    background-color:  var( --white);
     height: 800px;
     padding-top: 110px;
     position: relative;
@@ -466,6 +467,7 @@ a:hover {
     font-size: 16px;
     padding-top: 15px;
     font-weight: 600;
+    color: var(--black900);;
 }
 
 .skillbar-container {

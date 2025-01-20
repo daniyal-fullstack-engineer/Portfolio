@@ -12,9 +12,9 @@ const DarkBanner = () => {
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="home-text">
-                <h4 style={{color: '#fff'}}>HELLO, I'M</h4>
-                <h1 style={{color: '#fff'}}>Hamid Raza</h1>
-                <p style={{color: '#fff'}}>A freelancer UI Designer & Web Developer</p>
+                <h4 >HELLO, I'M</h4>
+                <h1 >Hamid Raza</h1>
+                <p >A freelancer UI Designer & Web Developer</p>
                 <div className="home-btn">
                   <a href="#portfolio" className="btn-1" data-scroll-nav={3}>
                     View my Work
