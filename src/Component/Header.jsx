@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg fixed-top">
       <div className="container">
-        <a href="javascript:void(0)" className="navbar-brand">Hamid Portfolio</a>
+        <a href="javascript:void(0)" className="navbar-brand">M Daniyal Portfolio</a>
         <button
           className="navbar-toggler"
           type="button"

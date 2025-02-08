@@ -31,7 +31,7 @@ export default function Contact() {
     // setStatus("Sending...");
 
     try {
-      const response = await fetch("http://localhost:3001/send-email", {
+      const response = await fetch("https://backend-potfolio223.vercel.app/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,8 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const About = () => {
   return (
-    <section className="about-area section-padding" id="about" data-scroll-index={1}>
+    <section
+      className="about-area section-padding"
+      id="about"
+      data-scroll-index={1}
+    >
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8">
@@ -18,14 +22,19 @@ const About = () => {
           <div className="col-lg-6">
             <div className="about-content">
               <h5 className="about-title">
-                I'm <span>Hamid Raza</span> and I'm a Web Designer
+                I'm <span>M Daniyal</span> and I'm a Web and App Developer
               </h5>
               <p className="details">
-                I am a passionate web designer with a love for creating beautiful
-                and functional websites. I enjoy working with HTML, CSS, and
-                JavaScript to bring ideas to life and enhance user experiences. In
-                my free time, I like to explore new design trends and work on
-                personal projects that challenge my creativity.
+                I am a results-driven Web & App Developer specializing in
+                building high-performance digital solutions. With expertise in
+                React.js, Next.js, and Node.js, I craft seamless, responsive,
+                and scalable web applications. For mobile, I leverage React
+                Native to create intuitive and cross-platform experiences. My
+                passion lies in transforming ideas into visually stunning and
+                functional products that enhance user engagement. Whether it's a
+                sleek website, a dynamic web app, or a powerful mobile
+                application, I ensure top-tier performance, usability, and
+                innovation. Let’s build something amazing together!
               </p>
               <ul>
                 <li>
@@ -47,7 +56,7 @@ const About = () => {
                     </div>
                     <div className="info-text">
                       <p>
-                        <span>Email:</span> hamidraza7614@gmail.com
+                        <span>Email:</span> daniyalamjadali@gmail.com
                       </p>
                     </div>
                   </div>
@@ -59,7 +68,7 @@ const About = () => {
                     </div>
                     <div className="info-text">
                       <p>
-                        <span>Phone:</span> +923227588875
+                        <span>Phone:</span> +923045485310
                       </p>
                     </div>
                   </div>
@@ -71,7 +80,7 @@ const About = () => {
                     </div>
                     <div className="info-text">
                       <p>
-                        <span>Location:</span> B Block Township Lahore
+                        <span>Location:</span> Lahore
                       </p>
                     </div>
                   </div>
@@ -84,7 +93,13 @@ const About = () => {
                     <div className="info-text">
                       <p>
                         <span>Degree:</span>
-                        <abbr title="Associate Web Designer" style={{textDecoration: 'none'}}> Associate Web Designer</abbr>
+                        <abbr
+                          title="Associate Web Designer"
+                          style={{ textDecoration: "none" }}
+                        >
+                          {" "}
+                          MCS
+                        </abbr>
                       </p>
                     </div>
                   </div>
@@ -111,55 +126,56 @@ const About = () => {
             <div id="skill-bar-wrapper">
               <div className="text-left">
                 <h4>
-                  HTML5 <span style={{ float: 'right' }}>100%</span>
+                  HTML5 /CSS <span style={{ float: "right" }}>100%</span>
                 </h4>
                 <div className="skillbar-container" data-percent="100%">
                   <div className="skills" />
                 </div>
                 <h4>
-                  CSS3 <span style={{ float: 'right' }}>100%</span>
+                Sass
+                  <span style={{ float: "right" }}>100%</span>
                 </h4>
                 <div className="skillbar-container" data-percent="100%">
                   <div className="skills" />
                 </div>
                 <h4>
-                  Sass <span style={{ float: 'right' }}>90%</span>
+                  Sass <span style={{ float: "right" }}>90%</span>
                 </h4>
                 <div className="skillbar-container" data-percent="90%">
                   <div className="skills" />
                 </div>
                 <h4>
-                  Bootstrap 3/4/5 <span style={{ float: 'right' }}>100%</span>
+                  Bootstrap / Tailwind <span style={{ float: "right" }}>100%</span>
                 </h4>
                 <div className="skillbar-container" data-percent="100%">
                   <div className="skills" />
                 </div>
                 <h4>
-                  React JS <span style={{ float: 'right' }}>95%</span>
+                  React JS / Next Js <span style={{ float: "right" }}>95%</span>
                 </h4>
                 <div className="skillbar-container" data-percent="95%">
                   <div className="skills" />
                 </div>
                 <h4>
-                  JQuery <span style={{ float: 'right' }}>95%</span>
+                  Node Js<span style={{ float: "right" }}>95%</span>
                 </h4>
                 <div className="skillbar-container" data-percent="95%">
                   <div className="skills" />
                 </div>
                 <h4>
-                  JavaScript <span style={{ float: 'right' }}>90%</span>
+                  Mongoose DB <span style={{ float: "right" }}>90%</span>
                 </h4>
                 <div className="skillbar-container" data-percent="90%">
                   <div className="skills" />
                 </div>
                 <h4>
-                  Canva <span style={{ float: 'right' }}>95%</span>
+                  React Ntive <span style={{ float: "right" }}>95%</span>
                 </h4>
                 <div className="skillbar-container" data-percent="95%">
                   <div className="skills" />
                 </div>
                 <h4>
-                  Adobe Photoshop <span style={{ float: 'right' }}>80%</span>
+                  Firebase <span style={{ float: "right" }}>80%</span>
                 </h4>
                 <div className="skillbar-container" data-percent="80%">
                   <div className="skills" />

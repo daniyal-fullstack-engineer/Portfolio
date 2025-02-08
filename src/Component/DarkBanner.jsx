@@ -13,8 +13,8 @@ const DarkBanner = () => {
             <div className="col-lg-6">
               <div className="home-text">
                 <h4 >HELLO, I'M</h4>
-                <h1 >Hamid Raza</h1>
-                <p >A freelancer UI Designer & Web Developer</p>
+                <h1 >M Daniyal</h1>
+                <p >A freelancer Full Stack & Javascript Developer</p>
                 <div className="home-btn">
                   <a href="#portfolio" className="btn-1" data-scroll-nav={3}>
                     View my Work
@@ -25,8 +25,8 @@ const DarkBanner = () => {
             <div className="col-lg-6">
               <div className="home-imgs d-none d-lg-block">
                 <img
-                  src="https://i.postimg.cc/PqZ3bt0G/profile-pic.png"
-                  alt="hamid"
+                  src="https://i.postimg.cc/t4KV6Zhv/newcode.jpg"
+                  alt="daniyal"
                 />
               </div>
             </div>
@@ -40,7 +40,7 @@ const DarkBanner = () => {
                   <ul>
                     <li>
                       <a
-                        href="https://web.facebook.com/profile.php?id=61557173073729"
+                        href="https://web.facebook.com/daniyal.amjadali/"
                         target="_blank"
                       >
                         <i className="fa-brands fa-facebook" />
@@ -52,13 +52,13 @@ const DarkBanner = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="javascript:void(0)">
+                      <a href="https://github.com/daniyal-sudo">
                         <i className="fa-brands fa-github" />
                       </a>
                     </li>
                     <li>
                       <a
-                        href="https://www.linkedin.com/in/muhammad-hamid-raza-front-end-engineer/"
+                        href="https://www.linkedin.com/in/m-daniyal-amjad-ali-software-engineer/"
                         target="_blank"
                       >
                         <i className="fa-brands fa-linkedin" />
