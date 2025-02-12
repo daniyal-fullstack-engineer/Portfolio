@@ -1,1 +1,2 @@
 npm i react-toastify
+npm install aos
