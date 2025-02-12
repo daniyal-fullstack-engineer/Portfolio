@@ -4,7 +4,7 @@ const WhatAppIcon = () => {
   return (
     <div className="whatsapp-icons">
       <a
-        href="https://wa.me/923227588875"
+        href="https://wa.me/923045485310"
         className="w-inline-block floatingg-icon"
         target="_blank"
         rel="noopener noreferrer"
