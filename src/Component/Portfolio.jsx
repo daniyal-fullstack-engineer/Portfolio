@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function Portfolio() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Animation speed
+      once: true, // Trigger animation only once
+      easing: "ease-in-out", // Smooth transition effect
+    });
+  }, []);
   return (
     <section
     className="img-gallery section-padding"
@@ -9,14 +18,14 @@ export default function Portfolio() {
   >
     <div className="container">
       <div className="row justify-content-center">
-        <div className="col-lg-8">
-          <div className="section-title">
-            <h4>Portfolio</h4>
-            <h2>
-              Our latest <span>work</span>
-            </h2>
-          </div>
+      <div className="col-lg-8">
+        <div className="section-title" data-aos="fade-up">
+          <h4>Portfolio</h4>
+          <h2>
+            Our latest <span>work</span>
+          </h2>
         </div>
+      </div>
       </div>
       <div className="row ">
         <div className="col-lg-8 d-flex justify-content-center sortBtn flex-wrap">

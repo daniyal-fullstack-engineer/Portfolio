@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { errorMessges, successMessges, validateInput } from "../CommonFunction";
 
 export default function Contact() {
@@ -11,7 +13,13 @@ export default function Contact() {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const [status, setStatus] = useState("");
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: "ease-in-out",
+    });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,58 +28,38 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const result = await validateInput(formData);
+    if (!result) return false;
 
-    if (!result) {
-      return false;
-    }
     setIsLoading(true);
-
-    // setStatus("Sending...");
 
     try {
       const response = await fetch("https://backend-potfolio223.vercel.app/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const result = await response.json();
-
       if (result.success) {
         successMessges("Email sent successfully!");
-        setIsLoading(false);
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: "",
-        });
+        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
       } else {
         errorMessges("Failed to send email. Please try again.");
-        setIsLoading(false);
       }
     } catch (error) {
-      // console.error("Error:", error);
       errorMessges("An error occurred. Please try again later.");
+    } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <section
-      className="contact section-padding"
-      id="contact"
-      data-scroll-index={6}
-    >
+    <section className="contact section-padding" id="contact">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8">
-            <div className="section-title">
+            <div className="section-title" data-aos="fade-up">
               <h4>Contact us</h4>
               <h2>
                 Get <span>in touch</span>
@@ -80,8 +68,8 @@ export default function Contact() {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-4 col-md-5">
-            <div className="contact-info">
+        <div className="col-lg-4 col-md-5">
+            <div className="contact-info" data-aos="fade-up" data-aos-delay="700">
               <h3>For any Queries and Support</h3>
               <div className="contact-info-item">
                 <i className="fa-solid fa-location-arrow" />
@@ -94,7 +82,7 @@ export default function Contact() {
                 <p>hamidraza7614@gmail.com</p>
               </div>
               <div className="contact-info-item">
-                <i className="fa-solid fa-location-arrow" />
+                <i className="fa-solid fa-phone" />
                 <h4>Call us on</h4>
                 <p>+923227588875</p>
               </div>
@@ -105,7 +93,7 @@ export default function Contact() {
               <form onSubmit={handleSubmit}>
                 <div className="row">
                   <div className="col-lg-6">
-                    <div className="form-group">
+                    <div className="form-group" data-aos="fade-up" data-aos-delay="100">
                       <input
                         type="text"
                         name="name"
@@ -117,7 +105,7 @@ export default function Contact() {
                     </div>
                   </div>
                   <div className="col-lg-6">
-                    <div className="form-group">
+                    <div className="form-group" data-aos="fade-up" data-aos-delay="200">
                       <input
                         type="text"
                         name="email"
@@ -131,7 +119,7 @@ export default function Contact() {
                 </div>
                 <div className="row">
                   <div className="col-lg-12">
-                    <div className="form-group">
+                    <div className="form-group" data-aos="fade-up" data-aos-delay="300">
                       <input
                         type="text"
                         name="phone"
@@ -145,7 +133,7 @@ export default function Contact() {
                 </div>
                 <div className="row">
                   <div className="col-lg-12">
-                    <div className="form-group">
+                    <div className="form-group" data-aos="fade-up" data-aos-delay="400">
                       <input
                         type="text"
                         name="subject"
@@ -159,7 +147,7 @@ export default function Contact() {
                 </div>
                 <div className="row">
                   <div className="col-lg-12">
-                    <div className="form-group">
+                    <div className="form-group" data-aos="fade-up" data-aos-delay="500">
                       <textarea
                         name="message"
                         placeholder="Your Message"
@@ -175,20 +163,17 @@ export default function Contact() {
                     <button
                       type="submit"
                       className="btn-2"
-                      disabled={isLoading ? true : false}
+                      disabled={isLoading}
+                      data-aos="zoom-in"
+                      data-aos-delay="600"
                     >
                       {isLoading ? (
-                        <>
-                          <span
-                            className="spinner-border spinner-border-sm"
-                            style={{
-                              width: "25px",
-                              height: "25px",
-                            }}
-                            role="status"
-                            aria-hidden="true"
-                          ></span>
-                        </>
+                        <span
+                          className="spinner-border spinner-border-sm"
+                          style={{ width: "25px", height: "25px" }}
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
                       ) : (
                         "Send Message"
                       )}
@@ -196,9 +181,9 @@ export default function Contact() {
                   </div>
                 </div>
               </form>
-              {/* {status && <p className="status-message">{status}</p>} */}
             </div>
           </div>
+      
         </div>
       </div>
     </section>

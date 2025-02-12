@@ -930,7 +930,11 @@ a:hover {
     text-align: center;
     transition: all 0.3s ease;
 }
-
+#accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 .faq .accordion-header:not(.collapsed)::before {
     content: "\f068";
     color: var(--white);
