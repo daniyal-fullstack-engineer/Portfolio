@@ -55,7 +55,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="contact section-padding" id="contact">
+    <section className="contact section-padding"  data-scroll-index={6} id="contact">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8">
