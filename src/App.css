@@ -757,6 +757,11 @@ a:hover {
     box-shadow: var(--shadow-black100);
     border-radius: 10px;
     text-align: center;
+    min-height: 500px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .testimonial-item .img-box {
@@ -775,7 +780,6 @@ a:hover {
     height: 100%;
     object-fit: contain;
 }
-
 .testimonial-item .img-box i {
     position: absolute;
     height: 30px;

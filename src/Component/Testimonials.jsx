@@ -95,6 +95,7 @@ export default function Testimonials() {
                   <img src={testimonial.img} alt="Client" />
                   <i className="fa-solid fa-quote-right" />
                 </div>
+                <div className="content-slide"> 
                 <p>{testimonial.text}</p>
                 <h3>{testimonial.name}</h3>
                 <span>{testimonial.country}</span>
@@ -102,6 +103,7 @@ export default function Testimonials() {
                   {[...Array(5)].map((_, i) => (
                     <i className="fa-solid fa-star" key={i} />
                   ))}
+                </div>
                 </div>
               </div>
             ))}
