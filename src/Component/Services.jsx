@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css";
+
 
 export default function Services() {
   useEffect(() => {
@@ -13,36 +13,37 @@ export default function Services() {
 
   const services = [
     {
-      icon: "fa-laptop",
+      icon: "fa-palette", // Represents creativity and design
       title: "Web Design",
-      desc: "By understanding your needs and goals, I translate those into wireframes and mockups by blending artistic vision with technical skills to craft user-friendly and visually appealing online experiences."
+      desc: "I design visually appealing and user-friendly websites by creating wireframes, mockups, and layouts that align with your brand identity and user needs."
     },
     {
-      icon: "fa-edit",
-      title: "Video Editing",
-      desc: "By understanding of visual composition, color theory, and typography I can create for you engaging title cards, design animated transitions, or choose appropriate background music to match the video's tone."
+      icon: "fa-code", // Represents coding and development
+      title: "Web Development",
+      desc: "I develop responsive and dynamic websites using the latest technologies, ensuring smooth functionality, fast performance, and an optimized user experience."
     },
     {
-      icon: "fa-code",
-      title: "Frontend Development",
-      desc: "I can create wireframes and prototypes that outline the layout and user interface element. Also I ensure that the website looks good across different devices and browsers, blending design and functionality."
+      icon: "fa-cogs", // Represents automation and process efficiency
+      title: "Automation",
+      desc: "I build automation solutions to streamline repetitive tasks, improve workflow efficiency, and integrate various APIs and tools to enhance productivity."
     },
     {
-      icon: "fa-paint-brush",
-      title: "Graphic Design",
-      desc: "With the goal to create compelling visual elements for websites, I can design logos, icons, illustrations, and other visual assets that enhance the website's branding and aesthetic appeal."
+      icon: "fa-bug", // Represents debugging and fixing issues
+      title: "Bug Fixes",
+      desc: "I identify and resolve bugs, performance issues, and compatibility problems to ensure a seamless and error-free experience for your website or application."
     },
     {
-      icon: "fa-bullhorn",
-      title: "Digital Marketing",
-      desc: "In digital marketing, I play a vital role for your website, by enhancing visual aesthetics, user experience, SEO, responsive design and mainly conversion optimization."
+      icon: "fa-tools", // Represents maintenance and upkeep
+      title: "Web Maintenance",
+      desc: "I provide regular website updates, security patches, performance optimizations, and content management to keep your website running smoothly and securely."
     },
     {
-      icon: "fa-mobile",
-      title: "Android Development",
-      desc: "I can create visually appealing and intuitive Android app interfaces, by designing app layouts, navigation menus, buttons and icons, ensuring a cohesive and user-friendly experience."
+      icon: "fa-mobile-alt", // Represents mobile development
+      title: "Hybrid App Development",
+      desc: "I develop cross-platform mobile applications using modern frameworks, ensuring a smooth and responsive experience on both iOS and Android devices."
     }
   ];
+  
 
   return (
     <section

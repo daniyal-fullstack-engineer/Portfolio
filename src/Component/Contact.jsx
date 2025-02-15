@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css";
 import { errorMessges, successMessges, validateInput } from "../CommonFunction";
 
 export default function Contact() {
@@ -74,17 +73,17 @@ export default function Contact() {
               <div className="contact-info-item">
                 <i className="fa-solid fa-location-arrow" />
                 <h4>Location</h4>
-                <p>B Block Township Lahore, Punjab, Pakistan</p>
+                <p>Lahore, Punjab, Pakistan</p>
               </div>
               <div className="contact-info-item">
                 <i className="fa-solid fa-envelope" />
                 <h4>Write to us at</h4>
-                <p>hamidraza7614@gmail.com</p>
+                <p>daniyalamjadali@gmail.com</p>
               </div>
               <div className="contact-info-item">
                 <i className="fa-solid fa-phone" />
                 <h4>Call us on</h4>
-                <p>+923227588875</p>
+                <p>+923045485310</p>
               </div>
             </div>
           </div>

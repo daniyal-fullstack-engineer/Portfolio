@@ -13,6 +13,11 @@ const BackToTop = () => {
 
     window.addEventListener('scroll', handleScroll);
 
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };

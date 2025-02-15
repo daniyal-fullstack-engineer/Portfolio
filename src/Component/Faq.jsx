@@ -10,6 +10,64 @@ export default function Faq() {
       easing: "ease-in-out", // Smooth easing effect
     });
   }, []);
+  const faqs = [
+    {
+      id: "faq-01",
+      title: "Do you create custom websites or use templates?",
+      content:
+        "I build fully custom websites tailored to your brand, ensuring uniqueness, responsiveness, and top-notch functionality. No generic templates—only high-quality, hand-crafted designs.",
+      delay: 200,
+    },
+    {
+      id: "faq-02",
+      title: "Will my website be mobile-friendly?",
+      content:
+        "Absolutely! Every website I develop is fully responsive, ensuring seamless performance across desktops, tablets, and mobile devices.",
+      delay: 400,
+    },
+    {
+      id: "faq-03",
+      title: "Can you fix bugs and improve website performance?",
+      content:
+        "Yes! I identify and resolve issues, optimize loading speed, enhance security, and ensure smooth user experience across all browsers and devices.",
+      delay: 600,
+    },
+    {
+      id: "faq-04",
+      title: "Do you provide ongoing website maintenance?",
+      content:
+        "Yes, I offer website maintenance services, including updates, security patches, bug fixes, and performance optimizations to keep your website running smoothly.",
+      delay: 800,
+    },
+    {
+      id: "faq-05",
+      title: "Can you automate business tasks and workflows?",
+      content:
+        "Definitely! I develop automation solutions that streamline repetitive tasks, integrate APIs, and improve business efficiency with smart automation tools.",
+      delay: 1000,
+    },
+    {
+      id: "faq-06",
+      title: "Do you offer hybrid app development?",
+      content:
+        "Yes, I build cross-platform mobile apps that work seamlessly on both Android and iOS, ensuring a high-quality and engaging user experience.",
+      delay: 1200,
+    },
+    {
+      id: "faq-07",
+      title: "How long does it take to complete a project?",
+      content:
+        "Project timelines vary based on complexity, but most websites are completed within 2-6 weeks. For apps and automation, timelines depend on scope and requirements.",
+      delay: 1400,
+    },
+    {
+      id: "faq-08",
+      title: "How do we get started?",
+      content:
+        "Simply contact me with your project details! We'll discuss your needs, set goals, and create a roadmap to bring your vision to life.",
+      delay: 1600,
+    },
+  ];
 
   return (
     <div className="faq section-padding" data-aos="fade-up">
@@ -27,36 +85,7 @@ export default function Faq() {
         <div className="row justify-content-center">
           <div className="col-lg-10">
             <div id="accordion">
-              {[
-                {
-                  id: "collapse-01",
-                  title: "100% Fluid Responsive - Fits any device perfectly",
-                  content:
-                    "Your website will seamlessly adjust to fit any device perfectly, providing an optimal viewing experience for users...",
-                  delay: 200,
-                },
-                {
-                  id: "collapse-02",
-                  title: "Clean Code",
-                  content:
-                    "My code is easy to read, understand, and maintain. It emphasizes clarity and simplicity, allowing others to work efficiently...",
-                  delay: 400,
-                },
-                {
-                  id: "collapse-03",
-                  title: "Flat, Modern and Clean Design",
-                  content:
-                    "I emphasize simplicity and functionality, focusing on minimalistic elements and a user-friendly interface...",
-                  delay: 600,
-                },
-                {
-                  id: "collapse-04",
-                  title: "Custom Font Support",
-                  content:
-                    "I use unique typefaces that enhance the aesthetics and branding of a website. By utilizing the @font-face rule in CSS...",
-                  delay: 800,
-                },
-              ].map((faq, index) => (
+              {faqs.map((faq, index) => (
                 <div
                   className="accordion-item"
                   data-aos="zoom-in"

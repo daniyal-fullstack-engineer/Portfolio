@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css";
 
 export default function Pricing() {
   useEffect(() => {
@@ -11,6 +10,50 @@ export default function Pricing() {
     });
   }, []);
 
+  const pricingPlans = [
+    {
+      title: "Basic",
+      price: 99,
+      features: [
+        "Basic Website Development (Up to 2 Pages)",
+        "Responsive & Mobile-Friendly Design",
+        "Basic SEO Optimization",
+        "1 Free Bug Fix",
+        "Email Support",
+      ],
+      buttonText: "Get Started",
+      buttonClass: "btn-2",
+      delay: 200,
+    },
+    {
+      title: "Premium",
+      price: 199,
+      features: [
+        "Advanced Website or Web App (Up to 5 Pages)",
+        "Custom UI/UX Design",
+        "API Integration & Database Setup",
+        "3 Free Bug Fixes",
+        "Priority Email & Chat Support",
+      ],
+      buttonText: "Choose Plan",
+      buttonClass: "btn-1",
+      delay: 400,
+    },
+    {
+      title: "Ultimate",
+      price: 500,
+      features: [
+        "Custom Web or Mobile App Development",
+        "Automation for Business Processes",
+        "AI-Powered Features (Chatbots, Data Processing)",
+        "10 Free Bug Fixes & Performance Optimization",
+        // "Dedicated Support & Maintenance",
+      ],
+      buttonText: "Get Ultimate",
+      buttonClass: "btn-2",
+      delay: 600,
+    },
+  ];
   return (
     <section
       className="pricing section-padding"
@@ -30,47 +73,7 @@ export default function Pricing() {
           </div>
         </div>
         <div className="row justify-content-center">
-          {[
-            {
-              title: "Basic",
-              price: 99,
-              features: [
-                "5GB Bandwidth",
-                "1 Free Update",
-                "High Regulation Printing",
-                "Branding",
-                "2 Free Maintenances",
-              ],
-              buttonClass: "btn-2",
-              delay: 200,
-            },
-            {
-              title: "Premium",
-              price: 199,
-              features: [
-                "10GB Bandwidth",
-                "3 Free Updates",
-                "High Regulation Printing",
-                "3 Brandings",
-                "5 Free Maintenances",
-              ],
-              buttonClass: "btn-1",
-              delay: 400,
-            },
-            {
-              title: "Ultimate",
-              price: 299,
-              features: [
-                "20GB Bandwidth",
-                "10 Free Updates",
-                "Priority Regulation Printing",
-                "10 Brandings",
-                "20 Free Maintenances",
-              ],
-              buttonClass: "btn-2",
-              delay: 600,
-            },
-          ].map((plan, index) => (
+          {pricingPlans.map((plan, index) => (
             <div className="col-lg-4 col-md-6" key={index}>
               <div
                 className="pricing-plan"

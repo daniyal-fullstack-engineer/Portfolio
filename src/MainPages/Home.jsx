@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../Component/Header';
 import Banner from '../Component/Banner';
 import WhatAppIcon from '../Component/WhatAppIcon';
@@ -14,12 +14,19 @@ import Faq from '../Component/Faq';
 import Contact from '../Component/Contact';
 import DarkLightToggle from '../Component/DarkLightToggle';
 import DarkBanner from '../Component/DarkBanner';
+import FormTesting from '../Component/FormTesting';
+import "aos/dist/aos.css";
 
-
+// useEffect(() => {
+//   setTimeout(() => {
+//     window.scrollTo({ top: 0, behavior: "smooth" });
+//   }, 100); // Small delay to ensure smooth scroll works properly
+// }, []);
 
 const Home = () => {
   return (
     <div className='main-wrapper'>
+      {/* <FormTesting /> */}
           <DarkLightToggle />
       <div className='navbar-section'>
       <Header />

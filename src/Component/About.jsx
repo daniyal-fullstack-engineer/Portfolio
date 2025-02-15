@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css";
 
 const About = () => {
   useEffect(() => {
@@ -44,7 +43,7 @@ const About = () => {
                       <i className="fa-solid fa-calendar" />
                     </div>
                     <div className="info-text">
-                      <p><span>Date of Birth:</span> 14 September 2003</p>
+                      <p><span>Date of Birth:</span> 21 July 1998</p>
                     </div>
                   </div>
                 </li>

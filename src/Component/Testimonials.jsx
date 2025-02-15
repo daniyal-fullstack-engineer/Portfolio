@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css";
+
 
 export default function Testimonials() {
   useEffect(() => {
@@ -33,29 +33,47 @@ export default function Testimonials() {
           <div className="testimonial-slider owl-carousel">
             {[
               {
-                img: "https://i.postimg.cc/1fSSmLsR/1.jpg",
-                name: "Brody Stevens",
-                role: "Marketing Director",
-                text: "Mark was hired to create a corporate identity. It's modern, clean, and with a beautiful design. He has a lot of experience and is very concerned about the needs of the client.",
+                img: "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/5f50a36de4ffcbddb7caec31d603f03b-1704065713606/5c4455ee-6fe6-4815-b5b7-30649b148a48.png",
+                name: "Moemia",
+                role: "React Native",
+                text: "Once again thank you for your work on helping me create the react native front end and connecting the backend to my app with firebase with user authentication and league creation/ display for my sports app. Looking forward for you helping me.",
               },
               {
-                img: "https://i.postimg.cc/rzxcL86Y/2.jpg",
-                name: "Ellena Evans",
-                role: "Art Creative Director",
-                text: "I couldn't be happier with the website that Richard created for us. His attention to detail and creativity is unmatched.",
+                img: "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/5f50a36de4ffcbddb7caec31d603f03b-1704065713606/5c4455ee-6fe6-4815-b5b7-30649b148a48.png",
+                name: "Moemia",
+                role: "Mern Stack",
+                text: "Daniyal did great job as fullstack developer! The professionalism, top-notch documentation, and going above and beyond made this an incredible experience. Smooth collaboration and timely delivery—highly recommend! 💪.",
               },
               {
-                img: "https://i.postimg.cc/w7kp70jX/3.jpg",
-                name: "Joshua Doe",
-                role: "Marketing Director",
-                text: "Working with Mark has been an absolute pleasure. I was impressed with his attention to detail and web design.",
+                img: "https://w7.pngwing.com/pngs/74/613/png-transparent-gmail-android-email-npm-material-design-letter-m-text-trademark-logo.png",
+                name: "Muzamil Pervaize",
+                role: "Next Js",
+                text: "So understand about the task. Perfect!.",
               },
               {
                 img: "https://i.postimg.cc/4YNTtVYr/4.jpg",
-                name: "Jessica Miller",
-                role: "Small Business Owner",
-                text: "I was overwhelmed with the thought of redesigning my online store, but Mark made the process seamless. The site is not only visually appealing but also optimized for conversions.",
+                name: "Xerophilic",
+                role: "Node Js",
+                text: "Very fast and good service. Exceed expectations.",
               },
+              {
+                img: "https://i.postimg.cc/4YNTtVYr/4.jpg",
+                name: "Habib879",
+                role: "Teaching Node js",
+                text: "Great Teaching way , good communication. Really satisfied.",
+              },
+              {
+                img: "https://i.postimg.cc/4YNTtVYr/4.jpg",
+                name: "Muzammil Perv112",
+                role: "Mern Stack",
+                text: "Great work, very fast and good communication. Really satisfied and will work again many thanks.",
+              },
+              
+             { img: "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/5f50a36de4ffcbddb7caec31d603f03b-1704065713606/5c4455ee-6fe6-4815-b5b7-30649b148a48.png",
+              name: "Moemia",
+              role: "Firebase",
+              text: "Great work, very fast and good communication. Really satisfied and will work again many thanks. Helped me deploy my react app to firebase hosting.",
+            },
             ].map((testimonial, index) => (
               <div
                 className="testimonial-item"
