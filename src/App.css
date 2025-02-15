@@ -772,6 +772,8 @@ a:hover {
 .testimonial-item .img-box img {
     border-radius: 50%;
     width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .testimonial-item .img-box i {

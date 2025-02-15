@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="https://i.postimg.cc/50MD4tqS/10456439.png" type="image/x-icon">
-  <title>Hamid Portfolio</title>
+  <link rel="icon" href="https://i.postimg.cc/hvMh0jgL/output-onlinepngtools.png" type="image/x-icon">
+  <title>Full Stack & JavaScript Developer | M Daniyal </title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/magnific-popup.min.css">
@@ -15,7 +15,17 @@
     rel="stylesheet">
   <!-- AOS CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-
+  <!-- title scrollbar -->
+  <script>
+    let titleText = "Full Stack & JavaScript Developer | M Daniyal ";
+    let index = 0;
+    function scrollTitle() {
+      document.title = titleText.slice(index) + titleText.slice(0, index);
+      index = (index + 1) % titleText.length;
+    }
+    setInterval(scrollTitle, 200); 
+  </script>
+  <!-- title scrollbar -->
 
 
 </head>
