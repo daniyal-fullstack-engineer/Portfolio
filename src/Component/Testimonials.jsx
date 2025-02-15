@@ -33,6 +33,12 @@ export default function Testimonials() {
           <div className="testimonial-slider owl-carousel">
             {[
               {
+                img: "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/d31612952c6eca7780ba29c670ecc9d8-1729845263690/39ef4fad-6a51-4223-abf5-6d19256880bd.jpg",
+                name: "Valantism",
+                role: "React js",
+                text: "Very good experience .",
+              },
+              {
                 img: "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/5f50a36de4ffcbddb7caec31d603f03b-1704065713606/5c4455ee-6fe6-4815-b5b7-30649b148a48.png",
                 name: "Moemia",
                 role: "React Native",
