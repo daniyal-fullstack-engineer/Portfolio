@@ -44,7 +44,7 @@ export default function Testimonials() {
     },
     {
       img: "https://i.postimg.cc/4YNTtVYr/4.jpg",
-      name: "Spain",
+      name: "Habib786",
       country: "Spain 🇪🇸",
       text: "Great teaching style, good communication. Really satisfied.",
     },
