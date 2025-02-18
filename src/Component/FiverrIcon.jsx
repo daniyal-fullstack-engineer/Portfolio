@@ -1,17 +1,15 @@
 import React from "react";
 
 const FiverrIcon = () => {
-
   const handleFiver = () => {
-    window.open('https://www.fiverr.com/daniyalamjad14', '_blank');
+    window.open("https://www.fiverr.com/daniyalamjad14", "_blank");
   };
   return (
     <div className="fiverr-icon">
       <button
-      onClick={()=>{
-        handleFiver()
-        
-      }}
+        onClick={() => {
+          handleFiver();
+        }}
         type="button"
         id="ada-chat-button"
         className="
@@ -21,7 +19,6 @@ const FiverrIcon = () => {
     
     
     button--appear"
-        aria-label="Chat with bot"
         title="Chat with bot"
         aria-controls="ada-chat-frame"
         aria-expanded="false"
