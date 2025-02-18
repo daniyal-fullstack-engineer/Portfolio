@@ -16,6 +16,7 @@ import DarkLightToggle from '../Component/DarkLightToggle';
 import DarkBanner from '../Component/DarkBanner';
 import FormTesting from '../Component/FormTesting';
 import "aos/dist/aos.css";
+import FiverrIcon from '../Component/FiverrIcon';
 
 
 // useEffect(() => {
@@ -67,6 +68,9 @@ const Home = () => {
       </div>
       <div className='backtotop-section'>
        <BackToTop />
+      </div>
+      <div className='FiverrIcon'>
+      <FiverrIcon />
       </div>
       <div className='WhattAppIcon-section'>
       <WhatAppIcon />

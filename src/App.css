@@ -124,7 +124,37 @@ a:hover {
 .section-title h2 span {
     color: var(--main-color);
 }
-
+/* fivver */
+.fiverr-icon {
+    position: fixed;
+    bottom: 90px;
+    left: 28px;
+  }
+  
+  .fiverr-btn {
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border: none;
+    padding: 5px;
+  }
+  
+  .fiverr-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  .fiverr-btn:hover {
+    background-color: #ffffff;
+  }
+  
+/* fivver */
 .owl-carousel .owl-dots {
     padding: 0 15px;
     text-align: center;
