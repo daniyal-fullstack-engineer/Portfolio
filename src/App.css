@@ -1301,3 +1301,22 @@ a:hover {
     transform: translateX(0); /* Move to its original position */
     visibility: visible;
 }
+
+.button-v2 {
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: 200ms opacity ease;
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    overflow: hidden;
+    display: flex
+;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.12);
+    animation: button-fade-in 200ms ease 0s;
+}

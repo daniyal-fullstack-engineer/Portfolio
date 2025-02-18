@@ -50,11 +50,11 @@ const DarkBanner = () => {
                         <i className="fa-brands fa-facebook" />
                       </a>
                     </li>
-                    <li data-aos="fade-up" data-aos-delay="200">
+                    {/* <li data-aos="fade-up" data-aos-delay="200">
                       <a href="skype:live:.cid.f7da4c8189fede6e?chat" target="_blank">
                         <i className="fa-brands fa-skype" />
                       </a>
-                    </li>
+                    </li> */}
                     <li data-aos="fade-up" data-aos-delay="400">
                       <a href="https://github.com/daniyal-sudo">
                         <i className="fa-brands fa-github" />
