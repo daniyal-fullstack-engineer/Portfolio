@@ -5,10 +5,29 @@ import "aos/dist/aos.css";
 const projects = [
   {
     img: "https://i.postimg.cc/sD0CRsBv/resume-builder.png",
+    title: "My Quicks",
+    link: "https://myquicks.com/",
+    popup: "https://i.postimg.cc/sD0CRsBv/resume-builder.png",
+  },
+  {
+    img: "https://i.postimg.cc/sD0CRsBv/resume-builder.png",
+    title: "Dukan Mine",
+    link: "https://dukanmine.com/",
+    popup: "https://i.postimg.cc/sD0CRsBv/resume-builder.png",
+  },
+  {
+    img: "https://i.postimg.cc/Nj3h5Dkt/ecommerence.png",
+    title: "Superbullion",
+    link: "https://superbullionwire.com/",
+    popup: "https://i.postimg.cc/Nj3h5Dkt/ecommerence.png",
+  },
+  {
+    img: "https://i.postimg.cc/sD0CRsBv/resume-builder.png",
     title: "Resume Builder",
     link: "https://app.thepathfinderhub.com/",
     popup: "https://i.postimg.cc/sD0CRsBv/resume-builder.png",
   },
+  
   {
     img: "https://i.postimg.cc/Nf0vV5j3/roi.png",
     title: "ROI Level Up",
@@ -21,12 +40,7 @@ const projects = [
     link: "http://82.112.240.94:5173/",
     popup: "https://i.postimg.cc/2SQ6j1n0/gym.png",
   },
-  {
-    img: "https://i.postimg.cc/Nj3h5Dkt/ecommerence.png",
-    title: "Superbullion",
-    link: "https://superbullionwire.com/",
-    popup: "https://i.postimg.cc/Nj3h5Dkt/ecommerence.png",
-  },
+  
   {
     img: "https://i.postimg.cc/0QChXsR5/amberoil.png",
     title: "Amber Oil",
