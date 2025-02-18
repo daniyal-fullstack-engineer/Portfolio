@@ -4,16 +4,16 @@ import "aos/dist/aos.css";
 
 const projects = [
   {
-    img: "https://i.postimg.cc/sD0CRsBv/resume-builder.png",
+    img: "https://i.postimg.cc/7hhVjLjS/myquick.png",
     title: "My Quicks",
     link: "https://myquicks.com/",
-    popup: "https://i.postimg.cc/sD0CRsBv/resume-builder.png",
+    popup: "https://i.postimg.cc/7hhVjLjS/myquick.png",
   },
   {
-    img: "https://i.postimg.cc/sD0CRsBv/resume-builder.png",
+    img: "https://i.postimg.cc/4x98Jmy5/dukhan.png",
     title: "Dukan Mine",
     link: "https://dukanmine.com/",
-    popup: "https://i.postimg.cc/sD0CRsBv/resume-builder.png",
+    popup: "https://i.postimg.cc/4x98Jmy5/dukhan.png",
   },
   {
     img: "https://i.postimg.cc/Nj3h5Dkt/ecommerence.png",
