@@ -11,7 +11,7 @@ export default function HireMe() {
   }, []);
 
   const handleViewCV = () => {
-    window.open('/src/assets/M.HAMID-RAZA.pdf', '_blank');
+    window.open('/DaniyalCv.pdf', '_blank');
   };
 
   return (
