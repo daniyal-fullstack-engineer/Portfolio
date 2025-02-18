@@ -27,8 +27,8 @@ const FiverrIcon = () => {
         aria-expanded="false"
         style={{
           backgroundColor: "rgb(29, 191, 115)",
-          height: 44,
-          width: 44,
+          height: 50,
+          width: 50,
           color: "rgb(0, 0, 0)",
         }}
       >

@@ -1315,11 +1315,10 @@ a:hover {
     transition: 200ms opacity ease;
     position: absolute;
     right: 0px;
-    left: 10px;
-    bottom: 24px;
+    left: 5px;
+    bottom: 3px;
     overflow: hidden;
-    display: flex
-;
+    display: flex;
     gap: 8px;
     align-items: center;
     justify-content: center;
