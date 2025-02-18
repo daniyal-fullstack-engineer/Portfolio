@@ -36,7 +36,12 @@ body {
     overflow-x: hidden;
     background-color: var(--white);
     box-sizing: border-box;
+    user-select: none; /* Prevents text selection */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
 }
+
 
 * {
     margin: 0;

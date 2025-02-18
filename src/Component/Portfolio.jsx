@@ -1,361 +1,113 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
+import "aos/dist/aos.css";
+
+const projects = [
+  {
+    img: "https://i.postimg.cc/sD0CRsBv/resume-builder.png",
+    title: "Resume Builder",
+    link: "https://app.thepathfinderhub.com/",
+    popup: "https://i.postimg.cc/sD0CRsBv/resume-builder.png",
+  },
+  {
+    img: "https://i.postimg.cc/Nf0vV5j3/roi.png",
+    title: "ROI Level Up",
+    link: "https://roilevelup.com/",
+    popup: "https://i.postimg.cc/Nf0vV5j3/roi.png",
+  },
+  {
+    img: "https://i.postimg.cc/2SQ6j1n0/gym.png",
+    title: "Gym Management",
+    link: "http://82.112.240.94:5173/",
+    popup: "https://i.postimg.cc/2SQ6j1n0/gym.png",
+  },
+  {
+    img: "https://i.postimg.cc/Nj3h5Dkt/ecommerence.png",
+    title: "Superbullion",
+    link: "https://superbullionwire.com/",
+    popup: "https://i.postimg.cc/Nj3h5Dkt/ecommerence.png",
+  },
+  {
+    img: "https://i.postimg.cc/0QChXsR5/amberoil.png",
+    title: "Amber Oil",
+    link: "https://www.amberoil.ie/",
+    popup: "https://i.postimg.cc/0QChXsR5/amberoil.png",
+  },
+  {
+    img: "https://i.postimg.cc/k5K08STb/mcc.png",
+    title: "MCCI",
+    link: "https://www.mcci.ie/",
+    popup: "https://i.postimg.cc/k5K08STb/mcc.png",
+  },
+  {
+    img: "https://i.postimg.cc/C5PXYsxW/iki.png",
+    title: "IKI",
+    link: "https://www.ikc.ie/",
+    popup: "https://i.postimg.cc/C5PXYsxW/iki.png",
+  },
+  {
+    img: "https://i.postimg.cc/DZhtczNY/pegobal.png",
+    title: "PE Global",
+    link: "https://www.peglobal.net/",
+    popup: "https://i.postimg.cc/DZhtczNY/pegobal.png",
+  },
+];
 
 export default function Portfolio() {
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation speed
-      once: true, // Trigger animation only once
-      easing: "ease-in-out", // Smooth transition effect
+      duration: 1000,
+      once: true,
+      easing: "ease-in-out",
     });
   }, []);
+
   return (
     <section
     className="img-gallery section-padding"
     id="portfolio"
     data-scroll-index={3}
   >
-    <div className="container">
-      <div className="row justify-content-center">
-      <div className="col-lg-8">
-        <div className="section-title" data-aos="fade-up">
-          <h4>Portfolio</h4>
-          <h2>
-            Our latest <span>work</span>
-          </h2>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-lg-8">
+            <div className="section-title" data-aos="fade-up">
+              <h4>Portfolio</h4>
+              <h2>
+                Our latest <span>work</span>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div className="row grid">
+          {projects.map((project, index) => (
+            <div key={index} className="col-lg-4 col-md-6 col-sm-6">
+              <div className="single-work text-center mt-30">
+                <div className="work-image">
+                  <img src={project.img} alt={project.title} />
+                </div>
+                <div className="work-overlay">
+                  <div className="work-content">
+                    <h3 className="work-title">{project.title}</h3>
+                    <ul>
+                      <li>
+                        <a href={project.popup} className="image-popup">
+                          <i className="fa-solid fa-plus" />
+                        </a>
+                      </li>
+                      <li>
+                        <a href={project.link} target="_blank" rel="noopener noreferrer">
+                          <i className="fa-solid fa-link" />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-      </div>
-      <div className="row ">
-        <div className="col-lg-8 d-flex justify-content-center sortBtn flex-wrap">
-          <a href="#" className="filter-btn active" data-filter="*">
-            All
-          </a>
-          <a href="#" className="filter-btn " data-filter=".wordpress">
-            Wordpress
-          </a>
-          <a href="#" className="filter-btn " data-filter=".React">
-            React js
-          </a>
-          <a href="#" className="filter-btn " data-filter=".web-design">
-            Web Design
-          </a>
-        </div>
-      </div>
-      <div className="row grid">
-        {/* resume-builder */}
-        <div className="col-lg-4 col-md-6 col-sm-6 React">
-          <div className="single-work text-center mt-30">
-            <div className="work-image">
-              <img
-                src="https://i.postimg.cc/sD0CRsBv/resume-builder.png"
-                alt="portfolio image"
-              />
-            </div>
-            <div className="work-overlay">
-              <div className="work-content">
-                <h3 className="work-title">Product Design</h3>
-                <ul>
-                  <li>
-                    <a
-                      href="https://i.postimg.cc/sD0CRsBv/resume-builder.png"
-                      className="image-popup"
-                    >
-                      <i className="fa-solid fa-plus" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://app.thepathfinderhub.com/" target="_blank">
-                      <i className="fa-solid fa-link" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* roi */}
-        <div className="col-lg-4 col-md-6 col-sm-6 React">
-          <div className="single-work text-center mt-30">
-            <div className="work-image">
-              <img
-                src="https://i.postimg.cc/Nf0vV5j3/roi.png"
-                alt="portfolio image"
-              />
-            </div>
-            <div className="work-overlay">
-              <div className="work-content">
-                <h3 className="work-title">Product Design</h3>
-                <ul>
-                  <li>
-                    <a
-                      href="https://i.postimg.cc/Nf0vV5j3/roi.png"
-                      className="image-popup"
-                    >
-                      <i className="fa-solid fa-plus" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://roilevelup.com/" target="_blank">
-                      <i className="fa-solid fa-link" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* gym */}
-        <div className="col-lg-4 col-md-6 col-sm-6 React">
-          <div className="single-work text-center mt-30">
-            <div className="work-image">
-              <img
-                src="https://i.postimg.cc/2SQ6j1n0/gym.png"
-                alt="portfolio image"
-              />
-            </div>
-            <div className="work-overlay">
-              <div className="work-content">
-                <h3 className="work-title">Product Design</h3>
-                <ul>
-                  <li>
-                    <a
-                      href="https://i.postimg.cc/2SQ6j1n0/gym.png"
-                      className="image-popup"
-                    >
-                      <i className="fa-solid fa-plus" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://82.112.240.94:5173/" target="_blank">
-                      <i className="fa-solid fa-link" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* superbullon */}
-        <div className="col-lg-4 col-md-6 col-sm-6 React">
-          <div className="single-work text-center mt-30">
-            <div className="work-image">
-              <img
-                src="https://i.postimg.cc/Nj3h5Dkt/ecommerence.png"
-                alt="portfolio image"
-              />
-            </div>
-            <div className="work-overlay">
-              <div className="work-content">
-                <h3 className="work-title">Product Design</h3>
-                <ul>
-                  <li>
-                    <a
-                      href="https://i.postimg.cc/Nj3h5Dkt/ecommerence.png"
-                      className="image-popup"
-                    >
-                      <i className="fa-solid fa-plus" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://superbullionwire.com/" target="_blank">
-                      <i className="fa-solid fa-link" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* amberoil */}
-        <div className="col-lg-4 col-md-6 col-sm-6 wordpress">
-          <div className="single-work text-center mt-30">
-            <div className="work-image">
-              <img
-                src="https://i.postimg.cc/0QChXsR5/amberoil.png"
-                alt="portfolio image"
-              />
-            </div>
-            <div className="work-overlay">
-              <div className="work-content">
-                <h3 className="work-title">Product Design</h3>
-                <ul>
-                  <li>
-                    <a
-                      href="https://i.postimg.cc/0QChXsR5/amberoil.png"
-                      className="image-popup"
-                    >
-                      <i className="fa-solid fa-plus" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.amberoil.ie/" target="_blank">
-                      <i className="fa-solid fa-link" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* mcci */}
-        <div className="col-lg-4 col-md-6 col-sm-6 wordpress">
-          <div className="single-work text-center mt-30">
-            <div className="work-image">
-              <img
-                src="https://i.postimg.cc/k5K08STb/mcc.png"
-                alt="portfolio image"
-              />
-            </div>
-            <div className="work-overlay">
-              <div className="work-content">
-                <h3 className="work-title">Product Design</h3>
-                <ul>
-                  <li>
-                    <a
-                      href="https://i.postimg.cc/k5K08STb/mcc.png"
-                      className="image-popup"
-                    >
-                      <i className="fa-solid fa-plus" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.mcci.ie/" target="_blank">
-                      <i className="fa-solid fa-link" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* iki */}
-        <div className="col-lg-4 col-md-6 col-sm-6 wordpress">
-          <div className="single-work text-center mt-30">
-            <div className="work-image">
-              <img
-                src="https://i.postimg.cc/C5PXYsxW/iki.png"
-                alt="portfolio image"
-              />
-            </div>
-            <div className="work-overlay">
-              <div className="work-content">
-                <h3 className="work-title">Product Design</h3>
-                <ul>
-                  <li>
-                    <a
-                      href="https://i.postimg.cc/C5PXYsxW/iki.png"
-                      className="image-popup"
-                    >
-                      <i className="fa-solid fa-plus" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.ikc.ie/" target="_blank">
-                      <i className="fa-solid fa-link" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* peglobal */}
-        <div className="col-lg-4 col-md-6 col-sm-6 wordpress">
-          <div className="single-work text-center mt-30">
-            <div className="work-image">
-              <img
-                src="https://i.postimg.cc/DZhtczNY/pegobal.png"
-                alt="portfolio image"
-              />
-            </div>
-            <div className="work-overlay">
-              <div className="work-content">
-                <h3 className="work-title">Product Design</h3>
-                <ul>
-                  <li>
-                    <a
-                      href="https://i.postimg.cc/DZhtczNY/pegobal.png"
-                      className="image-popup"
-                    >
-                      <i className="fa-solid fa-plus" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.peglobal.net/" target="_blank">
-                      <i className="fa-solid fa-link" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* digitalmindson */}
-        <div className="col-lg-4 col-md-6 col-sm-6 web-design">
-          <div className="single-work text-center mt-30">
-            <div className="work-image">
-              <img
-                src="https://i.postimg.cc/13nhm26M/digitalmindson.png"
-                alt="portfolio image"
-              />
-            </div>
-            <div className="work-overlay">
-              <div className="work-content">
-                <h3 className="work-title">Product Design</h3>
-                <ul>
-                  <li>
-                    <a
-                      href="https://i.postimg.cc/13nhm26M/digitalmindson.png"
-                      className="image-popup"
-                    >
-                      <i className="fa-solid fa-plus" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://digitalmindson.com/" target="_blank">
-                      <i className="fa-solid fa-link" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* shortlistme */}
-        <div className="col-lg-4 col-md-6 col-sm-6 web-design">
-          <div className="single-work text-center mt-30">
-            <div className="work-image">
-              <img
-                src="https://i.postimg.cc/pVCtqDRQ/Shortlistme.png"
-                alt="portfolio image"
-              />
-            </div>
-            <div className="work-overlay">
-              <div className="work-content">
-                <h3 className="work-title">Product Design</h3>
-                <ul>
-                  <li>
-                    <a
-                      href="https://i.postimg.cc/pVCtqDRQ/Shortlistme.png"
-                      className="image-popup"
-                    >
-                      <i className="fa-solid fa-plus" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://shortlistme.com/" target="_blank">
-                      <i className="fa-solid fa-link" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  )
+    </section>
+  );
 }
