@@ -1313,15 +1313,19 @@ a:hover {
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, 0.05);
     transition: 200ms opacity ease;
-    position: absolute;
+    position: fixed !important;
     right: 0px;
-    left: 5px;
-    bottom: 3px;
+    left: 30px;
+    bottom: 70px;
     overflow: hidden;
+    z-index: 99;
     display: flex;
     gap: 8px;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.12);
     animation: button-fade-in 200ms ease 0s;
+}
+.fiverr-icon {
+    position: relative;
 }
