@@ -27,7 +27,7 @@ const About = () => {
 
         <div className="row">
           {/* Left Content */}
-          <div className="col-lg-6" data-aos="fade-right">
+          <div className="col-lg-6" data-aos="fade-up">
             <div className="about-content">
               <h5 className="about-title">
                 I'm <span>M Daniyal</span> and I'm a Web and App Developer
@@ -78,14 +78,14 @@ const About = () => {
                   </div>
                 </li>
               </ul>
-              <a href="#contact" className="hire-me" data-scroll-nav={6} data-aos="fade-in">
+              <a href="#contact" className="hire-me" data-scroll-nav={6} data-aos="zoom-in">
                 Hire me
               </a>
             </div>
           </div>
 
           {/* Right Skills Section */}
-          <div className="col-lg-6 col-xl-5 offset-xl-1" data-aos="fade-left">
+          <div className="col-lg-6 col-xl-5 offset-xl-1" data-aos="fade-down">
             <div id="skill-bar-wrapper">
               <div className="text-left">
                 <h4 data-aos="zoom-in">
