@@ -4,10 +4,22 @@ import "aos/dist/aos.css";
 
 const projects = [
   {
-    img: "https://i.postimg.cc/7hhVjLjS/myquick.png",
+    img: "https://i.postimg.cc/76GsJG3q/Screenshot-2025-04-06-025813.png",
+    title: "NexOnPackaging Dashboard",
+    link: "https://admin.nexonpackaging.com/",
+    popup: "https://i.postimg.cc/76GsJG3q/Screenshot-2025-04-06-025813.png",
+  },
+  {
+    img: "https://i.postimg.cc/xjX5C26P/Screenshot-2025-04-06-024751.png",
+    title: "NexOnPackaging",
+    link: "https://www.nexonpackaging.com/",
+    popup: "https://i.postimg.cc/xjX5C26P/Screenshot-2025-04-06-024751.png",
+  },
+  {
+    img: "https://i.postimg.cc/d1H47SKg/Screenshot-2025-04-06-024039.png",
     title: "My Quicks",
     link: "https://myquicks.com/",
-    popup: "https://i.postimg.cc/7hhVjLjS/myquick.png",
+    popup: "https://i.postimg.cc/d1H47SKg/Screenshot-2025-04-06-024039.png",
   },
   {
     img: "https://i.postimg.cc/4x98Jmy5/dukhan.png",
