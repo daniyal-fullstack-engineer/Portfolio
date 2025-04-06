@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
+import MovingModel from "./MovingModel";
 
 
 const DarkBanner = () => {
@@ -31,9 +32,10 @@ const DarkBanner = () => {
             </div>
             {/* Right Image */}
             <div className="col-lg-6">
-              <div className="home-imgs d-none d-lg-block" data-aos="zoom-in">
+              {/* <div className="home-imgs d-none d-lg-block" data-aos="zoom-in">
                 <img src="https://i.postimg.cc/t4KV6Zhv/newcode.jpg" alt="daniyal" />
-              </div>
+              </div> */}
+              <MovingModel />
             </div>
           </div>
         </div>
