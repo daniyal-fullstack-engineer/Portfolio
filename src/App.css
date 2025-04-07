@@ -1201,8 +1201,10 @@ a:hover {
         margin-bottom: 30px;
     }
 }
-
 @media (max-width: 767px) {
+    .spline-wrapper {
+        display: none;
+    }
     .header-shape.shape-one img {
         width: 40px;
     }
@@ -1488,3 +1490,14 @@ a:hover {
   canvas + div {
     display: none !important;
   }
+  @media (max-width: 768px) {
+    .spline-wrapper {
+        display: none;
+    }
+}
+@media (max-width: 480px) {
+    .header-content-section {
+        padding-top: 20px !important;
+        height: 600px !important;
+    }
+}
