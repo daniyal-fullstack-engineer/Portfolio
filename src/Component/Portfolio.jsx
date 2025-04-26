@@ -110,7 +110,7 @@ export default function Portfolio() {
             <div key={index} className="col-lg-4 col-md-6 col-sm-6">
               <div className="single-work text-center mt-30">
                 <div className="work-image">
-                  <img src={project.img} alt={project.title} />
+                  <img src={project.img} alt={project.title}  loading="lazy"/>
                 </div>
                 <div className="work-overlay">
                   <div className="work-content">
