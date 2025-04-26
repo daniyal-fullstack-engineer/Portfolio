@@ -49,7 +49,7 @@ const projects = [
   {
     img: "https://i.postimg.cc/2SQ6j1n0/gym.png",
     title: "Gym Management",
-    link: "http://82.112.240.94:5173/",
+    link: "https://herakleangym.vercel.app/login",
     popup: "https://i.postimg.cc/2SQ6j1n0/gym.png",
   },
   

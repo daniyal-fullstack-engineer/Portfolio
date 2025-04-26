@@ -75,7 +75,7 @@ const DarkBanner = () => {
                       </a>
                     </li> */}
                     <li data-aos="fade-up" data-aos-delay="400">
-                      <a href="https://github.com/daniyal-sudo">
+                      <a href="https://github.com/daniyal-fullstack-engineer">
                         <i className="fa-brands fa-github" />
                       </a>
                     </li>
