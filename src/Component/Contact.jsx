@@ -100,6 +100,7 @@ export default function Contact() {
                         className="form-control"
                         value={formData.name}
                         onChange={handleChange}
+                          autoComplete="off"
                       />
                     </div>
                   </div>
@@ -112,6 +113,7 @@ export default function Contact() {
                         className="form-control"
                         value={formData.email}
                         onChange={handleChange}
+                          autoComplete="off"
                       />
                     </div>
                   </div>
@@ -126,6 +128,7 @@ export default function Contact() {
                         className="form-control"
                         value={formData.phone}
                         onChange={handleChange}
+                          autoComplete="off"
                       />
                     </div>
                   </div>
@@ -140,6 +143,7 @@ export default function Contact() {
                         className="form-control"
                         value={formData.subject}
                         onChange={handleChange}
+                          autoComplete="off"
                       />
                     </div>
                   </div>
@@ -153,6 +157,7 @@ export default function Contact() {
                         className="form-control"
                         value={formData.message}
                         onChange={handleChange}
+                          autoComplete="off"
                       />
                     </div>
                   </div>

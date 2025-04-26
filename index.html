@@ -58,9 +58,17 @@
   <!-- AOS JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      AOS.init();
-    });
+    useEffect(() => {
+  AOS.init({
+    duration: 800,
+    once: true,
+    disableMutationObserver: true,
+    // Yeh lagao:
+    mirror: false,
+    startEvent: 'DOMContentLoaded', // ensures it waits for DOM
+  });
+}, []);
+
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
