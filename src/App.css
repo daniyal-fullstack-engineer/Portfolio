@@ -1209,6 +1209,9 @@ a:hover {
     .spline-wrapper {
         display: none;
     }
+    .skeleton-circle {
+        display: none;
+    }
     .header-shape.shape-one img {
         width: 40px;
     }
