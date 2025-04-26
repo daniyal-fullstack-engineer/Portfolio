@@ -1,15 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import MovingModel from "./MovingModel";
 
-
 const DarkBanner = () => {
+  const [laodModel, setLoadModel] = useState(true);
   useEffect(() => {
     AOS.init({
       duration: 1000, // Animation speed in milliseconds
       once: true, // Animation runs once per element
       easing: "ease-in-out",
     });
+
+    const timer = setTimeout(() => {
+      setLoadModel(false)
+    }, 5000);
+     
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -24,7 +30,12 @@ const DarkBanner = () => {
                 <h1>M Daniyal</h1>
                 <p>A freelancer Full Stack & Javascript Developer</p>
                 <div className="home-btn">
-                  <a href="#portfolio" className="btn-1" data-scroll-nav={3} data-aos="fade-in">
+                  <a
+                    href="#portfolio"
+                    className="btn-1"
+                    data-scroll-nav={3}
+                    data-aos="fade-in"
+                  >
                     View my Work
                   </a>
                 </div>
@@ -35,7 +46,10 @@ const DarkBanner = () => {
               {/* <div className="home-imgs d-none d-lg-block" data-aos="zoom-in">
                 <img src="https://i.postimg.cc/t4KV6Zhv/newcode.jpg" alt="daniyal" />
               </div> */}
-              <MovingModel />
+              {laodModel ? 
+              <div className="skeleton-circle"></div>
+              :
+              <MovingModel  />}
             </div>
           </div>
         </div>
@@ -48,7 +62,10 @@ const DarkBanner = () => {
                 <div className="header-social-icon">
                   <ul>
                     <li data-aos="fade-up">
-                      <a href="https://web.facebook.com/daniyal.amjadali/" target="_blank">
+                      <a
+                        href="https://web.facebook.com/daniyal.amjadali/"
+                        target="_blank"
+                      >
                         <i className="fa-brands fa-facebook" />
                       </a>
                     </li>
@@ -63,8 +80,11 @@ const DarkBanner = () => {
                       </a>
                     </li>
                     <li data-aos="fade-up" data-aos-delay="600">
-                    {/* https://www.linkedin.com/in/m-daniyal-software-engineer/ */}
-                      <a href="https://www.linkedin.com/in/m-daniyal-software-engineer/" target="_blank">
+                      {/* https://www.linkedin.com/in/m-daniyal-software-engineer/ */}
+                      <a
+                        href="https://www.linkedin.com/in/m-daniyal-software-engineer/"
+                        target="_blank"
+                      >
                         <i className="fa-brands fa-linkedin" />
                       </a>
                     </li>
