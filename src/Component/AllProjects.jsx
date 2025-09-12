@@ -137,6 +137,11 @@ export default function AllProjects() {
       document.documentElement.style.scrollBehavior = originalScrollBehavior;
       document.body.classList.remove('all-projects-active');
       window.removeEventListener('scroll', handleScroll);
+      
+      // Force scroll to top when leaving the page
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
     };
   }, []);
 

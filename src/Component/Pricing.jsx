@@ -425,50 +425,66 @@ export default function Pricing() {
 
           {/* Custom Development Section */}
           <div className="text-center fade-in-up" data-aos="fade-up" data-aos-delay="200">
-            <div className="bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 border border-slate-200/50 dark:border-slate-600/50">
+            <div className="relative bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 border border-slate-200/50 dark:border-slate-600/50 overflow-hidden group hover:shadow-3xl transition-all duration-500">
+              {/* Background Effects */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl sm:rounded-3xl"></div>
+              <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-purple-500/10 to-indigo-500/10 rounded-full blur-xl animate-pulse-slow"></div>
+              <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '1s'}}></div>
+              
+              {/* Floating Elements */}
+              <div className="absolute top-6 right-6 w-3 h-3 bg-purple-400 rounded-full animate-ping opacity-60"></div>
+              <div className="absolute bottom-6 left-6 w-2 h-2 bg-blue-400 rounded-full animate-ping opacity-60" style={{animationDelay: '1s'}}></div>
+              <div className="absolute top-1/2 right-8 w-1 h-1 bg-indigo-400 rounded-full animate-ping opacity-60" style={{animationDelay: '2s'}}></div>
+              
               <div className="relative z-10">
                 {/* Custom Development Icon */}
-                <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-3xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-cogs text-white text-3xl"></i>
+                <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-3xl flex items-center justify-center mx-auto mb-6 animate-bounce-slow transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 shadow-xl group-hover:shadow-purple-500/25">
+                  <i className="fas fa-cogs text-white text-3xl animate-spin-slow"></i>
                 </div>
                 
-                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-                  Custom Development
+                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+                  <span className="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 dark:from-purple-400 dark:via-indigo-400 dark:to-blue-400 bg-clip-text text-transparent animate-pulse">Custom Development</span>
                 </h3>
-                <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+                
+                <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors duration-300">
                   Have a unique project that doesn't fit our standard packages? Let's discuss your specific requirements and create a completely custom solution tailored to your business needs.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 max-w-4xl mx-auto">
-                  <div className="bg-white/50 dark:bg-slate-700/50 rounded-xl p-6">
-                    <i className="fas fa-lightbulb text-2xl text-yellow-500 mb-3"></i>
-                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2">Unique Ideas</h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-300">Complex business logic, custom integrations, or innovative features</p>
+                  <div className="bg-white/50 dark:bg-slate-700/50 rounded-xl p-6 hover:bg-white/70 dark:hover:bg-slate-700/70 transition-all duration-300 group/card hover:scale-105 hover:shadow-xl">
+                    <i className="fas fa-lightbulb text-2xl text-yellow-500 mb-3 animate-pulse-slow"></i>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2 group-hover/card:text-yellow-600 dark:group-hover/card:text-yellow-400 transition-colors duration-300">Unique Ideas</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 group-hover/card:text-slate-700 dark:group-hover/card:text-slate-200 transition-colors duration-300">Complex business logic, custom integrations, or innovative features</p>
                   </div>
-                  <div className="bg-white/50 dark:bg-slate-700/50 rounded-xl p-6">
-                    <i className="fas fa-rocket text-2xl text-blue-500 mb-3"></i>
-                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2">Scalable Solutions</h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-300">Enterprise-grade applications with advanced architecture</p>
+                  <div className="bg-white/50 dark:bg-slate-700/50 rounded-xl p-6 hover:bg-white/70 dark:hover:bg-slate-700/70 transition-all duration-300 group/card hover:scale-105 hover:shadow-xl">
+                    <i className="fas fa-rocket text-2xl text-blue-500 mb-3 animate-bounce-slow"></i>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2 group-hover/card:text-blue-600 dark:group-hover/card:text-blue-400 transition-colors duration-300">Scalable Solutions</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 group-hover/card:text-slate-700 dark:group-hover/card:text-slate-200 transition-colors duration-300">Enterprise-grade applications with advanced architecture</p>
                   </div>
                 </div>
                 
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center relative z-20">
                   <a 
                     href="#contact" 
-                    className="btn-primary group px-8 sm:px-10 md:px-12 lg:px-16 py-4 sm:py-5 md:py-6 lg:py-7 text-base sm:text-lg md:text-xl lg:text-2xl"
+                    className="btn-primary group px-8 sm:px-10 md:px-12 lg:px-16 py-4 sm:py-5 md:py-6 lg:py-7 text-base sm:text-lg md:text-xl lg:text-2xl hover:animate-pulse-slow relative z-30"
                   >
-                    <i className="fas fa-comments text-base sm:text-lg md:text-xl lg:text-2xl"></i>
+                    <i className="fas fa-comments text-base sm:text-lg md:text-xl lg:text-2xl animate-pulse-slow"></i>
                     <span>Let's Discuss Your Project</span>
                   </a>
                   <a 
                     href="#portfolio" 
-                    className="btn-secondary group px-8 sm:px-10 md:px-12 lg:px-16 py-4 sm:py-5 md:py-6 lg:py-7 text-base sm:text-lg md:text-xl lg:text-2xl"
+                    className="btn-secondary group px-8 sm:px-10 md:px-12 lg:px-16 py-4 sm:py-5 md:py-6 lg:py-7 text-base sm:text-lg md:text-xl lg:text-2xl hover:animate-pulse-slow relative z-30"
                   >
-                    <i className="fas fa-eye text-base sm:text-lg md:text-xl lg:text-2xl"></i>
+                    <i className="fas fa-eye text-base sm:text-lg md:text-xl lg:text-2xl animate-pulse-slow"></i>
                     <span>View Our Work</span>
                   </a>
                 </div>
+                
+                {/* Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-indigo-500/5 to-blue-500/5 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                
+                {/* Shine Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl sm:rounded-3xl pointer-events-none"></div>
               </div>
             </div>
           </div>

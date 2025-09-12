@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { ToastContainer } from 'react-toastify';
 import './App.css';
 import Home from './MainPages/Home';
@@ -13,7 +13,21 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Force scroll to top with multiple methods for better compatibility
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    // Ensure any custom scroll classes are removed
+    document.body.classList.remove('all-projects-active');
+    
+    // Reset scroll behavior
+    document.documentElement.style.scrollBehavior = 'auto';
+    
+    // Small delay to ensure scroll happens after any component cleanup
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }, 100);
   }, [pathname]);
 
   return null;
@@ -23,15 +37,10 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Ensure page starts at top on refresh
+    // Always show loader on page load/refresh
     window.scrollTo(0, 0);
     
-    // Show loader only on initial page load, not on route changes
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1500); // Reduced loader time
-
-    return () => clearTimeout(timer);
+    // The loader will call handleLoaderComplete when its animation is done
   }, []);
 
   const handleLoaderComplete = () => {

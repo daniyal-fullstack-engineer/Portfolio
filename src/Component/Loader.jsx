@@ -82,7 +82,7 @@ const Loader = ({ onComplete }) => {
     }, "-=0.2")
     .to(progressRef.current, {
       scaleX: 1,
-      duration: 2,
+      duration: 1.5,
       ease: "power2.out"
     }, "-=0.1")
     .to(dotsRef.current, {
@@ -107,7 +107,7 @@ const Loader = ({ onComplete }) => {
       onComplete: () => {
         if (onComplete) onComplete();
       }
-    }, "+=1");
+    }, "+=0.5");
 
     // Cleanup
     return () => {

@@ -287,44 +287,71 @@ export default function PortfolioCardStackFinal() {
 
       {/* View All Projects Button Section */}
       <section className="relative z-10 py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl">
-            <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-              <i className="fas fa-rocket text-white text-2xl"></i>
+        {/* Background Effects */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl animate-pulse-slow"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-r from-purple-500/10 to-indigo-500/10 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-blue-200/20 dark:border-blue-400/20 rounded-full animate-spin-slow"></div>
+        </div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500 group">
+            {/* Floating Elements */}
+            <div className="absolute top-4 right-4 w-3 h-3 bg-blue-400 rounded-full animate-ping opacity-60"></div>
+            <div className="absolute bottom-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping opacity-60" style={{animationDelay: '1s'}}></div>
+            <div className="absolute top-1/2 right-8 w-1 h-1 bg-indigo-400 rounded-full animate-ping opacity-60" style={{animationDelay: '2s'}}></div>
+            
+            {/* Animated Rocket Icon */}
+            <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center animate-bounce-slow transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 shadow-xl group-hover:shadow-blue-500/25">
+              <i className="fas fa-rocket text-white text-2xl animate-pulse-slow"></i>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
-              Explore More Projects
+            
+            {/* Animated Title */}
+            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+              Explore More <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent animate-pulse">Projects</span>
             </h3>
-            <p className="text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Discover my complete portfolio including web applications, mobile apps, e-commerce platforms, and business solutions. See all {projects.length} projects with detailed case studies.
+            
+            {/* Animated Description */}
+            <p className="text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors duration-300">
+              Discover my complete portfolio including web applications, mobile apps, e-commerce platforms, and business solutions. See all <span className="font-semibold text-blue-600 dark:text-blue-400">{projects.length}</span> projects with detailed case studies.
             </p>
-            <Link to="/all-projects" className="inline-block">
+            
+            {/* Animated Button */}
+            <Link to="/all-projects" className="inline-block group/btn relative z-20">
               <Button
                 variant="primary"
                 size="lg"
                 icon="fas fa-arrow-right"
-                className="group"
+                className="group hover:animate-pulse-slow relative z-30"
               >
                 View All Projects
-                <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">
+                <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 animate-bounce-slow">
                   <i className="fas fa-external-link-alt"></i>
                 </span>
               </Button>
             </Link>
-            <div className="mt-6 flex items-center justify-center gap-4 text-sm text-slate-500 dark:text-slate-400">
-              <div className="flex items-center gap-2">
-                <i className="fas fa-check-circle text-green-500"></i>
+            
+            {/* Animated Features */}
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm text-slate-500 dark:text-slate-400 relative z-20">
+              <div className="flex items-center gap-2 hover:text-green-600 dark:hover:text-green-400 transition-colors duration-300 animate-bounce-slow">
+                <i className="fas fa-check-circle text-green-500 animate-pulse-slow"></i>
                 <span>All {projects.length} Projects</span>
               </div>
-              <div className="flex items-center gap-2">
-                <i className="fas fa-code text-blue-500"></i>
+              <div className="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 animate-bounce-slow" style={{animationDelay: '0.5s'}}>
+                <i className="fas fa-code text-blue-500 animate-pulse-slow"></i>
                 <span>Multiple Technologies</span>
               </div>
-              <div className="flex items-center gap-2">
-                <i className="fas fa-mobile-alt text-purple-500"></i>
+              <div className="flex items-center gap-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300 animate-bounce-slow" style={{animationDelay: '1s'}}>
+                <i className="fas fa-mobile-alt text-purple-500 animate-pulse-slow"></i>
                 <span>Web & Mobile</span>
               </div>
             </div>
+            
+            {/* Glow Effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-indigo-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+            
+            {/* Shine Effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-3xl pointer-events-none"></div>
           </div>
         </div>
       </section>
