@@ -122,6 +122,9 @@ export default function PortfolioCardStackFinal() {
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    // Detect mobile devices
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
     let ctx = gsap.context(() => {
       const cards = gsap.utils.toArray(".card-item");
       
@@ -136,7 +139,7 @@ export default function PortfolioCardStackFinal() {
           trigger: stackContainer.current,
           start: "top top",
           end: `+=${(cards.length) * 500}`, // Increased end value slightly for last card
-          pin: true,
+          pin: !isMobile, // Disable pin on mobile to prevent scroll issues
           scrub: 1.5,
         }
       });

@@ -36,42 +36,48 @@ const Home = () => {
     // Register GSAP plugins
     gsap.registerPlugin(ScrollTrigger);
 
+    // Detect mobile devices
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
     // Clean up any existing Lenis instance
     if (window.lenis) {
       window.lenis.destroy();
       window.lenis = null;
     }
 
-    // Initialize Lenis smooth scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    });
+    // Only initialize Lenis on desktop devices
+    if (!isMobile) {
+      // Initialize Lenis smooth scroll for desktop only
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+      });
 
-    // Make Lenis globally available
-    window.lenis = lenis;
+      // Make Lenis globally available
+      window.lenis = lenis;
 
-    // Lenis animation frame
-    function raf(time) {
-      lenis.raf(time);
+      // Lenis animation frame
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
       requestAnimationFrame(raf);
+
+      // Update ScrollTrigger when Lenis updates
+      lenis.on('scroll', ScrollTrigger.update);
+
+      return () => {
+        lenis.destroy();
+        window.lenis = null;
+      };
     }
-    requestAnimationFrame(raf);
-
-    // Update ScrollTrigger when Lenis updates
-    lenis.on('scroll', ScrollTrigger.update);
-
-    return () => {
-      lenis.destroy();
-      window.lenis = null;
-    };
   }, []);
 
   return (

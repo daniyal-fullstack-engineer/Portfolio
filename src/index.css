@@ -16,6 +16,25 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Mobile scroll fixes */
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: auto; /* Disable smooth scroll on mobile to prevent conflicts */
+    -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
+  }
+  
+  body {
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Ensure sections are scrollable */
+  .main-wrapper {
+    overflow-x: hidden;
+    position: relative;
+  }
+}
+
 body {
   font-display: swap;
   text-rendering: optimizeLegibility;
