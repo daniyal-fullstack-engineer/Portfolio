@@ -6,8 +6,8 @@ const PWA = () => {
   const [isInstalled, setIsInstalled] = useState(false);
 
   useEffect(() => {
-    // Register service worker
-    if ('serviceWorker' in navigator) {
+    // Register service worker only in production
+    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
       navigator.serviceWorker.register('/sw.js')
         .then((registration) => {
           console.log('SW registered: ', registration);
@@ -15,6 +15,8 @@ const PWA = () => {
         .catch((registrationError) => {
           console.log('SW registration failed: ', registrationError);
         });
+    } else if (process.env.NODE_ENV === 'development') {
+      console.log('Service worker registration skipped in development mode');
     }
 
     // Check if app is already installed

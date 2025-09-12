@@ -118,16 +118,16 @@ const Loader = ({ onComplete }) => {
   return (
     <div 
       ref={loaderRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-900 dark:to-slate-800"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
     >
       {/* Minimalist background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-blue-500/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-purple-900/20 to-blue-900/20" />
         {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-10" style={{
+        <div className="absolute inset-0 opacity-20" style={{
           backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px'
         }} />
@@ -136,7 +136,7 @@ const Loader = ({ onComplete }) => {
       {/* Clean overlay */}
       <div 
         ref={waveRef}
-        className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-blue-600/10"
+        className="absolute inset-0 bg-gradient-to-r from-blue-600/15 via-purple-600/15 to-blue-600/15"
       />
       
       {/* Main loader content */}
@@ -234,7 +234,7 @@ const Loader = ({ onComplete }) => {
         {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-blue-500/30 rounded-full animate-pulse"
+            className="absolute w-2 h-2 bg-blue-400/50 rounded-full animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -246,10 +246,10 @@ const Loader = ({ onComplete }) => {
       </div>
 
       {/* Clean corner elements */}
-      <div className="absolute top-8 left-8 w-12 h-12 border border-blue-500/20 rounded-full animate-spin" style={{ animationDuration: '6s' }} />
-      <div className="absolute bottom-8 right-8 w-10 h-10 border border-purple-500/20 rounded-full animate-spin" style={{ animationDuration: '4s', animationDirection: 'reverse' }} />
-      <div className="absolute top-8 right-8 w-8 h-8 border border-blue-500/20 rounded-full animate-spin" style={{ animationDuration: '3s' }} />
-      <div className="absolute bottom-8 left-8 w-6 h-6 border border-purple-500/20 rounded-full animate-spin" style={{ animationDuration: '5s', animationDirection: 'reverse' }} />
+      <div className="absolute top-8 left-8 w-12 h-12 border border-blue-400/30 rounded-full animate-spin" style={{ animationDuration: '6s' }} />
+      <div className="absolute bottom-8 right-8 w-10 h-10 border border-purple-400/30 rounded-full animate-spin" style={{ animationDuration: '4s', animationDirection: 'reverse' }} />
+      <div className="absolute top-8 right-8 w-8 h-8 border border-blue-400/30 rounded-full animate-spin" style={{ animationDuration: '3s' }} />
+      <div className="absolute bottom-8 left-8 w-6 h-6 border border-purple-400/30 rounded-full animate-spin" style={{ animationDuration: '5s', animationDirection: 'reverse' }} />
     </div>
   );
 };
