@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Lenis from "@studio-freight/lenis";
+import './AllProjects.css';
 
 // Import the same projects data
 const projects = [
@@ -111,43 +111,32 @@ export default function AllProjects() {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const navigate = useNavigate();
 
-  // Initialize smooth scroll and scroll to top when component mounts
+  // Unique scroll implementation for AllProjects
   useEffect(() => {
-    // Clean up any existing Lenis instance
-    if (window.lenis) {
-      window.lenis.destroy();
-      window.lenis = null;
-    }
-
-    // Initialize Lenis smooth scroll for AllProjects
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    });
-
-    // Make Lenis globally available
-    window.lenis = lenis;
-
-    // Lenis animation frame
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // Scroll to top
-    window.scrollTo(0, 0);
-
+    // Force scroll to top immediately
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    
+    // Set unique scroll behavior for this page only
+    const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Add page-specific class to body
+    document.body.classList.add('all-projects-active');
+    
+    // Clean scroll event handlers
+    const handleScroll = (e) => {
+      // Prevent any scroll conflicts
+      e.stopPropagation();
+    };
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Cleanup function
     return () => {
-      lenis.destroy();
-      window.lenis = null;
+      document.documentElement.style.scrollBehavior = originalScrollBehavior;
+      document.body.classList.remove('all-projects-active');
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -185,7 +174,10 @@ export default function AllProjects() {
   }, [activeFilter, debouncedSearchTerm]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden">
+    <div className="all-projects-page min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden" style={{
+      scrollBehavior: 'smooth',
+      overflowX: 'hidden'
+    }}>
       {/* Enhanced Background Animations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating Geometric Shapes */}
@@ -236,12 +228,12 @@ export default function AllProjects() {
       </div>
 
       {/* Navigation Header */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-slate-900 shadow-lg border-b border-slate-200 dark:border-slate-700">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900 dark:bg-slate-900 shadow-lg border-b border-slate-700 dark:border-slate-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link
               to="/"
-              className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
+              className="flex items-center gap-2 text-slate-300 dark:text-slate-300 hover:text-blue-400 dark:hover:text-blue-400"
             >
               <i className="fas fa-arrow-left"></i>
               <span className="font-medium">Back to Portfolio</span>
@@ -250,7 +242,7 @@ export default function AllProjects() {
               <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
                 <span className="text-white font-bold text-sm">MD</span>
               </div>
-              <span className="font-bold text-slate-900 dark:text-white">M Daniyal</span>
+              <span className="font-bold text-white dark:text-white">M Daniyal</span>
             </div>
           </div>
         </div>
@@ -259,17 +251,17 @@ export default function AllProjects() {
       {/* Header Section */}
       <section className="pt-32 pb-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-6">
-            <i className="fas fa-code text-blue-600 dark:text-blue-400"></i>
-            <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Complete Portfolio</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-900/30 to-purple-900/30 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-700/50 dark:border-blue-700/50 mb-6">
+            <i className="fas fa-code text-blue-400 dark:text-blue-400"></i>
+            <span className="text-sm font-medium text-blue-300 dark:text-blue-300">Complete Portfolio</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white mb-6">
-            All My <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Projects</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white dark:text-white mb-6">
+            All My <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Projects</span>
           </h1>
           <div className="flex justify-center mb-6">
             <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
           </div>
-          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-slate-300 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
             A comprehensive showcase of {projects.length} projects spanning web applications, mobile apps, e-commerce platforms, and business solutions.
           </p>
         </div>
@@ -286,7 +278,7 @@ export default function AllProjects() {
                 placeholder="Search projects..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-300 dark:hover:border-blue-600"
+                className="w-full px-4 py-3 bg-slate-800 dark:bg-slate-800 border border-slate-700 dark:border-slate-700 rounded-lg text-white dark:text-white placeholder-slate-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-blue-600 dark:hover:border-blue-600"
               />
             </div>
 
@@ -299,7 +291,7 @@ export default function AllProjects() {
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 ${
                     activeFilter === category
                       ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
-                      : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white hover:shadow-lg'
+                      : 'bg-slate-700 dark:bg-slate-700 text-slate-300 dark:text-slate-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white hover:shadow-lg'
                   }`}
                 >
                   {category}
@@ -310,7 +302,7 @@ export default function AllProjects() {
 
           {/* Results Count */}
           <div className="text-center mb-8">
-            <p className="text-slate-600 dark:text-slate-400">
+            <p className="text-slate-300 dark:text-slate-400">
               Showing {filteredProjects.length} of {projects.length} projects
             </p>
           </div>
@@ -322,8 +314,8 @@ export default function AllProjects() {
         <div className="max-w-7xl mx-auto">
           {filteredProjects.length === 0 ? (
             <div className="text-center py-20">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">No Projects Found</h3>
-              <p className="text-slate-600 dark:text-slate-400 mb-4">Try adjusting your search or filter criteria</p>
+              <h3 className="text-2xl font-bold text-white dark:text-white mb-2">No Projects Found</h3>
+              <p className="text-slate-300 dark:text-slate-400 mb-4">Try adjusting your search or filter criteria</p>
               <button
                 onClick={() => {
                   setSearchTerm('');
@@ -337,7 +329,7 @@ export default function AllProjects() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((project, index) => (
-                <div key={index} className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:-translate-y-2">
+                <div key={index} className="group bg-slate-800 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg border border-slate-700 dark:border-slate-700 hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:-translate-y-2">
                   <div className="relative h-48 sm:h-56 overflow-hidden">
                     <img 
                       src={project.img} 
@@ -361,24 +353,24 @@ export default function AllProjects() {
                   
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white">{project.title}</h3>
-                      <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium rounded-full">
+                      <h3 className="text-xl font-bold text-white dark:text-white">{project.title}</h3>
+                      <span className="px-2 py-1 bg-slate-700 dark:bg-slate-700 text-slate-300 dark:text-slate-300 text-xs font-medium rounded-full">
                         {project.category}
                       </span>
                     </div>
                     
-                    <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+                    <p className="text-slate-300 dark:text-slate-300 mb-4 leading-relaxed">
                       {project.description}
                     </p>
                     
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.tech.slice(0, 3).map((tech) => (
-                        <span key={tech} className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full">
+                        <span key={tech} className="px-2 py-1 bg-blue-900/30 dark:bg-blue-900/30 text-blue-300 dark:text-blue-300 text-xs font-medium rounded-full">
                           {tech}
                         </span>
                       ))}
                       {project.tech.length > 3 && (
-                        <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium rounded-full">
+                        <span className="px-2 py-1 bg-slate-700 dark:bg-slate-700 text-slate-300 dark:text-slate-300 text-xs font-medium rounded-full">
                           +{project.tech.length - 3} more
                         </span>
                       )}
@@ -401,11 +393,11 @@ export default function AllProjects() {
       {/* Back to Portfolio Button */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-slate-200 dark:border-slate-700 shadow-lg">
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+          <div className="bg-slate-800 dark:bg-slate-800 rounded-2xl p-8 border border-slate-700 dark:border-slate-700 shadow-lg">
+            <h3 className="text-2xl font-bold text-white dark:text-white mb-4">
               Back to Featured Projects
             </h3>
-            <p className="text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-slate-300 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
               Return to the main portfolio section to see the curated selection of my best work.
             </p>
             <Link to="/">

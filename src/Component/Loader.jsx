@@ -118,16 +118,16 @@ const Loader = ({ onComplete }) => {
   return (
     <div 
       ref={loaderRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-900 dark:to-slate-800"
     >
       {/* Minimalist background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-blue-500/5" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-blue-500/10" />
         {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-5" style={{
+        <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: `
-            linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)
+            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px'
         }} />
@@ -136,7 +136,7 @@ const Loader = ({ onComplete }) => {
       {/* Clean overlay */}
       <div 
         ref={waveRef}
-        className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-purple-600/5 to-blue-600/5"
+        className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-blue-600/10"
       />
       
       {/* Main loader content */}
@@ -144,10 +144,10 @@ const Loader = ({ onComplete }) => {
         {/* Minimalist Logo */}
         <div 
           ref={logoRef}
-          className="relative w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center shadow-lg border-2 border-white/20 dark:border-slate-700/20"
+          className="relative w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center shadow-lg border-2 border-slate-700/20 dark:border-slate-700/20"
         >
-          <div className="w-14 h-14 rounded-full bg-white/10 dark:bg-slate-800/20 flex items-center justify-center">
-            <div className="text-white dark:text-slate-200 text-2xl font-display font-bold">
+          <div className="w-14 h-14 rounded-full bg-slate-800/20 dark:bg-slate-800/20 flex items-center justify-center">
+            <div className="text-slate-200 dark:text-slate-200 text-2xl font-display font-bold">
               {'</>'}
             </div>
           </div>
@@ -156,23 +156,23 @@ const Loader = ({ onComplete }) => {
         {/* Clean Terminal Window */}
         <div 
           ref={terminalRef}
-          className="w-80 bg-white/90 dark:bg-slate-800/90 rounded-lg border border-slate-200 dark:border-slate-700 shadow-lg"
+          className="w-80 bg-slate-800/90 dark:bg-slate-800/90 rounded-lg border border-slate-700 dark:border-slate-700 shadow-lg"
         >
-          <div className="flex items-center px-4 py-3 bg-slate-100 dark:bg-slate-700 border-b border-slate-200 dark:border-slate-600 rounded-t-lg">
+          <div className="flex items-center px-4 py-3 bg-slate-700 dark:bg-slate-700 border-b border-slate-600 dark:border-slate-600 rounded-t-lg">
             <div className="flex space-x-2">
               <div className="w-3 h-3 bg-red-500 rounded-full"></div>
               <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
             </div>
-            <div className="ml-3 text-slate-600 dark:text-slate-300 text-xs font-sans">developer@portfolio:~$</div>
+            <div className="ml-3 text-slate-300 dark:text-slate-300 text-xs font-sans">developer@portfolio:~$</div>
           </div>
           <div className="p-4 font-sans text-sm leading-relaxed">
             {[
-              { text: "const developer = {", color: "text-blue-600 dark:text-blue-400" },
-              { text: "  name: 'Software Developer',", color: "text-slate-700 dark:text-slate-300" },
-              { text: "  skills: ['React', 'Node.js', 'Python'],", color: "text-green-600 dark:text-green-400" },
-              { text: "  status: 'Loading...'", color: "text-purple-600 dark:text-purple-400" },
-              { text: "};", color: "text-blue-600 dark:text-blue-400" }
+              { text: "const developer = {", color: "text-blue-400 dark:text-blue-400" },
+              { text: "  name: 'Software Developer',", color: "text-slate-300 dark:text-slate-300" },
+              { text: "  skills: ['React', 'Node.js', 'Python'],", color: "text-green-400 dark:text-green-400" },
+              { text: "  status: 'Loading...'", color: "text-purple-400 dark:text-purple-400" },
+              { text: "};", color: "text-blue-400 dark:text-blue-400" }
             ].map((line, index) => (
               <div
                 key={index}
@@ -197,7 +197,7 @@ const Loader = ({ onComplete }) => {
             <div
               key={index}
               ref={el => techIconsRef.current[index] = el}
-              className="w-12 h-12 bg-white/80 dark:bg-slate-700/80 rounded-lg flex items-center justify-center border border-slate-200 dark:border-slate-600 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
+              className="w-12 h-12 bg-slate-700/80 dark:bg-slate-700/80 rounded-lg flex items-center justify-center border border-slate-600 dark:border-slate-600 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
               title={tech.name}
             >
               <span className="text-xl">{tech.icon}</span>
@@ -206,7 +206,7 @@ const Loader = ({ onComplete }) => {
         </div>
 
         {/* Clean Progress bar */}
-        <div className="w-64 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+        <div className="w-64 h-2 bg-slate-700 dark:bg-slate-700 rounded-full overflow-hidden">
           <div 
             ref={progressRef}
             className="h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full origin-left"
@@ -216,7 +216,7 @@ const Loader = ({ onComplete }) => {
         {/* Clean Loading text */}
         <div 
           ref={textRef}
-          className="flex items-center space-x-2 text-slate-700 dark:text-slate-300 text-lg font-medium"
+          className="flex items-center space-x-2 text-slate-300 dark:text-slate-300 text-lg font-medium"
         >
           <span className="font-sans">Loading Developer Environment</span>
           {[0, 1, 2].map((index) => (

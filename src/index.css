@@ -1,9 +1,9 @@
+/* Import smooth hover effects */
+@import './styles/smooth-hover.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Import smooth hover effects */
-@import './styles/smooth-hover.css';
 
 /* Custom CSS Variables for Theme */
 :root {
@@ -23,15 +23,24 @@
   --text-light: #64748b;
 }
 
-/* Dark mode support */
+/* Dark mode support - Default theme */
+:root {
+  color-scheme: dark;
+}
+
 .dark {
   color-scheme: dark;
 }
 
+/* Force dark mode as default */
+html {
+  color-scheme: dark;
+}
+
 /* Ensure proper dark mode initialization */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: dark; /* Override system preference */
   }
 }
 

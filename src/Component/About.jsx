@@ -258,14 +258,14 @@ const About = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-screen py-20 px-4 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" 
+      className="relative min-h-screen py-20 px-4 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" 
       id="about"
       aria-labelledby="about-heading"
     >
       {/* Enhanced Animated Background */}
       <div 
         ref={backgroundRef}
-        className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-transparent to-purple-50/40 dark:from-blue-900/30 dark:via-transparent dark:to-purple-900/30"
+        className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-transparent to-purple-900/30 dark:from-blue-900/30 dark:via-transparent dark:to-purple-900/30"
       ></div>
 
       {/* Animated Grid Pattern */}
@@ -308,17 +308,17 @@ const About = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         {/* Enhanced Section Title */}
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-          <div ref={titleRef} className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-blue-100/80 to-purple-100/80 dark:from-blue-900/40 dark:to-purple-900/40 border border-blue-200/50 dark:border-blue-700/50 mb-6 sm:mb-8 backdrop-blur-xl shadow-lg">
+          <div ref={titleRef} className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-blue-900/40 to-purple-900/40 dark:from-blue-900/40 dark:to-purple-900/40 border border-blue-700/50 dark:border-blue-700/50 mb-6 sm:mb-8 backdrop-blur-xl shadow-lg">
             <div className="relative">
               <div className="w-2.5 sm:w-3 h-2.5 sm:h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse shadow-lg"></div>
               <div className="absolute inset-0 w-2.5 sm:w-3 h-2.5 sm:h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-ping opacity-75"></div>
             </div>
-            <i className="fas fa-user text-blue-600 dark:text-blue-400 text-sm sm:text-lg"></i>
-            <span className="text-xs sm:text-sm md:text-base font-semibold text-blue-700 dark:text-blue-300 tracking-wide">About Me</span>
+            <i className="fas fa-user text-blue-400 dark:text-blue-400 text-sm sm:text-lg"></i>
+            <span className="text-xs sm:text-sm md:text-base font-semibold text-blue-300 dark:text-blue-300 tracking-wide">About Me</span>
             <div className="w-1 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-ping"></div>
         </div>
           
-          <h2 id="about-heading" ref={subtitleRef} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-slate-900 dark:text-white mb-6 sm:mb-8 leading-tight px-4">
+          <h2 id="about-heading" ref={subtitleRef} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white dark:text-white mb-6 sm:mb-8 leading-tight px-4">
             About <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent relative">
               M Daniyal
               <div className="absolute -inset-2 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10 dark:from-blue-400/10 dark:via-purple-400/10 dark:to-indigo-400/10 rounded-2xl blur-xl -z-10"></div>

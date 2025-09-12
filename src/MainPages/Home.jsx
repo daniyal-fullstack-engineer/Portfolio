@@ -75,7 +75,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='main-wrapper min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300'>
+    <div className='main-wrapper min-h-screen bg-slate-900 dark:bg-slate-900 transition-colors duration-300'>
       {/* Particle Background */}
       <ParticleBackground />
       

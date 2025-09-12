@@ -282,7 +282,7 @@ export default function Services() {
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-screen py-20 px-4 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" 
+      className="relative min-h-screen py-20 px-4 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" 
       id="services"
     >
       {/* Enhanced Background Elements */}
@@ -330,17 +330,17 @@ export default function Services() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         {/* Enhanced Section Title */}
         <div ref={titleRef} className="text-center mb-16">
-          <div ref={subtitleRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-6">
-            <i className="fas fa-cogs text-blue-600 dark:text-blue-400 animate-spin-slow"></i>
-            <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Services</span>
+          <div ref={subtitleRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-900/30 to-purple-900/30 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-700/50 dark:border-blue-700/50 mb-6">
+            <i className="fas fa-cogs text-blue-400 dark:text-blue-400 animate-spin-slow"></i>
+            <span className="text-sm font-medium text-blue-300 dark:text-blue-300">Services</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white dark:text-white mb-6">
             My <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Services</span>
           </h2>
           <div className="flex justify-center mb-6">
             <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
           </div>
-          <p ref={descriptionRef} className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
+          <p ref={descriptionRef} className="text-base sm:text-lg md:text-xl text-slate-300 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
             Comprehensive web development services to bring your digital vision to life with cutting-edge technology and creative solutions.
           </p>
         </div>
