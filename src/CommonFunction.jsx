@@ -1,30 +1,18 @@
-import { ToastContainer, toast, Bounce } from "react-toastify";
-
+// Updated to use our custom toast system
 const successMessges = (msg) => {
-  toast.success(msg, {
-    position: "top-center",
-    autoClose: 4000,
-    hideProgressBar: false,
-    closeOnClick: false,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-    transition: Bounce,
-  });
+  if (window.showToast) {
+    window.showToast(msg, 'success', 4000);
+  } else {
+    console.log('Success:', msg);
+  }
 };
+
 const errorMessges = (msg) => {
-  toast.error(msg, {
-    position: "top-center",
-    autoClose: 4000,
-    hideProgressBar: false,
-    closeOnClick: false,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-    transition: Bounce,
-  });
+  if (window.showToast) {
+    window.showToast(msg, 'error', 4000);
+  } else {
+    console.log('Error:', msg);
+  }
 };
 
 const validateInput = (input) => {

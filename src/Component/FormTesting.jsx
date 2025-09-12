@@ -1,217 +1,297 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
 
 const FormTesting = () => {
-  const [formData, setFormData] = useState({
-    numPieces: "",
-    avgSize: "",
-    gauge: "",
-    gaugeEnd: "",
-    articleName: "",
-  });
+  const [formData, setFormData] = useState({});
 
-  const [results, setResults] = useState(null); // Store calculated results
-  const [errors, setErrors] = useState({});
+  const uiElements = [
+    {
+      type: "section",
+      props: { style: { padding: "1rem", backgroundColor: "#f9f9f9" } },
+      children: [
+        {
+          type: "header",
+          props: { style: { marginBottom: "1rem" } },
+          children: "Header Content",
+        },
+        {
+          type: "article",
+          children: [
+            {
+              type: "form",
+              props: { style: { marginBottom: "1rem" } },
+              children: [
+                {
+                  type: "fieldset",
+                  children: [
+                    { type: "legend", children: "User Info" },
+                    { type: "label", props: { htmlFor: "username" }, children: "Username" },
+                    {
+                      type: "input",
+                      props: {
+                        type: "text",
+                        id: "username",
+                        placeholder: "Enter username",
+                      },
+                    },
+                    { type: "label", props: { htmlFor: "password" }, children: "Password" },
+                    {
+                      type: "input",
+                      props: {
+                        type: "password",
+                        id: "password",
+                        placeholder: "Enter password",
+                      },
+                    },
+                    { type: "label", props: { htmlFor: "gender" }, children: "Gender" },
+                    {
+                      type: "select",
+                      props: { id: "gender" },
+                      children: [
+                        { type: "option", props: { value: "" }, children: "Select gender" },
+                        { type: "option", props: { value: "male" }, children: "Male" },
+                        { type: "option", props: { value: "female" }, children: "Female" },
+                      ],
+                    },
+                    {
+                      type: "input",
+                      props: {
+                        type: "checkbox",
+                        id: "subscribe",
+                      },
+                    },
+                    {
+                      type: "label",
+                      props: { htmlFor: "subscribe" },
+                      children: "Subscribe",
+                    },
+                    {
+                      type: "input",
+                      props: {
+                        type: "radio",
+                        name: "role",
+                        id: "admin",
+                        value: "admin",
+                      },
+                    },
+                    {
+                      type: "label",
+                      props: { htmlFor: "admin" },
+                      children: "Admin",
+                    },
+                    {
+                      type: "input",
+                      props: {
+                        type: "radio",
+                        name: "role",
+                        id: "user",
+                        value: "user",
+                      },
+                    },
+                    {
+                      type: "label",
+                      props: { htmlFor: "user" },
+                      children: "User",
+                    },
+                    {
+                      type: "textarea",
+                      props: {
+                        id: "comments",
+                        placeholder: "Comments",
+                      },
+                    },
+                    {
+                      type: "button",
+                      props: { type: "submit" },
+                      children: "Submit",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "table",
+              props: { border: 1, style: { marginTop: "1rem", width: "100%" } },
+              children: [
+                {
+                  type: "thead",
+                  children: [
+                    {
+                      type: "tr",
+                      children: [
+                        { type: "th", children: "Name" },
+                        { type: "th", children: "Age" },
+                        { type: "th", children: "Role" },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "tbody",
+                  children: [
+                    {
+                      type: "tr",
+                      children: [
+                        { type: "td", children: "Alice" },
+                        { type: "td", children: "25" },
+                        { type: "td", children: "Admin" },
+                      ],
+                    },
+                    {
+                      type: "tr",
+                      children: [
+                        { type: "td", children: "Bob" },
+                        { type: "td", children: "30" },
+                        { type: "td", children: "User" },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "ul",
+              children: [
+                { type: "li", children: "Item 1" },
+                { type: "li", children: "Item 2" },
+                { type: "li", children: "Item 3" },
+              ],
+            },
+            {
+              type: "img",
+              props: {
+                src: "https://via.placeholder.com/150",
+                alt: "Placeholder",
+              },
+            },
+            {
+              type: "video",
+              props: {
+                controls: true,
+                width: 320,
+                height: 240,
+              },
+              children: [
+                {
+                  type: "source",
+                  props: {
+                    src: "https://www.w3schools.com/html/mov_bbb.mp4",
+                    type: "video/mp4",
+                  },
+                },
+              ],
+            },
+            {
+              type: "details",
+              children: [
+                { type: "summary", children: "More Info" },
+                { type: "p", children: "This is hidden detail content." },
+              ],
+            },
+            {
+              type: "a",
+              props: {
+                href: "#",
+              },
+              children: "Visit Link",
+            },
+          ],
+        },
+        {
+          type: "footer",
+          props: { style: { marginTop: "1rem", textAlign: "center" } },
+          children: "© 2025 Example Footer",
+        },
+      ],
+    },
+  ];
 
-  // Predefined Chemical Composition
-  const Cow_Lining = {
-    process_details: [
-      { percentage: 100, chemical: "Water" },
-      { percentage: 0.5, chemical: "BGW-2" },
-      { percentage: 0.1, chemical: "NC" },
-      { percentage: 100, chemical: "Water" },
-      { percentage: 1, chemical: "BGW-2" },
-      { percentage: 1, chemical: "R-400U" },
-      { percentage: 0.8, chemical: "Formic Acid" },
-      { percentage: 6, chemical: "Chrome" },
-      { percentage: 2, chemical: "Syntanee" },
-      { percentage: 0.5, chemical: "Sodium Formate" },
-      { percentage: 0.2, chemical: "Catalix L" },
-      { percentage: 0.9, chemical: "Basifix In" },
-    ],
-  };
+  // Auto-generate state based on ids
+  useEffect(() => {
+    const fields = {};
+    const extractFields = (elements) => {
+      elements.forEach((el) => {
+        if (el.props?.id) {
+          if (el.props.type === "checkbox") fields[el.props.id] = false;
+          else fields[el.props.id] = "";
+        }
+        if (el.children && Array.isArray(el.children)) {
+          extractFields(el.children);
+        }
+      });
+    };
+    extractFields(uiElements);
+    setFormData(fields);
+  }, []);
 
-  // Validate form
-  const validateForm = () => {
-    let newErrors = {};
-    if (!formData.numPieces) newErrors.numPieces = "Number of pieces is required";
-    if (!formData.avgSize) newErrors.avgSize = "Average size is required";
-    if (!formData.gauge) newErrors.gauge = "Gauge is required";
-    if (!formData.articleName) newErrors.articleName = "Article name is required";
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  // Handle input change
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  // Submit Handler
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      CalculateChemicals();
+    const { id, value, type, checked, name } = e.target;
+    if (type === "checkbox") {
+      setFormData((prev) => ({ ...prev, [id]: checked }));
+    } else if (type === "radio") {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    } else {
+      setFormData((prev) => ({ ...prev, [id]: value }));
     }
   };
 
-  // Calculation Function
-  const CalculateChemicals = () => {
-    const numPieces = parseFloat(formData.numPieces);
-    const avgSize = parseFloat(formData.avgSize);
-    const gaugePercentage = parseFloat(formData.gauge) / 10; // Convert % to decimal
-
-    // Total Square Foot Calculation
-    const totalSquareFoot = numPieces * avgSize;
-
-    // Total Weight Calculation
-    const totalWeight = totalSquareFoot * gaugePercentage;
-
-    // Calculate Chemical Quantities
-    const updatedChemicals = Cow_Lining.process_details.map((item) => ({
-      chemical: item.chemical,
-      quantity:  item.chemical === 'Water' ? '' : parseFloat(((item.percentage / 100) * totalWeight).toFixed(1)) // Multiply each chemical by total weight
-    }));
-
-    setResults({
-      totalSquareFoot,
-      totalWeight,
-      chemicals: updatedChemicals,
-    });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submitted:", formData);
+    alert(JSON.stringify(formData, null, 2));
   };
 
-  console.log(results,'results')
+  const renderElement = (element, key) => {
+    const { type, props = {}, children } = element;
+
+    if (["input", "select", "textarea"].includes(type)) {
+      const id = props.id;
+      const name = props.name;
+
+      const newProps = {
+        ...props,
+        key,
+        onChange: handleChange,
+      };
+
+      if (props.type === "checkbox") {
+        newProps.checked = formData[id] || false;
+      } else if (props.type === "radio") {
+        newProps.checked = formData[name] === props.value;
+      } else if (id) {
+        newProps.value = formData[id] || "";
+      }
+
+      return React.createElement(
+        type,
+        newProps,
+        type === "select" && Array.isArray(children)
+          ? children.map((child, idx) => renderElement(child, `${key}-${idx}`))
+          : undefined
+      );
+    }
+
+    if (type === "form") {
+      return React.createElement(
+        type,
+        { ...props, key, onSubmit: handleSubmit },
+        children?.map((child, idx) => renderElement(child, `${key}-${idx}`))
+      );
+    }
+
+    return React.createElement(
+      type,
+      { ...props, key },
+      Array.isArray(children)
+        ? children.map((child, idx) => renderElement(child, `${key}-${idx}`))
+        : children
+    );
+  };
 
   return (
-    <div className="container vh-100 d-flex align-items-center">
-    <div className="row w-100">
-      {/* Left Side - Form */}
-      <div className="col-md-6">
-        <div className="card shadow-lg p-4">
-          <h2 className="text-center mb-4">Leather Processing Form</h2>
-          <form onSubmit={handleSubmit}>
-
-          <div className="mb-3">
-              <label className="form-label">Article Name</label>
-              <input
-                type="text"
-                name="articleName"
-                value={formData.articleName}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Enter article name"
-              />
-              {errors.articleName && <small className="text-danger">{errors.articleName}</small>}
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Number of Pieces</label>
-              <input
-                type="number"
-                name="numPieces"
-                value={formData.numPieces}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Enter number of pieces"
-              />
-              {errors.numPieces && <small className="text-danger">{errors.numPieces}</small>}
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Average Size of One Piece</label>
-              <input
-                type="number"
-                step="0.1"
-                name="avgSize"
-                value={formData.avgSize}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Enter average size"
-              />
-              {errors.avgSize && <small className="text-danger">{errors.avgSize}</small>}
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Gauge Start</label>
-              <input
-                type="number"
-                step="0.01"
-                name="gaugeEnd"
-                value={formData.gaugeEnd}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Enter gauge end"
-              />
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label"> Gauge End</label>
-              <input
-                type="number"
-                step="0.01"
-                name="gauge"
-                value={formData.gauge}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Enter gauge start"
-              />
-              {errors.gauge && <small className="text-danger">{errors.gauge}</small>}
-            </div>
-
-           
-
-            
-
-            <button type="submit" className="btn btn-primary w-100">
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
-
-      {/* Right Side - Results */}
-      <div className="col-md-6">
-        {results && (
-          <div className="card shadow-lg p-4"
-          style={{
-            overflowY: "auto",
-            maxHeight: "100dvh",
-          }}>
-            <h4 className="text-center">Calculation Results</h4>
-            <table className="table table-bordered mt-3">
-              <tbody>
-                <tr>
-                  <td><strong>Total Square Foot:</strong></td>
-                  <td className="text-end">{results.totalSquareFoot}</td>
-                </tr>
-                <tr>
-                  <td><strong>Total Weight:</strong></td>
-                  <td className="text-end">{results.totalWeight}</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <h5 className="mt-3">Chemical Quantities:</h5>
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>Chemical</th>
-                  <th className="text-end">Quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                {results.chemicals.map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.chemical}</td>
-                    <td className="text-end">{item.quantity || "N/A"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
+    <div>
+      <h1>Dynamic JSON Form</h1>
+      {uiElements.map((el, idx) => renderElement(el, idx))}
     </div>
-  </div>
-
   );
 };
 

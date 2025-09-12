@@ -1,101 +1,131 @@
-import React, { useEffect, useState } from "react";
-import AOS from "aos";
-import MovingModel from "./MovingModel";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
 
 const DarkBanner = () => {
-  const [laodModel, setLoadModel] = useState(true);
+  const bannerRef = useRef(null);
+
   useEffect(() => {
-    AOS.init({
-      duration: 1000, // Animation speed in milliseconds
-      once: true, // Animation runs once per element
-      easing: "ease-in-out",
+    // Register GSAP plugins
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Initialize Lenis smooth scroll
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
     });
 
-    const timer = setTimeout(() => {
-      setLoadModel(false)
-    }, 5000);
-     
-    return () => clearTimeout(timer);
+    // Lenis animation frame
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
   }, []);
 
   return (
-    <section className="home" id="home-section" data-scroll-index={0}>
-      <div className="header-content-section d-flex align-items-center">
-        <div className="container">
-          <div className="row align-items-center">
-            {/* Left Content */}
-            <div className="col-lg-6">
-              <div className="home-text" data-aos="fade-up">
-                <h4>HELLO, I'M</h4>
-                <h1>M Daniyal</h1>
-                <p>A freelancer Full Stack & Javascript Developer</p>
-                <div className="home-btn">
-                  <a
-                    href="#portfolio"
-                    className="btn-1"
-                    data-scroll-nav={3}
-                    data-aos="fade-in"
-                  >
-                    View my Work
-                  </a>
-                </div>
-              </div>
+    <main 
+      ref={bannerRef}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-0 mt-0 -mt-16" 
+      id="home-section"
+      role="main"
+      aria-label="Main content"
+    >
+      {/* Simple Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/30 dark:via-transparent dark:to-purple-900/30"></div>
+
+      {/* Main Content */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center pt-16 sm:pt-24 md:pt-32">
+        {/* Greeting */}
+        <div className="mb-4 sm:mb-6 md:mb-8 mt-2 sm:mt-4 md:mt-6">
+          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-blue-100/80 to-purple-100/80 dark:from-blue-900/40 dark:to-purple-900/40 border border-blue-200/50 dark:border-blue-700/50 backdrop-blur-xl shadow-lg">
+            <div className="relative">
+              <div className="w-2.5 sm:w-3 h-2.5 sm:h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse shadow-lg"></div>
+              <div className="absolute inset-0 w-2.5 sm:w-3 h-2.5 sm:h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-ping opacity-75"></div>
             </div>
-            {/* Right Image */}
-            <div className="col-lg-6">
-              {/* <div className="home-imgs d-none d-lg-block" data-aos="zoom-in">
-                <img src="https://i.postimg.cc/t4KV6Zhv/newcode.jpg" alt="daniyal" />
-              </div> */}
-              {laodModel ? 
-              <div className="skeleton-circle"></div>
-              :
-              <MovingModel  />}
-            </div>
+            <i className="fas fa-hand-wave text-blue-600 dark:text-blue-400 text-base sm:text-lg"></i>
+            <span className="text-blue-700 dark:text-blue-300 text-xs sm:text-sm font-medium tracking-wide">
+              Hello, I'm
+            </span>
           </div>
         </div>
 
-        {/* Social Icons */}
-        <div className="header-social">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="header-social-icon">
-                  <ul>
-                    <li data-aos="fade-up">
-                      <a
-                        href="https://web.facebook.com/daniyal.amjadali/"
-                        target="_blank"
-                      >
-                        <i className="fa-brands fa-facebook" />
-                      </a>
-                    </li>
-                    {/* <li data-aos="fade-up" data-aos-delay="200">
-                      <a href="skype:live:.cid.f7da4c8189fede6e?chat" target="_blank">
-                        <i className="fa-brands fa-skype" />
-                      </a>
-                    </li> */}
-                    <li data-aos="fade-up" data-aos-delay="400">
-                      <a href="https://github.com/daniyal-fullstack-engineer">
-                        <i className="fa-brands fa-github" />
-                      </a>
-                    </li>
-                    <li data-aos="fade-up" data-aos-delay="600">
-                      {/* https://www.linkedin.com/in/m-daniyal-software-engineer/ */}
-                      <a
-                        href="https://www.linkedin.com/in/m-daniyal-software-engineer/"
-                        target="_blank"
-                      >
-                        <i className="fa-brands fa-linkedin" />
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+        {/* Main Title */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6">
+          <span className="block text-slate-900 dark:text-white">M Daniyal</span>
+          <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">
+            Full-Stack Developer
+          </span>
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-4">
+          I craft exceptional digital experiences through modern web and mobile development, 
+          combining creativity with cutting-edge technology to bring your ideas to life.
+        </p>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12 sm:mb-16 px-4">
+          <a 
+            href="#portfolio" 
+            className="btn-primary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+          >
+            <i className="fas fa-eye group-hover:animate-pulse text-sm sm:text-base md:text-lg lg:text-xl"></i>
+            <span>View My Work</span>
+          </a>
+          
+          <a 
+            href="#contact" 
+            className="btn-secondary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+          >
+            <i className="fas fa-paper-plane group-hover:animate-bounce text-sm sm:text-base md:text-lg lg:text-xl"></i>
+            <span>Get In Touch</span>
+          </a>
+        </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto px-4">
+          <div className="text-center">
+            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-2">50+</div>
+            <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 uppercase tracking-wider">Projects</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-2">30+</div>
+            <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 uppercase tracking-wider">Clients</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-2">3+</div>
+            <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 uppercase tracking-wider">Years</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-2">15+</div>
+            <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 uppercase tracking-wider">Technologies</div>
           </div>
         </div>
       </div>
-    </section>
+
+      {/* Simple Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div className="flex flex-col items-center gap-2 text-slate-500 dark:text-slate-400">
+          <span className="text-sm font-medium tracking-wider uppercase">Scroll to explore</span>
+          <div className="w-6 h-10 border-2 border-slate-400/50 dark:border-slate-400/50 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-gradient-to-b from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 rounded-full mt-2 animate-bounce"></div>
+          </div>
+        </div>
+      </div>
+    </main>
   );
 };
 

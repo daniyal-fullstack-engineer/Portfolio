@@ -1,0 +1,23 @@
+{
+  "name": "Daniyal's Portfolio",
+  "short_name": "Daniyal Portfolio",
+  "description": "Professional portfolio showcasing web and mobile development expertise",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["portfolio", "web development", "mobile development"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}
