@@ -36,6 +36,12 @@ const Home = () => {
     // Register GSAP plugins
     gsap.registerPlugin(ScrollTrigger);
 
+    // Clean up any existing Lenis instance
+    if (window.lenis) {
+      window.lenis.destroy();
+      window.lenis = null;
+    }
+
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
       duration: 1.2,

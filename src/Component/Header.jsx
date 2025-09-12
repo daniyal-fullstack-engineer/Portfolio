@@ -9,9 +9,9 @@ const Header = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem("theme") || "dark"; // Default to dark mode
+      return localStorage.getItem("theme") || "light"; // Default to light mode
     }
-    return "dark"; // Default to dark mode
+    return "light"; // Default to light mode
   });
 
   const navbarRef = useRef(null);

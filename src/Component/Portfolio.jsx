@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -114,15 +114,13 @@ export default function PortfolioCardStackFinal() {
   // Show only featured projects (first 6)
   const featuredProjects = projects.filter(project => project.featured).slice(0, 6);
 
+  // Reset scroll position when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
-    const lenis = new Lenis();
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
 
     let ctx = gsap.context(() => {
       const cards = gsap.utils.toArray(".card-item");
@@ -160,7 +158,14 @@ export default function PortfolioCardStackFinal() {
 
     }, component);
     
-    return () => ctx.revert();
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger === stackContainer.current) {
+          trigger.kill();
+        }
+      });
+      ctx.revert();
+    };
   }, []);
 
   return (
