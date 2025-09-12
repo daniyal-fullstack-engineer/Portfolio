@@ -62,9 +62,11 @@
   <meta name="twitter:image:alt" content="M Daniyal - Full Stack Developer Portfolio">
 
   <!-- Google Site Verification (Optional, but helps indexing) -->
-  <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE">
+  <!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE"> -->
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
   
   <!-- Structured Data (JSON-LD) -->
@@ -128,15 +130,14 @@
   }
   </script>
 
-  <!-- Title Scroll Effect -->
+  <!-- Performance and SEO Optimizations -->
   <script>
-    let titleText = "Full Stack & JavaScript Developer | M Daniyal ";
-    let index = 0;
-    function scrollTitle() {
-      document.title = titleText.slice(index) + titleText.slice(0, index);
-      index = (index + 1) % titleText.length;
-    }
-    setInterval(scrollTitle, 200); 
+    // Preload critical resources
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.href = '/src/main.jsx';
+    preloadLink.as = 'script';
+    document.head.appendChild(preloadLink);
   </script>
 </head>
 

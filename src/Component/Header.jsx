@@ -216,8 +216,10 @@ const Header = () => {
 
           {/* Enhanced Mobile menu button */}
           <button
-            className="md:hidden p-3 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white transition-all duration-300 relative group border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-blue-500/25 hover:scale-105 overflow-hidden"
+            className="md:hidden p-2.5 sm:p-3 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white transition-all duration-300 relative group border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-blue-500/25 hover:scale-105 overflow-hidden touch-manipulation"
             onClick={toggleMenu}
+            aria-label="Toggle mobile menu"
+            aria-expanded={isMenuOpen}
           >
             <div className="w-6 h-6 flex flex-col justify-center items-center">
               <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-1'}`}></span>
@@ -234,20 +236,20 @@ const Header = () => {
 
         {/* Enhanced Mobile Navigation */}
         <div className={`md:hidden transition-all duration-500 overflow-hidden ${
-          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
         }`}>
           <div 
             ref={mobileMenuRef}
-            className="px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl mt-2 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl"
+            className="px-3 pt-3 pb-4 space-y-2 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl mt-2 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl"
           >
             {navItems.map((item, index) => (
               <a 
                 key={item.section}
                 href={item.href} 
-                className={`block px-4 py-3 rounded-xl font-medium transition-all duration-300 relative group ${
+                className={`block px-4 py-3.5 sm:py-4 rounded-xl font-medium transition-all duration-300 relative group touch-manipulation min-h-[48px] flex items-center ${
                   activeSection === item.section
                     ? 'text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg shadow-blue-500/25'
-                    : 'text-slate-700 dark:text-slate-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:shadow-lg hover:shadow-blue-500/25'
+                    : 'text-slate-700 dark:text-slate-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:shadow-lg hover:shadow-blue-500/25 active:scale-95'
                 }`}
                 data-scroll-nav={index}
                 onClick={closeMenu}

@@ -4,17 +4,24 @@ Allow: /
 # Sitemap
 Sitemap: https://daniyal-dev-portfolio.vercel.app/sitemap.xml
 
-# Crawl-delay
+# Crawl-delay for better server performance
 Crawl-delay: 1
 
 # Disallow admin or private areas (if any)
 Disallow: /admin/
 Disallow: /private/
+Disallow: /_next/
 Disallow: /api/
 
-# Allow all other content
-Allow: /src/
-Allow: /assets/
-Allow: /images/
-Allow: /css/
-Allow: /js/
+# Allow important pages
+Allow: /
+Allow: /all-projects
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+Allow: /*.ico

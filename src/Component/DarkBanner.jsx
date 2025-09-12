@@ -120,7 +120,7 @@ const DarkBanner = () => {
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12 sm:mb-16 px-4">
           <a 
             href="#portfolio" 
-            className="btn-primary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+            className="btn-primary group px-6 sm:px-8 md:px-10 lg:px-12 py-4 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl min-h-[48px] touch-manipulation flex items-center justify-center gap-2 active:scale-95"
           >
             <i className="fas fa-eye group-hover:animate-pulse text-sm sm:text-base md:text-lg lg:text-xl"></i>
             <span>View My Work</span>
@@ -128,7 +128,7 @@ const DarkBanner = () => {
           
           <a 
             href="#contact" 
-            className="btn-secondary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+            className="btn-secondary group px-6 sm:px-8 md:px-10 lg:px-12 py-4 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl min-h-[48px] touch-manipulation flex items-center justify-center gap-2 active:scale-95"
           >
             <i className="fas fa-paper-plane group-hover:animate-bounce text-sm sm:text-base md:text-lg lg:text-xl"></i>
             <span>Get In Touch</span>
