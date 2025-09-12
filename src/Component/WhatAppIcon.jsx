@@ -32,8 +32,8 @@ const WhatAppIcon = () => {
         onClick={handleWhatsApp}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="group relative w-14 h-14 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl shadow-2xl hover:shadow-green-500/25 transition-all duration-300 hover:scale-110 hover:rotate-3 flex items-center justify-center"
-        title="Chat on WhatsApp"
+        className="group relative w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl shadow-2xl hover:shadow-green-500/30 transition-all duration-300 hover:scale-110 hover:rotate-3 flex items-center justify-center animate-bounce-slow"
+        title="Chat on WhatsApp (+92 304 5485310)"
         aria-label="WhatsApp Chat"
       >
         {/* Glass Effect Overlay */}
@@ -42,7 +42,7 @@ const WhatAppIcon = () => {
         {/* WhatsApp Icon */}
         <div className="relative z-10">
           <svg 
-            className="w-7 h-7 text-white transition-all duration-300 group-hover:scale-110" 
+            className="w-8 h-8 text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" 
             viewBox="0 0 24 24" 
             fill="currentColor"
           >
@@ -65,8 +65,9 @@ const WhatAppIcon = () => {
         </div>
 
         {/* Tooltip */}
-        <div className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
-          Chat on WhatsApp
+        <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
+          <div className="font-semibold">Chat on WhatsApp</div>
+          <div className="text-green-300 dark:text-green-600">+92 304 5485310</div>
           <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-900 dark:border-t-slate-100"></div>
         </div>
 

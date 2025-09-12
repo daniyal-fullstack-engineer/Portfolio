@@ -38,13 +38,53 @@ const DarkBanner = () => {
   return (
     <main 
       ref={bannerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-0 mt-0 -mt-16" 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-0 mt-0 -mt-16 pb-20 sm:pb-24 md:pb-32" 
       id="home-section"
       role="main"
       aria-label="Main content"
     >
-      {/* Simple Background */}
+      {/* Enhanced Background with Animations */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/30 dark:via-transparent dark:to-purple-900/30"></div>
+      
+      {/* Floating Geometric Shapes */}
+      <div className="absolute top-20 left-10 w-16 h-16 bg-gradient-to-r from-blue-400/20 to-purple-400/20 dark:from-blue-500/30 dark:to-purple-500/30 rounded-full animate-float opacity-60"></div>
+      <div className="absolute top-40 right-16 w-12 h-12 bg-gradient-to-r from-purple-400/20 to-indigo-400/20 dark:from-purple-500/30 dark:to-indigo-500/30 rounded-lg rotate-45 animate-float opacity-60" style={{animationDelay: '1s'}}></div>
+      <div className="absolute bottom-40 left-20 w-20 h-20 bg-gradient-to-r from-indigo-400/20 to-cyan-400/20 dark:from-indigo-500/30 dark:to-cyan-500/30 rounded-full animate-float opacity-60" style={{animationDelay: '2s'}}></div>
+      <div className="absolute bottom-20 right-20 w-14 h-14 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 dark:from-cyan-500/30 dark:to-blue-500/30 rounded-lg rotate-12 animate-float opacity-60" style={{animationDelay: '3s'}}></div>
+      
+      {/* Gradient Orbs */}
+      <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 dark:from-blue-400/20 dark:to-purple-400/20 rounded-full blur-xl animate-pulse-slow"></div>
+      <div className="absolute top-3/4 right-1/4 w-40 h-40 bg-gradient-to-r from-purple-500/10 to-indigo-500/10 dark:from-purple-400/20 dark:to-indigo-400/20 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '1s'}}></div>
+      <div className="absolute bottom-1/4 left-1/3 w-28 h-28 bg-gradient-to-r from-indigo-500/10 to-cyan-500/10 dark:from-indigo-400/20 dark:to-cyan-400/20 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
+      
+      {/* Floating Tech Icons */}
+      <div className="absolute top-32 right-32 text-blue-400/30 dark:text-blue-300/40 text-2xl animate-bounce-slow hover:text-blue-500 dark:hover:text-blue-400 hover:scale-125 transition-all duration-300 cursor-pointer">
+        <i className="fas fa-laptop-code"></i>
+      </div>
+      <div className="absolute top-64 left-32 text-purple-400/30 dark:text-purple-300/40 text-xl animate-bounce-slow hover:text-purple-500 dark:hover:text-purple-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '0.5s'}}>
+        <i className="fas fa-mobile-alt"></i>
+      </div>
+      <div className="absolute bottom-64 right-40 text-indigo-400/30 dark:text-indigo-300/40 text-2xl animate-bounce-slow hover:text-indigo-500 dark:hover:text-indigo-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '1s'}}>
+        <i className="fas fa-code"></i>
+      </div>
+      <div className="absolute bottom-32 left-40 text-cyan-400/30 dark:text-cyan-300/40 text-xl animate-bounce-slow hover:text-cyan-500 dark:hover:text-cyan-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '1.5s'}}>
+        <i className="fas fa-chart-line"></i>
+      </div>
+
+      {/* Additional Floating Elements */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-blue-200/10 dark:border-blue-400/20 rounded-full animate-spin-slow"></div>
+      <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-blue-400/60 dark:bg-blue-300/60 rounded-full animate-ping"></div>
+      <div className="absolute bottom-1/3 left-1/4 w-3 h-3 bg-purple-400/60 dark:bg-purple-300/60 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
+      <div className="absolute top-2/3 left-2/3 w-2 h-2 bg-cyan-400/60 dark:bg-cyan-300/60 rounded-full animate-ping" style={{animationDelay: '2s'}}></div>
+      
+      {/* Animated Grid Pattern */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10">
+        <div className="grid grid-cols-12 h-full">
+          {Array.from({ length: 144 }).map((_, i) => (
+            <div key={i} className="border border-slate-300/30 dark:border-slate-600/30 animate-pulse" style={{animationDelay: `${i * 0.1}s`}}></div>
+          ))}
+        </div>
+      </div>
 
       {/* Main Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center pt-16 sm:pt-24 md:pt-32">
@@ -116,12 +156,13 @@ const DarkBanner = () => {
         </div>
       </div>
 
-      {/* Simple Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <div className="flex flex-col items-center gap-2 text-slate-500 dark:text-slate-400">
-          <span className="text-sm font-medium tracking-wider uppercase">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-slate-400/50 dark:border-slate-400/50 rounded-full flex justify-center">
+      {/* Enhanced Scroll Indicator */}
+      <div className="absolute bottom-8 sm:bottom-12 md:bottom-16 left-1/2 transform -translate-x-1/2">
+        <div className="flex flex-col items-center gap-3 text-slate-500 dark:text-slate-400">
+          <span className="text-sm font-medium tracking-wider uppercase animate-pulse">Scroll to explore</span>
+          <div className="w-6 h-10 border-2 border-slate-400/50 dark:border-slate-400/50 rounded-full flex justify-center relative overflow-hidden">
             <div className="w-1 h-3 bg-gradient-to-b from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 rounded-full mt-2 animate-bounce"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/20 to-purple-500/20 rounded-full animate-pulse"></div>
           </div>
         </div>
       </div>

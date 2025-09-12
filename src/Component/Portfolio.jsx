@@ -1,4 +1,5 @@
-import React, { useRef, useLayoutEffect, useState, useMemo } from "react";
+import React, { useRef, useLayoutEffect } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
@@ -109,32 +110,9 @@ const projects = [
 export default function PortfolioCardStackFinal() {
   const component = useRef(null);
   const stackContainer = useRef(null);
-  const [activeFilter, setActiveFilter] = useState('All');
-  const [searchTerm, setSearchTerm] = useState('');
-
-  // Filter categories
-  const categories = ['All', 'Web App', 'E-commerce', 'Mobile App', 'Website'];
   
-  // Filter and search projects
-  const filteredProjects = useMemo(() => {
-    let filtered = projects;
-    
-    // Filter by category
-    if (activeFilter !== 'All') {
-      filtered = filtered.filter(project => project.category === activeFilter);
-    }
-    
-    // Filter by search term
-    if (searchTerm) {
-      filtered = filtered.filter(project => 
-        project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.tech.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
-    }
-    
-    return filtered;
-  }, [activeFilter, searchTerm]);
+  // Show only featured projects (first 6)
+  const featuredProjects = projects.filter(project => project.featured).slice(0, 6);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -186,33 +164,48 @@ export default function PortfolioCardStackFinal() {
   }, []);
 
   return (
-    <div ref={component} className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-white">
+    <div ref={component} className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-500">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Floating Geometric Shapes */}
-        <div className="absolute top-20 left-4 md:left-10 w-12 md:w-16 h-12 md:h-16 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-20 animate-float"></div>
-        <div className="absolute top-40 right-4 md:right-20 w-8 md:w-12 h-8 md:h-12 bg-gradient-to-r from-purple-400 to-indigo-400 rounded-lg rotate-45 opacity-20 animate-float" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-40 left-4 md:left-20 w-16 md:w-20 h-16 md:h-20 bg-gradient-to-r from-indigo-400 to-cyan-400 rounded-full opacity-20 animate-float" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-20 right-4 md:right-10 w-10 md:w-14 h-10 md:h-14 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-lg rotate-12 opacity-20 animate-float" style={{animationDelay: '3s'}}></div>
+        {/* Animated Grid Pattern */}
+        <div className="absolute inset-0 opacity-5 dark:opacity-10">
+          <div className="grid grid-cols-12 h-full">
+            {Array.from({ length: 144 }).map((_, i) => (
+              <div key={i} className="border border-slate-300 dark:border-slate-600 animate-pulse" style={{animationDelay: `${i * 0.1}s`}}></div>
+            ))}
+          </div>
+        </div>
+
+        {/* Floating Geometric Shapes with Enhanced Animations */}
+        <div className="absolute top-20 left-4 md:left-10 w-12 md:w-16 h-12 md:h-16 bg-gradient-to-r from-blue-400 to-purple-400 dark:from-blue-500 dark:to-purple-500 rounded-full opacity-20 dark:opacity-30 animate-float hover:scale-110 transition-transform duration-300"></div>
+        <div className="absolute top-40 right-4 md:right-20 w-8 md:w-12 h-8 md:h-12 bg-gradient-to-r from-purple-400 to-indigo-400 dark:from-purple-500 dark:to-indigo-500 rounded-lg rotate-45 opacity-20 dark:opacity-30 animate-float hover:rotate-90 transition-transform duration-500" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-40 left-4 md:left-20 w-16 md:w-20 h-16 md:h-20 bg-gradient-to-r from-indigo-400 to-cyan-400 dark:from-indigo-500 dark:to-cyan-500 rounded-full opacity-20 dark:opacity-30 animate-float hover:scale-125 transition-transform duration-300" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-20 right-4 md:right-10 w-10 md:w-14 h-10 md:h-14 bg-gradient-to-r from-cyan-400 to-blue-400 dark:from-cyan-500 dark:to-blue-500 rounded-lg rotate-12 opacity-20 dark:opacity-30 animate-float hover:rotate-45 transition-transform duration-500" style={{animationDelay: '3s'}}></div>
         
-        {/* Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-24 md:w-32 h-24 md:h-32 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-xl animate-pulse-slow"></div>
-        <div className="absolute top-3/4 right-1/4 w-32 md:w-40 h-32 md:h-40 bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-1/4 left-1/3 w-20 md:w-28 h-20 md:h-28 bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
+        {/* Enhanced Gradient Orbs with Movement */}
+        <div className="absolute top-1/4 left-1/4 w-24 md:w-32 h-24 md:h-32 bg-gradient-to-r from-blue-500/20 to-purple-500/20 dark:from-blue-400/30 dark:to-purple-400/30 rounded-full blur-xl animate-pulse-slow hover:scale-110 transition-transform duration-500"></div>
+        <div className="absolute top-3/4 right-1/4 w-32 md:w-40 h-32 md:h-40 bg-gradient-to-r from-purple-500/20 to-indigo-500/20 dark:from-purple-400/30 dark:to-indigo-400/30 rounded-full blur-xl animate-pulse-slow hover:scale-110 transition-transform duration-500" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-1/4 left-1/3 w-20 md:w-28 h-20 md:h-28 bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 dark:from-indigo-400/30 dark:to-cyan-400/30 rounded-full blur-xl animate-pulse-slow hover:scale-110 transition-transform duration-500" style={{animationDelay: '2s'}}></div>
         
-        {/* Floating Portfolio Icons */}
-        <div className="absolute top-32 right-8 md:right-32 text-blue-400/30 text-xl md:text-2xl animate-bounce-slow">
+        {/* Floating Tech Icons with Enhanced Movement */}
+        <div className="absolute top-32 right-8 md:right-32 text-blue-400/40 dark:text-blue-300/50 text-xl md:text-2xl animate-bounce-slow hover:text-blue-500 dark:hover:text-blue-400 hover:scale-125 transition-all duration-300 cursor-pointer">
           <i className="fas fa-laptop-code"></i>
         </div>
-        <div className="absolute top-64 left-8 md:left-32 text-purple-400/30 text-lg md:text-xl animate-bounce-slow" style={{animationDelay: '0.5s'}}>
+        <div className="absolute top-64 left-8 md:left-32 text-purple-400/40 dark:text-purple-300/50 text-lg md:text-xl animate-bounce-slow hover:text-purple-500 dark:hover:text-purple-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '0.5s'}}>
           <i className="fas fa-mobile-alt"></i>
         </div>
-        <div className="absolute bottom-64 right-8 md:right-40 text-indigo-400/30 text-xl md:text-2xl animate-bounce-slow" style={{animationDelay: '1s'}}>
+        <div className="absolute bottom-64 right-8 md:right-40 text-indigo-400/40 dark:text-indigo-300/50 text-xl md:text-2xl animate-bounce-slow hover:text-indigo-500 dark:hover:text-indigo-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '1s'}}>
           <i className="fas fa-shopping-cart"></i>
         </div>
-        <div className="absolute bottom-32 left-8 md:left-40 text-cyan-400/30 text-lg md:text-xl animate-bounce-slow" style={{animationDelay: '1.5s'}}>
+        <div className="absolute bottom-32 left-8 md:left-40 text-cyan-400/40 dark:text-cyan-300/50 text-lg md:text-xl animate-bounce-slow hover:text-cyan-500 dark:hover:text-cyan-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '1.5s'}}>
           <i className="fas fa-chart-line"></i>
         </div>
+
+        {/* Additional Floating Elements */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-blue-200/20 dark:border-blue-400/20 rounded-full animate-spin-slow"></div>
+        <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-blue-400 dark:bg-blue-300 rounded-full animate-ping"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-3 h-3 bg-purple-400 dark:bg-purple-300 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-2/3 left-2/3 w-2 h-2 bg-cyan-400 dark:bg-cyan-300 rounded-full animate-ping" style={{animationDelay: '2s'}}></div>
       </div>
 
       {/* Professional Header Section */}
@@ -235,79 +228,11 @@ export default function PortfolioCardStackFinal() {
         </div>
       </section>
 
-      {/* Filter and Search Section */}
-      <section className="relative z-10 py-8 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between mb-8">
-            {/* Search Bar */}
-            <div className="relative w-full lg:w-96">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg className="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </div>
-              <input
-                type="text"
-                placeholder="Search projects..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-2xl text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all duration-300"
-              />
-            </div>
-
-            {/* Filter Buttons */}
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  onClick={() => setActiveFilter(category)}
-                  variant={activeFilter === category ? 'primary' : 'secondary'}
-                  size="sm"
-                  className="rounded-full"
-                >
-                  {category}
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          {/* Results Count */}
-          <div className="text-center mb-8">
-            <p className="text-slate-600 dark:text-slate-400">
-              Showing {filteredProjects.length} of {projects.length} projects
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* Stacked Cards Section */}
       <section className="relative z-10">
         <div ref={stackContainer} className="relative h-screen">
-          {filteredProjects.length === 0 ? (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                  <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">No Projects Found</h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-4">Try adjusting your search or filter criteria</p>
-                <Button
-                  onClick={() => {
-                    setSearchTerm('');
-                    setActiveFilter('All');
-                  }}
-                  variant="primary"
-                  size="md"
-                  className="rounded-full"
-                >
-                  Clear Filters
-                </Button>
-              </div>
-            </div>
-          ) : (
-            filteredProjects.map((project, index) => (
+          {featuredProjects.map((project, index) => (
             <div key={index} className="card-item absolute inset-0 flex items-center justify-center p-4">
               <div className="w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-slate-200/50 dark:border-slate-700/50 bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl">
                 <div className="relative h-60 sm:h-72 md:h-96 overflow-hidden">
@@ -351,10 +276,53 @@ export default function PortfolioCardStackFinal() {
                 </div>
               </div>
             </div>
-          )))}
+          ))}
         </div>
       </section>
 
+      {/* View All Projects Button Section */}
+      <section className="relative z-10 py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl">
+            <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+              <i className="fas fa-rocket text-white text-2xl"></i>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+              Explore More Projects
+            </h3>
+            <p className="text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Discover my complete portfolio including web applications, mobile apps, e-commerce platforms, and business solutions. See all {projects.length} projects with detailed case studies.
+            </p>
+            <Link to="/all-projects" className="inline-block">
+              <Button
+                variant="primary"
+                size="lg"
+                icon="fas fa-arrow-right"
+                className="group"
+              >
+                View All Projects
+                <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">
+                  <i className="fas fa-external-link-alt"></i>
+                </span>
+              </Button>
+            </Link>
+            <div className="mt-6 flex items-center justify-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+              <div className="flex items-center gap-2">
+                <i className="fas fa-check-circle text-green-500"></i>
+                <span>All {projects.length} Projects</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <i className="fas fa-code text-blue-500"></i>
+                <span>Multiple Technologies</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <i className="fas fa-mobile-alt text-purple-500"></i>
+                <span>Web & Mobile</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
      
     </div>
   );

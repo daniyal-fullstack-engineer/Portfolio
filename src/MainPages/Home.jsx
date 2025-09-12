@@ -6,7 +6,6 @@ import Header from '../Component/Header';
 import Banner from '../Component/Banner';
 import WhatAppIcon from '../Component/WhatAppIcon';
 import ScrollToTop from '../Component/ScrollToTop';
-import CustomCursor from '../Component/CustomCursor';
 import ParticleBackground from '../Component/ParticleBackground';
 import MobileGestures from '../Component/MobileGestures';
 import PWA from '../Component/PWA';
@@ -70,12 +69,10 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='main-wrapper custom-cursor min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300'>
+    <div className='main-wrapper min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300'>
       {/* Particle Background */}
       <ParticleBackground />
       
-      {/* Custom Cursor */}
-      <CustomCursor />
       
       {/* Mobile Gestures */}
       <MobileGestures />

@@ -71,13 +71,13 @@ html {
   }
 }
 
-/* Custom cursor styles */
+/* Normal cursor behavior - no custom cursor */
 .custom-cursor {
-  cursor: none;
+  cursor: auto;
 }
 
 .custom-cursor * {
-  cursor: none !important;
+  cursor: auto;
 }
 
 /* Smooth hover effects for buttons */
