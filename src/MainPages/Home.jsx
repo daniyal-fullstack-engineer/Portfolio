@@ -113,7 +113,7 @@ const Home = () => {
       </div>
       <div className='portfolio-section'>
        <Portfolio />
-      </div>
+      </div> 
       <div className='hire-me-section'>
      <HireMe />
       </div>
