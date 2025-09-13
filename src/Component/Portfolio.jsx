@@ -1,3 +1,4 @@
+'use client';
 import React, { useRef, useLayoutEffect, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
@@ -111,19 +112,27 @@ export default function PortfolioCardStackFinal() {
   const component = useRef(null);
   const stackContainer = useRef(null);
   
-  // Show only featured projects (first 6)
   const featuredProjects = projects.filter(project => project.featured).slice(0, 6);
 
-  // Reset scroll position when component mounts
+  // Lenis smooth scroll implementation
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const lenis = new Lenis();
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // Cleanup
+    return () => {
+      lenis.destroy();
+    };
   }, []);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
-    // Detect mobile devices
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
 
     let ctx = gsap.context(() => {
       const cards = gsap.utils.toArray(".card-item");
@@ -138,8 +147,8 @@ export default function PortfolioCardStackFinal() {
         scrollTrigger: {
           trigger: stackContainer.current,
           start: "top top",
-          end: `+=${(cards.length) * 500}`, // Increased end value slightly for last card
-          pin: !isMobile, // Disable pin on mobile to prevent scroll issues
+          end: `+=${(cards.length) * 500}`,
+          pin: true, // ✅ FIX 1: Enabled pinning on all devices
           scrub: 1.5,
         }
       });
@@ -147,7 +156,6 @@ export default function PortfolioCardStackFinal() {
       cards.slice(0, -1).forEach((card, i) => {
         const nextCard = cards[i + 1];
         tl.to(card, {
-          // ✅ FIX 2: Added autoAlpha for a clean fade-out and hide.
           autoAlpha: 0,
           yPercent: -120,
           ease: "power1.inOut"
@@ -162,11 +170,7 @@ export default function PortfolioCardStackFinal() {
     }, component);
     
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.trigger === stackContainer.current) {
-          trigger.kill();
-        }
-      });
+      // Revert GSAP context and kill ScrollTriggers
       ctx.revert();
     };
   }, []);

@@ -117,12 +117,72 @@ const Header = () => {
     }
   }, [isMenuOpen]);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${window.scrollY}px`;
+    } else {
+      // Restore body scroll
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+
+    return () => {
+      // Cleanup on unmount
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+    };
+  }, [isMenuOpen]);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMenuOpen && navbarRef.current && !navbarRef.current.contains(event.target)) {
+        closeMenu();
+      }
+    };
+
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape' && isMenuOpen) {
+        closeMenu();
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+      document.addEventListener('keydown', handleEscapeKey);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [isMenuOpen]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+    // Clear focus from the hamburger button to remove stuck background
+    if (document.activeElement && document.activeElement.blur) {
+      document.activeElement.blur();
+    }
   };
 
   const toggleTheme = () => {
@@ -216,43 +276,65 @@ const Header = () => {
 
           {/* Enhanced Mobile menu button */}
           <button
-            className="md:hidden p-2.5 sm:p-3 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white transition-all duration-300 relative group border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-blue-500/25 hover:scale-105 overflow-hidden touch-manipulation"
+            className={`md:hidden p-2.5 sm:p-3 rounded-xl transition-all duration-300 relative group border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-blue-500/25 hover:scale-105 overflow-hidden touch-manipulation focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 ${
+              isMenuOpen 
+                ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white' 
+                : 'text-slate-700 dark:text-slate-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white'
+            }`}
             onClick={toggleMenu}
             aria-label="Toggle mobile menu"
             aria-expanded={isMenuOpen}
           >
-            <div className="w-6 h-6 flex flex-col justify-center items-center">
+            <div className="w-6 h-6 flex flex-col justify-center items-center relative z-10">
               <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-1'}`}></span>
               <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
               <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-1'}`}></span>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            {/* Hover shine effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-            {/* Glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm -z-10 scale-110"></div>
+            {/* Simplified background effects */}
+            {!isMenuOpen && (
+              <>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              </>
+            )}
           </button>
         </div>
 
+        {/* Mobile Menu Backdrop */}
+        {isMenuOpen && (
+          <div 
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+            onClick={closeMenu}
+          />
+        )}
+
         {/* Enhanced Mobile Navigation */}
-        <div className={`md:hidden transition-all duration-500 overflow-hidden ${
+        <div className={`md:hidden transition-all duration-500 overflow-hidden relative z-50 ${
           isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
         }`}>
           <div 
             ref={mobileMenuRef}
-            className="px-3 pt-3 pb-4 space-y-2 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl mt-2 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl"
+            className="px-3 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl mt-1 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl"
           >
             {navItems.map((item, index) => (
               <a 
                 key={item.section}
                 href={item.href} 
-                className={`block px-4 py-3.5 sm:py-4 rounded-xl font-medium transition-all duration-300 relative group touch-manipulation min-h-[48px] flex items-center ${
+                className={`block px-4 py-2.5 sm:py-3 rounded-xl font-medium transition-all duration-300 relative group touch-manipulation min-h-[44px] flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 ${
                   activeSection === item.section
                     ? 'text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg shadow-blue-500/25'
                     : 'text-slate-700 dark:text-slate-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:shadow-lg hover:shadow-blue-500/25 active:scale-95'
                 }`}
                 data-scroll-nav={index}
-                onClick={closeMenu}
+                onClick={(e) => {
+                  closeMenu();
+                  // Clear focus after navigation
+                  setTimeout(() => {
+                    if (document.activeElement && document.activeElement.blur) {
+                      document.activeElement.blur();
+                    }
+                  }, 100);
+                }}
               >
                 <span className="relative z-10 text-sm font-medium tracking-wide">{item.label}</span>
                 {activeSection === item.section && (

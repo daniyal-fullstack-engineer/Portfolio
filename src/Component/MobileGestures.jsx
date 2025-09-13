@@ -7,12 +7,30 @@ const MobileGestures = () => {
 
   useEffect(() => {
     const handleTouchStart = (e) => {
+      // Only handle gestures on specific areas or when explicitly enabled
+      const target = e.target;
+      const isInteractiveElement = target.closest('button, a, [role="button"], .swipe-enabled');
+      
+      // Skip gesture handling for interactive elements and normal scroll areas
+      if (isInteractiveElement || target.closest('.scrollable-content')) {
+        return;
+      }
+      
       const touch = e.touches[0];
       touchStartRef.current = { x: touch.clientX, y: touch.clientY };
       lastTouchTimeRef.current = Date.now();
     };
 
     const handleTouchEnd = (e) => {
+      // Only handle gestures on specific areas or when explicitly enabled
+      const target = e.target;
+      const isInteractiveElement = target.closest('button, a, [role="button"], .swipe-enabled');
+      
+      // Skip gesture handling for interactive elements and normal scroll areas
+      if (isInteractiveElement || target.closest('.scrollable-content')) {
+        return;
+      }
+      
       const touch = e.changedTouches[0];
       touchEndRef.current = { x: touch.clientX, y: touch.clientY };
       
@@ -20,13 +38,14 @@ const MobileGestures = () => {
       const deltaY = touchEndRef.current.y - touchStartRef.current.y;
       const deltaTime = Date.now() - lastTouchTimeRef.current;
       
-      // Swipe detection
-      const minSwipeDistance = 50;
-      const maxSwipeTime = 500;
+      // More restrictive swipe detection to avoid interfering with normal scroll
+      const minSwipeDistance = 100; // Increased from 50
+      const maxSwipeTime = 300; // Reduced from 500
+      const minHorizontalRatio = 2; // Require horizontal movement to be 2x vertical
       
       if (deltaTime < maxSwipeTime) {
-        if (Math.abs(deltaX) > Math.abs(deltaY)) {
-          // Horizontal swipe
+        // Only handle horizontal swipes with clear horizontal dominance
+        if (Math.abs(deltaX) > Math.abs(deltaY) * minHorizontalRatio) {
           if (Math.abs(deltaX) > minSwipeDistance) {
             if (deltaX > 0) {
               // Swipe right
@@ -36,18 +55,8 @@ const MobileGestures = () => {
               handleSwipeLeft();
             }
           }
-        } else {
-          // Vertical swipe
-          if (Math.abs(deltaY) > minSwipeDistance) {
-            if (deltaY > 0) {
-              // Swipe down
-              handleSwipeDown();
-            } else {
-              // Swipe up
-              handleSwipeUp();
-            }
-          }
         }
+        // Remove vertical swipe handling to avoid scroll interference
       }
     };
 
@@ -68,15 +77,16 @@ const MobileGestures = () => {
       }
     };
 
-    const handleSwipeUp = () => {
-      // Scroll up or show more content
-      window.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
-    };
+    // Removed vertical swipe handlers to avoid interfering with normal scroll
+    // const handleSwipeUp = () => {
+    //   // Scroll up or show more content
+    //   window.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
+    // };
 
-    const handleSwipeDown = () => {
-      // Scroll down or show more content
-      window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
-    };
+    // const handleSwipeDown = () => {
+    //   // Scroll down or show more content
+    //   window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+    // };
 
     const getCurrentSection = () => {
       const sections = document.querySelectorAll('[data-scroll-index]');
@@ -111,10 +121,15 @@ const MobileGestures = () => {
       lastTouchTimeRef.current = now;
     };
 
-    // Add event listeners
-    document.addEventListener('touchstart', handleTouchStart, { passive: true });
-    document.addEventListener('touchend', handleTouchEnd, { passive: true });
-    document.addEventListener('touchend', handleDoubleTap, { passive: true });
+    // Only add gesture listeners on mobile devices
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    
+    if (isMobile) {
+      // Add event listeners with more specific targeting
+      document.addEventListener('touchstart', handleTouchStart, { passive: true });
+      document.addEventListener('touchend', handleTouchEnd, { passive: true });
+      document.addEventListener('touchend', handleDoubleTap, { passive: true });
+    }
 
     // Add haptic feedback for supported devices
     const addHapticFeedback = () => {
@@ -130,9 +145,11 @@ const MobileGestures = () => {
     });
 
     return () => {
-      document.removeEventListener('touchstart', handleTouchStart);
-      document.removeEventListener('touchend', handleTouchEnd);
-      document.removeEventListener('touchend', handleDoubleTap);
+      if (isMobile) {
+        document.removeEventListener('touchstart', handleTouchStart);
+        document.removeEventListener('touchend', handleTouchEnd);
+        document.removeEventListener('touchend', handleDoubleTap);
+      }
       interactiveElements.forEach(el => {
         el.removeEventListener('touchstart', addHapticFeedback);
       });
