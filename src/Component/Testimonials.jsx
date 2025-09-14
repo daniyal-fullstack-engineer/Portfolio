@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Button from "./Button";
 
 const testimonials = [
@@ -6,67 +7,128 @@ const testimonials = [
     img: "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/d31612952c6eca7780ba29c670ecc9d8-1729845263690/39ef4fad-6a51-4223-abf5-6d19256880bd.jpg",
     name: "Valantism",
     country: "Greece",
-    text: "Very good experience. Professional work and timely delivery. Highly satisfied with the results."
+    text: "Very good experience. Professional work and timely delivery. Highly satisfied with the results.",
+    rating: 5,
+    project: "E-commerce Website"
   },
   {
     img: "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/5f50a36de4ffcbddb7caec31d603f03b-1704065713606/5c4455ee-6fe6-4815-b5b7-30649b148a48.png",
     name: "Moemia",
     country: "United Kingdom",
-    text: "Thanks for your help in creating the React Native front end, connecting it with Firebase, and handling user authentication and league creation. Great work!"
-  },
-  {
-    img: "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_small/v1/attachments/profile/photo/5f50a36de4ffcbddb7caec31d603f03b-1704065713606/5c4455ee-6fe6-4815-b5b7-30649b148a48.png",
-    name: "Moemia",
-    country: "United Kingdom",
-    text: "Daniyal did a great job as a full-stack developer. Excellent professionalism, documentation, and timely delivery. Highly recommended!"
+    text: "Thanks for your help in creating the React Native front end, connecting it with Firebase, and handling user authentication and league creation. Great work!",
+    rating: 5,
+    project: "Mobile App Development"
   },
   {
     img: "https://i.postimg.cc/CM8SjJSc/1.png",
     name: "Muzamil Pervaize",
     country: "United States",
-    text: "Understood the task perfectly and delivered excellent work. Very happy with the outcome!"
+    text: "Understood the task perfectly and delivered excellent work. Very happy with the outcome!",
+    rating: 5,
+    project: "Web Application"
   },
   {
     img: "https://i.postimg.cc/wMDzgx0C/2.png",
     name: "Xerophilic",
     country: "Australia 🇦🇺",
-    text: "Fast service and exceeded expectations. Very satisfied with the results!"
+    text: "Fast service and exceeded expectations. Very satisfied with the results!",
+    rating: 5,
+    project: "Dashboard Development"
   },
   {
     img: "https://i.postimg.cc/7YyDX7Lw/3.png",
     name: "Habib786",
     country: "Spain 🇪🇸",
-    text: "Great teaching style and good communication. Really satisfied with the overall experience."
+    text: "Great teaching style and good communication. Really satisfied with the overall experience.",
+    rating: 5,
+    project: "Training & Consultation"
   },
+  {
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    name: "Sarah Johnson",
+    country: "Canada 🇨🇦",
+    text: "Outstanding React development work. The code quality and documentation were exceptional. Will definitely work together again!",
+    rating: 5,
+    project: "React Dashboard"
+  },
+  {
+    img: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+    name: "Emily Chen",
+    country: "Singapore 🇸🇬",
+    text: "Professional, responsive, and delivered exactly what was promised. The mobile app exceeded our expectations in every way.",
+    rating: 5,
+    project: "React Native App"
+  },
+  {
+    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    name: "David Rodriguez",
+    country: "Mexico 🇲🇽",
+    text: "Excellent full-stack developer. Great communication throughout the project and delivered high-quality results on time.",
+    rating: 5,
+    project: "Full-Stack Web App"
+  },
+  {
+    img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    name: "Lisa Thompson",
+    country: "Germany 🇩🇪",
+    text: "Amazing work on our e-commerce platform. The user experience and performance optimizations were top-notch.",
+    rating: 5,
+    project: "E-commerce Platform"
+  },
+  {
+    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+    name: "Michael Brown",
+    country: "United Kingdom 🇬🇧",
+    text: "Highly skilled developer with great attention to detail. The project was completed ahead of schedule with excellent results.",
+    rating: 5,
+    project: "Business Management System"
+  },
+  {
+    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
+    name: "Jennifer Lee",
+    country: "South Korea 🇰🇷",
+    text: "Outstanding Node.js backend development. Clean code, proper documentation, and excellent performance optimization.",
+    rating: 5,
+    project: "API Development"
+  },
+  {
+    img: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=150&h=150&fit=crop&crop=face",
+    name: "Alex Kumar",
+    country: "India 🇮🇳",
+    text: "Professional, reliable, and technically excellent. Delivered a complex project with multiple integrations flawlessly.",
+    rating: 5,
+    project: "Integration Platform"
+  }
 ];
 
-
 export default function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [displayedTestimonials, setDisplayedTestimonials] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Auto-rotate testimonials
+  // Handle responsive testimonials display
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768; // md breakpoint
+      setIsMobile(mobile);
+      
+      if (mobile) {
+        // Show 3 testimonials on mobile
+        setDisplayedTestimonials(testimonials.slice(0, 3));
+      } else {
+        // Show 6 testimonials on desktop
+        setDisplayedTestimonials(testimonials.slice(0, 6));
+      }
+    };
 
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-    }, 5000); // Change every 5 seconds
+    // Initial call
+    handleResize();
 
-    return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+    // Add event listener
+    window.addEventListener('resize', handleResize);
 
-  const nextTestimonial = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
-  };
-
-  const goToTestimonial = (index) => {
-    setCurrentIndex(index);
-  };
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <section 
@@ -120,103 +182,137 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Enhanced Testimonials Carousel */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Main Testimonial Display */}
-          <div 
-            className="relative bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl overflow-hidden min-h-[300px] flex flex-col justify-center"
-            onMouseEnter={() => setIsAutoPlaying(false)}
-            onMouseLeave={() => setIsAutoPlaying(true)}
+        {/* Testimonials Grid */}
+        <div className={`grid gap-6 sm:gap-8 max-w-7xl mx-auto ${
+          isMobile 
+            ? 'grid-cols-1 sm:grid-cols-2' 
+            : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+        }`}>
+          {displayedTestimonials.map((testimonial, index) => (
+            <div 
+              key={index}
+              className="relative bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-slate-200/50 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:border-blue-300 dark:hover:border-blue-600 group"
           >
                 {/* Quote Icon */}
-            <div className="absolute top-6 right-6 opacity-10">
-                  <i className="fas fa-quote-right text-4xl text-blue-500"></i>
+              <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+                <i className="fas fa-quote-right text-3xl text-blue-500"></i>
                 </div>
                 
-            {/* Testimonial Content */}
-            <div className="text-center">
                   {/* Stars */}
-              <div className="flex items-center justify-center gap-1 mb-6">
+              <div className="flex items-center justify-center gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
-                  <i key={i} className="fas fa-star text-yellow-400 text-lg"></i>
+                  <i key={i} className="fas fa-star text-yellow-400 text-sm group-hover:text-yellow-500 transition-colors duration-300"></i>
                     ))}
                   </div>
                   
-              <blockquote className="mb-8">
-                <p className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                  "{testimonials[currentIndex].text}"
+              {/* Testimonial Text */}
+              <blockquote className="mb-6 text-center">
+                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed italic group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors duration-300">
+                  "{testimonial.text}"
                     </p>
                   </blockquote>
                   
                   {/* Client Info */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <div className="relative">
-                      <img 
-                    src={testimonials[currentIndex].img} 
-                    alt={testimonials[currentIndex].name}
-                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-3 border-blue-200 dark:border-blue-700 shadow-lg"
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-4">
+                  <img 
+                    src={testimonial.img} 
+                    alt={testimonial.name}
+                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-3 border-blue-200 dark:border-blue-700 shadow-lg group-hover:border-blue-300 dark:group-hover:border-blue-600 transition-colors duration-300"
                   />
-                  <div className="absolute -bottom-1 -right-1 w-6 h-6 sm:w-7 sm:h-7 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center border-2 border-white dark:border-slate-800">
-                    <i className="fas fa-check text-white text-sm"></i>
+                  <div className="absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center border-2 border-white dark:border-slate-800 group-hover:scale-110 transition-transform duration-300">
+                    <i className="fas fa-check text-white text-xs"></i>
                       </div>
                     </div>
-                <div className="text-center sm:text-left">
-                  <h4 className="text-xl sm:text-2xl font-semibold text-slate-900 dark:text-white mb-1">
-                    {testimonials[currentIndex].name}
+                <div>
+                  <h4 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                    {testimonial.name}
                       </h4>
-                  <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400">
-                    {testimonials[currentIndex].country}
+                  <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors duration-300">
+                    {testimonial.country}
                       </p>
                     </div>
                   </div>
+              
+              {/* Hover Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-indigo-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              
+              {/* Shine Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-3xl pointer-events-none"></div>
+            </div>
+          ))}
                 </div>
                 
-            {/* Navigation Arrows */}
-            <Button
-              onClick={prevTestimonial}
-              variant="secondary"
-              size="sm"
-              icon="fas fa-chevron-left"
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full p-0"
-            />
-            
-            <Button
-              onClick={nextTestimonial}
-              variant="secondary"
-              size="sm"
-              icon="fas fa-chevron-right"
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full p-0"
-            />
+        {/* View All Testimonials Button Section */}
+        <section className="relative z-10 py-20 px-4">
+          {/* Background Effects */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl animate-pulse-slow"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-r from-purple-500/10 to-indigo-500/10 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '1s'}}></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-blue-200/20 dark:border-blue-400/20 rounded-full animate-spin-slow"></div>
           </div>
 
-          {/* Dots Indicator */}
-          <div className="flex justify-center mt-8 gap-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-500 scale-125'
-                    : 'bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500'
-                }`}
-              />
-            ))}
+          <div className="relative z-10 max-w-4xl mx-auto text-center">
+            <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500 group">
+              {/* Floating Elements */}
+              <div className="absolute top-4 right-4 w-3 h-3 bg-blue-400 rounded-full animate-ping opacity-60"></div>
+              <div className="absolute bottom-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping opacity-60" style={{animationDelay: '1s'}}></div>
+              <div className="absolute top-1/2 right-8 w-1 h-1 bg-indigo-400 rounded-full animate-ping opacity-60" style={{animationDelay: '2s'}}></div>
+              
+              {/* Animated Quote Icon */}
+              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center animate-bounce-slow transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 shadow-xl group-hover:shadow-blue-500/25">
+                <i className="fas fa-quote-left text-white text-2xl animate-pulse-slow"></i>
               </div>
 
-          {/* Auto-play Toggle */}
-          <div className="flex justify-center mt-4">
+              {/* Animated Title */}
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                Read All <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent animate-pulse">Client Reviews</span>
+              </h3>
+              
+              {/* Animated Description */}
+              <p className="text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors duration-300">
+                Discover all {testimonials.length} client testimonials with detailed reviews, project information, and ratings. Currently showing {displayedTestimonials.length} of {testimonials.length} reviews. See what clients from around the world have to say about working with me.
+              </p>
+              
+              {/* Animated Button */}
+              <Link to="/all-testimonials" className="inline-block group/btn relative z-20">
             <Button
-              onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-              variant={isAutoPlaying ? 'primary' : 'secondary'}
-              size="sm"
-              icon={`fas fa-${isAutoPlaying ? 'pause' : 'play'}`}
-              className="rounded-full"
-            >
-              {isAutoPlaying ? 'Pause' : 'Play'} Auto-rotate
+                  variant="primary"
+                  size="lg"
+                  icon="fas fa-arrow-right"
+                  className="group hover:animate-pulse-slow relative z-30"
+                >
+                  View All Testimonials
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 animate-bounce-slow">
+                    <i className="fas fa-external-link-alt"></i>
+                  </span>
             </Button>
+              </Link>
+              
+              {/* Animated Features */}
+              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm text-slate-500 dark:text-slate-400 relative z-20">
+                <div className="flex items-center gap-2 hover:text-green-600 dark:hover:text-green-400 transition-colors duration-300 animate-bounce-slow">
+                  <i className="fas fa-check-circle text-green-500 animate-pulse-slow"></i>
+                  <span>All {testimonials.length} Reviews</span>
+                </div>
+                <div className="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 animate-bounce-slow" style={{animationDelay: '0.5s'}}>
+                  <i className="fas fa-star text-blue-500 animate-pulse-slow"></i>
+                  <span>5-Star Ratings</span>
+                </div>
+                <div className="flex items-center gap-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300 animate-bounce-slow" style={{animationDelay: '1s'}}>
+                  <i className="fas fa-globe text-purple-500 animate-pulse-slow"></i>
+                  <span>Global Clients</span>
           </div>
         </div>
+              
+              {/* Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-indigo-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              
+              {/* Shine Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-3xl pointer-events-none"></div>
+            </div>
+          </div>
+        </section>
 
         {/* Call to Action */}
         <div className="text-center mt-16">

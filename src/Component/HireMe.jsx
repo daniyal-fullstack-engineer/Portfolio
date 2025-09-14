@@ -4,6 +4,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function HireMe() {
   const [isHovered, setIsHovered] = useState(false);
+  const [animatedStats, setAnimatedStats] = useState({
+    projects: 0,
+    satisfaction: 0,
+    experience: 0,
+    support: 0
+  });
   
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
@@ -117,7 +123,7 @@ export default function HireMe() {
       });
     });
 
-    // Animate stats with stagger
+    // Animate stats with stagger and counter animation
     gsap.utils.toArray('.stat-item').forEach((stat, index) => {
       gsap.fromTo(stat, {
         opacity: 0,
@@ -132,7 +138,11 @@ export default function HireMe() {
         scrollTrigger: {
           trigger: stat,
           start: "top 85%",
-          toggleActions: "play none none reverse"
+          toggleActions: "play none none reverse",
+          onEnter: () => {
+            // Start counter animation when stats come into view
+            animateCounter(index);
+          }
         },
         delay: index * 0.1
       });
@@ -207,6 +217,36 @@ export default function HireMe() {
 
   }, []);
 
+  // Counter animation function
+  const animateCounter = (index) => {
+    const targets = [50, 100, 5, 24]; // Target values for each stat
+    const target = targets[index];
+    const duration = 2000; // 2 seconds
+    const steps = 60; // Number of animation steps
+    const stepDuration = duration / steps;
+    const increment = target / steps;
+    
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      
+      setAnimatedStats(prev => {
+        const newStats = { ...prev };
+        switch(index) {
+          case 0: newStats.projects = Math.floor(current); break;
+          case 1: newStats.satisfaction = Math.floor(current); break;
+          case 2: newStats.experience = Math.floor(current); break;
+          case 3: newStats.support = Math.floor(current); break;
+        }
+        return newStats;
+      });
+    }, stepDuration);
+  };
+
   const handleViewCV = () => {
     window.open('/DaniyalCv.pdf', '_blank');
   };
@@ -238,10 +278,10 @@ export default function HireMe() {
   ];
 
   const stats = [
-    { number: "50+", label: "Projects Completed" },
-    { number: "100%", label: "Client Satisfaction" },
-    { number: "5+", label: "Years Experience" },
-    { number: "24/7", label: "Support Available" }
+    { number: `${animatedStats.projects}+`, label: "Projects Completed" },
+    { number: `${animatedStats.satisfaction}%`, label: "Client Satisfaction" },
+    { number: `${animatedStats.experience}+`, label: "Years Experience" },
+    { number: `${animatedStats.support}/7`, label: "Support Available" }
   ];
 
   return (

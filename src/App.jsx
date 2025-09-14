@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import './App.css';
 import Home from './MainPages/Home';
 import AllProjects from './Component/AllProjects';
+import AllTestimonials from './Component/AllTestimonials';
 
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import FormTesting from "./Component/FormTesting";
@@ -57,6 +58,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/all-projects" element={<AllProjects />} />
+            <Route path="/all-testimonials" element={<AllTestimonials />} />
             <Route path="/testing" element={<FormTesting />} />
           </Routes>
         </Router>
