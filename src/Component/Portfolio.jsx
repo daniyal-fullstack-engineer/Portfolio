@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import Button from "./Button";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 
 const projects = [
     {
@@ -248,7 +249,12 @@ export default function PortfolioCardStackFinal() {
             <div key={index} className="card-item absolute inset-0 flex items-center justify-center p-4">
               <div className="w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-slate-200/50 dark:border-slate-700/50 bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl">
                 <div className="relative h-60 sm:h-72 md:h-96 overflow-hidden">
-                  <img src={project.img} alt={project.title} className="w-full h-full object-cover" />
+                  <ImageWithSkeleton 
+                    src={project.img} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover"
+                    skeletonClassName="h-full"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500">
                     <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 hover:translate-y-0 transition-transform duration-500">
                       <h3 className="text-white font-bold text-lg sm:text-xl mb-2">{project.title}</h3>

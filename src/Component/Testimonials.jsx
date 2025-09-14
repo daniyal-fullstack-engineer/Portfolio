@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 
 const testimonials = [
   {
@@ -215,10 +216,11 @@ export default function Testimonials() {
                   {/* Client Info */}
               <div className="flex flex-col items-center text-center">
                 <div className="relative mb-4">
-                  <img 
+                  <ImageWithSkeleton 
                     src={testimonial.img} 
                     alt={testimonial.name}
                     className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-3 border-blue-200 dark:border-blue-700 shadow-lg group-hover:border-blue-300 dark:group-hover:border-blue-600 transition-colors duration-300"
+                    skeletonClassName="w-14 h-14 sm:w-16 sm:h-16 rounded-full"
                   />
                   <div className="absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center border-2 border-white dark:border-slate-800 group-hover:scale-110 transition-transform duration-300">
                     <i className="fas fa-check text-white text-xs"></i>

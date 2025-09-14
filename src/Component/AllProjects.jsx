@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SEOHead from './SEOHead';
+import ImageWithSkeleton from './ImageWithSkeleton';
 import './AllProjects.css';
 
 // Import the same projects data
@@ -344,10 +345,11 @@ export default function AllProjects() {
               {filteredProjects.map((project, index) => (
                 <div key={index} className="group bg-slate-800 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg border border-slate-700 dark:border-slate-700 hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:-translate-y-2">
                   <div className="relative h-48 sm:h-56 overflow-hidden">
-                    <img 
+                    <ImageWithSkeleton 
                       src={project.img} 
                       alt={project.title} 
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      skeletonClassName="h-full"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">

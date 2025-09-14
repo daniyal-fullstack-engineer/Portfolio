@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SEOHead from './SEOHead';
+import ImageWithSkeleton from './ImageWithSkeleton';
 
 // Import the same testimonials data
 const testimonials = [
@@ -275,10 +276,11 @@ export default function AllTestimonials() {
                     {/* Client Info */}
                     <div className="flex items-center gap-4">
                       <div className="relative">
-                        <img 
+                        <ImageWithSkeleton 
                           src={testimonial.img} 
                           alt={testimonial.name}
                           className="w-12 h-12 rounded-full object-cover border-2 border-blue-200 dark:border-blue-700 shadow-lg group-hover:border-blue-300 dark:group-hover:border-blue-600 transition-colors duration-300"
+                          skeletonClassName="w-12 h-12 rounded-full"
                         />
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center border border-white dark:border-slate-800">
                           <i className="fas fa-check text-white text-xs"></i>

@@ -1,4 +1,5 @@
 import React from "react";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 
 const Banner = () => {
   return (
@@ -52,9 +53,11 @@ const Banner = () => {
             </div>
             <div className="col-lg-6">
               <div className="home-img d-none d-lg-block">
-                <img
+                <ImageWithSkeleton
                   src="https://i.postimg.cc/PqZ3bt0G/profile-pic.png"
                   alt="M Daniyal - Full Stack Developer Profile Picture"
+                  className="w-full h-auto rounded-lg shadow-lg"
+                  skeletonClassName="w-full h-64 rounded-lg"
                 />
               </div>
             </div>
