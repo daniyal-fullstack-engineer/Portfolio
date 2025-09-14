@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useSmoothScroll from "../hooks/useSmoothScroll";
 
 export default function Services() {
+  const { scrollToSection } = useSmoothScroll();
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
@@ -414,20 +416,20 @@ export default function Services() {
                 Let's discuss your project requirements and create something amazing together. I'm here to help you achieve your digital goals.
               </p>
               <div ref={ctaButtonsRef} className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-                <a 
-                  href="#contact" 
-                  className="cta-button btn-primary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                <button 
+                  onClick={() => scrollToSection('contact', -80)}
+                  className="cta-button btn-primary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl cursor-pointer"
                 >
                   <i className="fas fa-rocket group-hover:animate-bounce text-sm sm:text-base md:text-lg lg:text-xl"></i>
                   <span>Start a Project</span>
-                </a>
-                <a 
-                  href="#portfolio" 
-                  className="cta-button btn-secondary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                </button>
+                <button 
+                  onClick={() => scrollToSection('portfolio', -80)}
+                  className="cta-button btn-secondary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl cursor-pointer"
                 >
                   <i className="fas fa-eye group-hover:animate-pulse text-sm sm:text-base md:text-lg lg:text-xl"></i>
                   <span>View Portfolio</span>
-                </a>
+                </button>
               </div>
             </div>
           </div>

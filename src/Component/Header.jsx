@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from 'gsap';
+import useSmoothScroll from '../hooks/useSmoothScroll';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,6 +17,7 @@ const Header = () => {
 
   const navbarRef = useRef(null);
   const mobileMenuRef = useRef(null);
+  const { scrollToSection, scrollToHome } = useSmoothScroll();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -189,6 +191,19 @@ const Header = () => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
   };
 
+  const handleNavigation = (sectionId) => {
+    console.log(`Header navigation clicked: ${sectionId}`);
+    if (sectionId === 'home') {
+      // For home, scroll to the very top of the page
+      console.log('Scrolling to home (top)');
+      scrollToHome();
+    } else {
+      console.log(`Scrolling to section: ${sectionId}`);
+      scrollToSection(sectionId, -80);
+    }
+    closeMenu();
+  };
+
   const navItems = [
     { href: '#home', label: 'Home', section: 'home' },
     { href: '#about', label: 'About', section: 'about' },
@@ -215,11 +230,9 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Enhanced Logo */}
-          <a 
-            href="#home" 
-            className="flex items-center gap-3 text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-all duration-300 relative group"
-            data-scroll-nav={0}
-            onClick={closeMenu}
+          <button 
+            onClick={() => handleNavigation('home')}
+            className="flex items-center gap-3 text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-all duration-300 relative group cursor-pointer"
           >
             {/* Logo Icon */}
             <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300 group-hover:rotate-12">
@@ -227,20 +240,19 @@ const Header = () => {
             </div>
             <span className="relative z-10 font-mono tracking-wide">M Daniyal</span>
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </a>
+          </button>
 
           {/* Enhanced Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item, index) => (
-              <a 
+              <button 
                 key={item.section}
-                href={item.href} 
-                className={`relative px-4 py-2.5 rounded-xl font-medium transition-all duration-300 group overflow-hidden ${
+                onClick={() => handleNavigation(item.section)}
+                className={`relative px-4 py-2.5 rounded-xl font-medium transition-all duration-300 group overflow-hidden cursor-pointer ${
                   activeSection === item.section
                     ? 'text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg shadow-blue-500/25 scale-105'
                     : 'text-slate-700 dark:text-slate-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:shadow-lg hover:shadow-blue-500/25 hover:scale-105'
                 }`}
-                data-scroll-nav={index}
               >
                 <span className="relative z-10 text-sm font-medium tracking-wide transition-all duration-300 group-hover:scale-105">{item.label}</span>
                 {activeSection === item.section && (
@@ -252,7 +264,7 @@ const Header = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                 {/* Glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm -z-10 scale-110"></div>
-              </a>
+              </button>
             ))}
             
             {/* Theme Toggle Button - Hidden */}
@@ -317,24 +329,14 @@ const Header = () => {
             className="px-3 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl mt-1 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl"
           >
             {navItems.map((item, index) => (
-              <a 
+              <button 
                 key={item.section}
-                href={item.href} 
-                className={`block px-4 py-2.5 sm:py-3 rounded-xl font-medium transition-all duration-300 relative group touch-manipulation min-h-[44px] flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 ${
+                onClick={() => handleNavigation(item.section)}
+                className={`block px-4 py-2.5 sm:py-3 rounded-xl font-medium transition-all duration-300 relative group touch-manipulation min-h-[44px] flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 cursor-pointer w-full text-left ${
                   activeSection === item.section
                     ? 'text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg shadow-blue-500/25'
                     : 'text-slate-700 dark:text-slate-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:shadow-lg hover:shadow-blue-500/25 active:scale-95'
                 }`}
-                data-scroll-nav={index}
-                onClick={(e) => {
-                  closeMenu();
-                  // Clear focus after navigation
-                  setTimeout(() => {
-                    if (document.activeElement && document.activeElement.blur) {
-                      document.activeElement.blur();
-                    }
-                  }, 100);
-                }}
               >
                 <span className="relative z-10 text-sm font-medium tracking-wide">{item.label}</span>
                 {activeSection === item.section && (
@@ -342,7 +344,7 @@ const Header = () => {
                 )}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-3/4 transition-all duration-300"></div>
-              </a>
+              </button>
             ))}
             
             {/* Mobile Theme Toggle - Hidden */}

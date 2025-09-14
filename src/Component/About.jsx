@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useSmoothScroll from "../hooks/useSmoothScroll";
 
 const About = () => {
+  const { scrollToSection } = useSmoothScroll();
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
@@ -380,20 +382,20 @@ const About = () => {
                     </p>
                     
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <a 
-                  href="#contact" 
-                        className="btn-primary group px-4 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 md:py-4 lg:py-5 text-sm sm:text-base md:text-lg lg:text-xl"
+                <button 
+                  onClick={() => scrollToSection('contact', -80)}
+                        className="btn-primary group px-4 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 md:py-4 lg:py-5 text-sm sm:text-base md:text-lg lg:text-xl cursor-pointer"
                 >
                         <i className="fas fa-paper-plane group-hover:animate-bounce text-sm sm:text-base md:text-lg lg:text-xl"></i>
                   <span>Get In Touch</span>
-                </a>
-                <a 
-                  href="#portfolio" 
-                        className="btn-secondary group px-4 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 md:py-4 lg:py-5 text-sm sm:text-base md:text-lg lg:text-xl"
+                </button>
+                <button 
+                  onClick={() => scrollToSection('portfolio', -80)}
+                        className="btn-secondary group px-4 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 md:py-4 lg:py-5 text-sm sm:text-base md:text-lg lg:text-xl cursor-pointer"
                 >
                         <i className="fas fa-eye group-hover:animate-pulse text-sm sm:text-base md:text-lg lg:text-xl"></i>
                   <span>View Work</span>
-                </a>
+                </button>
               </div>
                   </div>
                 </div>
@@ -579,20 +581,20 @@ const About = () => {
               </p>
               
               <div ref={ctaButtonsRef} className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 justify-center">
-                <a 
-                  href="#contact" 
-                  className="cta-button btn-primary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                <button 
+                  onClick={() => scrollToSection('contact', -80)}
+                  className="cta-button btn-primary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl cursor-pointer"
                 >
                   <i className="fas fa-rocket group-hover:animate-bounce text-sm sm:text-base md:text-lg lg:text-xl"></i>
                   <span>Start a Project</span>
-                </a>
-                <a 
-                  href="#services" 
-                  className="cta-button btn-secondary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                </button>
+                <button 
+                  onClick={() => scrollToSection('services', -80)}
+                  className="cta-button btn-secondary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl cursor-pointer"
                 >
                   <i className="fas fa-cogs group-hover:animate-spin text-sm sm:text-base md:text-lg lg:text-xl"></i>
                   <span>View Services</span>
-                </a>
+                </button>
               </div>
             </div>
           </div>  

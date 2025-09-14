@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 import ImageWithSkeleton from "./ImageWithSkeleton";
+import useSmoothScroll from "../hooks/useSmoothScroll";
 
 const testimonials = [
   {
@@ -103,6 +104,7 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const { scrollToSection } = useSmoothScroll();
   const [displayedTestimonials, setDisplayedTestimonials] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -322,7 +324,7 @@ export default function Testimonials() {
             variant="primary"
             size="lg"
             icon="fas fa-rocket"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => scrollToSection('contact', -80)}
           >
             Ready to work together?
           </Button>

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import SmoothScroll from "./SmoothScroll";
+import useSmoothScroll from "../hooks/useSmoothScroll";
 
 export default function Pricing() {
+  const { scrollToSection } = useSmoothScroll();
   const [activeTab, setActiveTab] = useState(0); // Default to first tab
 
   useEffect(() => {
@@ -20,10 +22,7 @@ export default function Pricing() {
 
   const handleContactClick = (planTitle) => {
     // Smooth scroll to contact section
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToSection('contact', -80);
   };
 
   const serviceCategories = [
@@ -464,20 +463,20 @@ export default function Pricing() {
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center relative z-20">
-                  <a 
-                    href="#contact" 
-                    className="btn-primary group px-8 sm:px-10 md:px-12 lg:px-16 py-4 sm:py-5 md:py-6 lg:py-7 text-base sm:text-lg md:text-xl lg:text-2xl hover:animate-pulse-slow relative z-30"
+                  <button 
+                    onClick={() => scrollToSection('contact', -80)}
+                    className="btn-primary group px-8 sm:px-10 md:px-12 lg:px-16 py-4 sm:py-5 md:py-6 lg:py-7 text-base sm:text-lg md:text-xl lg:text-2xl hover:animate-pulse-slow relative z-30 cursor-pointer"
                   >
                     <i className="fas fa-comments text-base sm:text-lg md:text-xl lg:text-2xl animate-pulse-slow"></i>
                     <span>Let's Discuss Your Project</span>
-                  </a>
-                  <a 
-                    href="#portfolio" 
-                    className="btn-secondary group px-8 sm:px-10 md:px-12 lg:px-16 py-4 sm:py-5 md:py-6 lg:py-7 text-base sm:text-lg md:text-xl lg:text-2xl hover:animate-pulse-slow relative z-30"
+                  </button>
+                  <button 
+                    onClick={() => scrollToSection('portfolio', -80)}
+                    className="btn-secondary group px-8 sm:px-10 md:px-12 lg:px-16 py-4 sm:py-5 md:py-6 lg:py-7 text-base sm:text-lg md:text-xl lg:text-2xl hover:animate-pulse-slow relative z-30 cursor-pointer"
                   >
                     <i className="fas fa-eye text-base sm:text-lg md:text-xl lg:text-2xl animate-pulse-slow"></i>
                     <span>View Our Work</span>
-                  </a>
+                  </button>
                 </div>
                 
                 {/* Glow Effect */}

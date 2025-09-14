@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useSmoothScroll from "../hooks/useSmoothScroll";
 
 export default function HireMe() {
+  const { scrollToSection } = useSmoothScroll();
   const [isHovered, setIsHovered] = useState(false);
   const [animatedStats, setAnimatedStats] = useState({
     projects: 0,
@@ -253,10 +255,7 @@ export default function HireMe() {
 
   const handleHireMe = () => {
     // Smooth scroll to contact section
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToSection('contact', -80);
   };
 
   const features = [

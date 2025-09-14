@@ -1,7 +1,21 @@
 import React from "react";
 import ImageWithSkeleton from "./ImageWithSkeleton";
+import useSmoothScroll from "../hooks/useSmoothScroll";
 
 const Banner = () => {
+  const { scrollToSection } = useSmoothScroll();
+
+  const handleViewWork = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Banner View Work button clicked');
+    
+    // Add a small delay to ensure everything is ready
+    setTimeout(() => {
+      scrollToSection('portfolio', -80);
+    }, 100);
+  };
+
   return (
     <section className="home" id="home" data-scroll-index={0}>
       <div className="header-content d-flex align-items-center">
@@ -45,9 +59,13 @@ const Banner = () => {
                 <h1>Hamid Raza</h1>
                 <p>A freelancer UI Designer & Web Developer</p>
                 <div className="home-btn">
-                  <a href="#portfolio" className="btn-1" data-scroll-nav={3}>
+                  <button 
+                    onClick={handleViewWork}
+                    className="btn-1 cursor-pointer"
+                    type="button"
+                  >
                     View my Work
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

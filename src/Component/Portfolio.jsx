@@ -177,7 +177,7 @@ export default function PortfolioCardStackFinal() {
   }, []);
 
   return (
-    <div ref={component} className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-500">
+    <div ref={component} id="portfolio" className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-500">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated Grid Pattern */}

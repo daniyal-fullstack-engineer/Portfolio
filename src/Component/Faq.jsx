@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useSmoothScroll from "../hooks/useSmoothScroll";
 
 export default function Faq() {
+  const { scrollToSection } = useSmoothScroll();
   const [openFaq, setOpenFaq] = useState(null);
   
   const sectionRef = useRef(null);
@@ -323,21 +325,31 @@ export default function Faq() {
                 <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
                   Can't find the answer you're looking for? Feel free to reach out and I'll be happy to help!
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-                  <a 
-                    href="#contact" 
-                    className="btn-primary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center relative z-10">
+                  <button 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      scrollToSection('contact', -80);
+                    }}
+                    className="btn-primary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl cursor-pointer relative z-20"
+                    type="button"
                   >
                     <i className="fas fa-envelope text-sm sm:text-base md:text-lg lg:text-xl"></i>
                     <span>Contact Me</span>
-                  </a>
-                  <a 
-                    href="#portfolio" 
-                    className="btn-secondary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                  </button>
+                  <button 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      scrollToSection('portfolio', -80);
+                    }}
+                    className="btn-secondary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl cursor-pointer relative z-20"
+                    type="button"
                   >
                     <i className="fas fa-eye text-sm sm:text-base md:text-lg lg:text-xl"></i>
                     <span>View My Work</span>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

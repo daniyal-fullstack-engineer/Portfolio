@@ -19,7 +19,7 @@ html {
 /* Mobile scroll fixes */
 @media (max-width: 768px) {
   html {
-    scroll-behavior: auto; /* Disable smooth scroll on mobile to prevent conflicts */
+    scroll-behavior: smooth; /* Enable smooth scroll for better UX */
     -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
   }
   
