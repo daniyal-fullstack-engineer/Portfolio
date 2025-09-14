@@ -15,7 +15,7 @@ export default function AnimatedCodeEditor() {
     "  ai: 'Prompt Engineering',",
     "  cloud: 'Firebase + AWS',",
     "  passion: 'Full Stack Development',",
-    "  experience: '3+ years'",
+    "  experience: '5+ years'",
     "};",
     "",
     "const createAmazing = () => {",

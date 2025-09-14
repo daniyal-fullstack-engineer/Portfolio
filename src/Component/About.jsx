@@ -251,7 +251,7 @@ const About = () => {
   const achievements = [
     { icon: "fa-code", number: "50+", label: "Web & Mobile Apps" },
     { icon: "fa-users", number: "30+", label: "Happy Clients" },
-    { icon: "fa-clock", number: "3+", label: "Years Experience" },
+    { icon: "fa-clock", number: "5+", label: "Years Experience" },
     { icon: "fa-mobile-alt", number: "20+", label: "Mobile Applications" },
   ];
 
@@ -354,7 +354,7 @@ const About = () => {
                     <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white">
                       Full-Stack & Mobile Developer
               </h3>
-                    <p className="text-blue-600 dark:text-blue-400 font-semibold text-sm sm:text-base">3+ Years Experience</p>
+                    <p className="text-blue-600 dark:text-blue-400 font-semibold text-sm sm:text-base">5+ Years Experience</p>
                   </div>
                 </div>
 
