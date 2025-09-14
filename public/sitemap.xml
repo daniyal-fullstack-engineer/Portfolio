@@ -1,51 +1,245 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Main Pages -->
   <url>
     <loc>https://daniyal-dev-portfolio.vercel.app/</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://daniyal-dev-portfolio.vercel.app/favicon.svg</image:loc>
+      <image:title>M Daniyal - Full Stack Developer Portfolio</image:title>
+      <image:caption>Professional portfolio showcasing web and mobile development projects</image:caption>
+    </image:image>
   </url>
+  
   <url>
     <loc>https://daniyal-dev-portfolio.vercel.app/all-projects</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/all-testimonials</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Individual Project Pages -->
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/projects/nexonpackaging-dashboard</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/76GsJG3q/Screenshot-2025-04-06-025813.png</image:loc>
+      <image:title>NexOnPackaging Dashboard - Admin Panel</image:title>
+      <image:caption>Advanced admin dashboard with real-time analytics and user management</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/projects/nexonpackaging</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/xjX5C26P/Screenshot-2025-04-06-024751.png</image:loc>
+      <image:title>NexOnPackaging - E-commerce Platform</image:title>
+      <image:caption>E-commerce platform for packaging solutions with modern UI/UX</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/projects/my-quicks</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/d1H47SKg/Screenshot-2025-04-06-024039.png</image:loc>
+      <image:title>My Quicks - Delivery Service Platform</image:title>
+      <image:caption>Fast delivery service platform with real-time tracking</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/projects/dukan-mine</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/4x98Jmy5/dukhan.png</image:loc>
+      <image:title>Dukan Mine - Mining Management System</image:title>
+      <image:caption>Mining industry management system with advanced reporting</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/projects/resume-builder</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/sD0CRsBv/resume-builder.png</image:loc>
+      <image:title>AI Resume Builder - Professional Templates</image:title>
+      <image:caption>AI-powered resume builder with multiple templates</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/projects/pe-global</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/DZhtczNY/pegobal.png</image:loc>
+      <image:title>PE Global - Recruitment Platform</image:title>
+      <image:caption>Global recruitment platform with job matching AI</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/projects/iki</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/3xqLQrZ4/iki.png</image:loc>
+      <image:title>IKI - Educational Platform</image:title>
+      <image:caption>Educational platform with interactive learning modules</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Section Anchors -->
   <url>
     <loc>https://daniyal-dev-portfolio.vercel.app/#about</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
   <url>
     <loc>https://daniyal-dev-portfolio.vercel.app/#services</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
   <url>
     <loc>https://daniyal-dev-portfolio.vercel.app/#portfolio</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  
   <url>
     <loc>https://daniyal-dev-portfolio.vercel.app/#testimonials</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  
   <url>
     <loc>https://daniyal-dev-portfolio.vercel.app/#pricing</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
   <url>
     <loc>https://daniyal-dev-portfolio.vercel.app/#contact</loc>
     <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <!-- Testimonial Pages -->
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/testimonials/valantism-ecommerce-website</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/testimonials/moemia-mobile-app-development</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/testimonials/muzamil-pervaize-web-application</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/testimonials/xerophilic-dashboard-development</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/testimonials/habib786-training-consultation</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/testimonials/sarah-johnson-react-dashboard</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/testimonials/emily-chen-react-native-app</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/testimonials/david-rodriguez-full-stack-web-app</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/testimonials/lisa-thompson-ecommerce-platform</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/testimonials/michael-brown-business-management-system</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/testimonials/jennifer-lee-api-development</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://daniyal-dev-portfolio.vercel.app/testimonials/alex-kumar-integration-platform</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 </urlset>

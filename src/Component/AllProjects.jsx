@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import SEOHead from './SEOHead';
 import './AllProjects.css';
 
 // Import the same projects data
@@ -179,10 +180,17 @@ export default function AllProjects() {
   }, [activeFilter, debouncedSearchTerm]);
 
   return (
-    <div className="all-projects-page min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden" style={{
-      scrollBehavior: 'smooth',
-      overflowX: 'hidden'
-    }}>
+    <>
+      <SEOHead 
+        title="All Projects - Web & Mobile Development Portfolio | M Daniyal"
+        description="Complete portfolio showcasing all web applications, mobile apps, e-commerce platforms, and business solutions developed by M Daniyal. Featured projects built with React, Node.js, React Native, and modern technologies."
+        keywords="portfolio projects, web development projects, mobile app projects, e-commerce development, React projects, Node.js projects, React Native apps, M Daniyal portfolio, development showcase"
+        url="https://daniyal-dev-portfolio.vercel.app/all-projects"
+      />
+      <div className="all-projects-page min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden" style={{
+        scrollBehavior: 'smooth',
+        overflowX: 'hidden'
+      }}>
       {/* Enhanced Background Animations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating Geometric Shapes */}
@@ -413,6 +421,7 @@ export default function AllProjects() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

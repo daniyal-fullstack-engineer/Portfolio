@@ -21,8 +21,10 @@ import Faq from '../Component/Faq';
 import Contact from '../Component/Contact';
 import DarkBanner from '../Component/DarkBanner';
 import FormTesting from '../Component/FormTesting';
+import SEOHead from '../Component/SEOHead';
 import "aos/dist/aos.css";
 import FiverrIcon from '../Component/FiverrIcon';
+import { generatePortfolioStructuredData, generateWebsiteStructuredData } from '../utils/seoData';
 
 
 // useEffect(() => {
@@ -81,9 +83,16 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='main-wrapper scrollable-content min-h-screen bg-slate-900 dark:bg-slate-900 transition-colors duration-300'>
-      {/* Particle Background */}
-      <ParticleBackground />
+    <>
+      <SEOHead 
+        title="M Daniyal - Full Stack Developer | React, Node.js, Mobile Apps"
+        description="Professional Full Stack Developer specializing in React, Node.js, React Native, and modern web technologies. 5+ years experience building scalable web and mobile applications. Available for freelance projects."
+        keywords="full stack developer, react developer, node.js developer, react native developer, javascript developer, web developer, mobile app developer, freelance developer, portfolio, M Daniyal, Pakistan developer, remote developer"
+        structuredData={[generatePortfolioStructuredData(), generateWebsiteStructuredData()]}
+      />
+      <div className='main-wrapper scrollable-content min-h-screen bg-slate-900 dark:bg-slate-900 transition-colors duration-300'>
+        {/* Particle Background */}
+        <ParticleBackground />
       
       
       {/* Mobile Gestures */}
@@ -135,10 +144,11 @@ const Home = () => {
       <div className='backtotop-section'>
        <ScrollToTop />
       </div>
-      {/* Floating Social Icons */}
-      <FiverrIcon />
-      <WhatAppIcon />
-    </div>
+        {/* Floating Social Icons */}
+        <FiverrIcon />
+        <WhatAppIcon />
+      </div>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { ToastContainer } from 'react-toastify';
+import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 import Home from './MainPages/Home';
 import AllProjects from './Component/AllProjects';
@@ -49,7 +50,7 @@ function App() {
   };
 
   return (
-    <>
+    <HelmetProvider>
       {loading ? (
         <Loader onComplete={handleLoaderComplete} />
       ) : (
@@ -64,7 +65,7 @@ function App() {
         </Router>
       )}
       <ToastContainer />
-    </>
+    </HelmetProvider>
   );
 }
 

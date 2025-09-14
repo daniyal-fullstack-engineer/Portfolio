@@ -147,8 +147,8 @@ const Loader = ({ onComplete }) => {
           className="relative w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center shadow-lg border-2 border-slate-700/20 dark:border-slate-700/20"
         >
           <div className="w-14 h-14 rounded-full bg-slate-800/20 dark:bg-slate-800/20 flex items-center justify-center">
-            <div className="text-slate-200 dark:text-slate-200 text-2xl font-display font-bold">
-              {'</>'}
+            <div className="text-slate-200 dark:text-slate-200 text-lg font-display font-bold">
+              MD
             </div>
           </div>
         </div>
@@ -164,14 +164,16 @@ const Loader = ({ onComplete }) => {
               <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
             </div>
-            <div className="ml-3 text-slate-300 dark:text-slate-300 text-xs font-sans">developer@portfolio:~$</div>
+            <div className="ml-3 text-slate-300 dark:text-slate-300 text-xs font-sans">daniyal@portfolio:~$</div>
           </div>
           <div className="p-4 font-sans text-sm leading-relaxed">
             {[
-              { text: "const developer = {", color: "text-blue-400 dark:text-blue-400" },
-              { text: "  name: 'Software Developer',", color: "text-slate-300 dark:text-slate-300" },
-              { text: "  skills: ['React', 'Node.js', 'Python'],", color: "text-green-400 dark:text-green-400" },
-              { text: "  status: 'Loading...'", color: "text-purple-400 dark:text-purple-400" },
+              { text: "const daniyal = {", color: "text-blue-400 dark:text-blue-400" },
+              { text: "  name: 'M Daniyal',", color: "text-slate-300 dark:text-slate-300" },
+              { text: "  title: 'Full Stack Developer',", color: "text-cyan-400 dark:text-cyan-400" },
+              { text: "  expertise: ['React', 'Next.js', 'Node.js', 'PostgreSQL'],", color: "text-green-400 dark:text-green-400" },
+              { text: "  experience: '5+ years',", color: "text-yellow-400 dark:text-yellow-400" },
+              { text: "  status: 'Initializing portfolio...'", color: "text-purple-400 dark:text-purple-400" },
               { text: "};", color: "text-blue-400 dark:text-blue-400" }
             ].map((line, index) => (
               <div
@@ -188,11 +190,10 @@ const Loader = ({ onComplete }) => {
         {/* Clean Tech Stack Icons */}
         <div className="flex space-x-4">
           {[
-            { icon: "⚛️", name: "React" },
-            { icon: "🟢", name: "Node.js" },
-            { icon: "🐍", name: "Python" },
-            { icon: "💎", name: "Ruby" },
-            { icon: "⚡", name: "Vue" }
+            { icon: "⚛️", name: "React", color: "text-blue-400" },
+            { icon: "▲", name: "Next.js", color: "text-gray-400" },
+            { icon: "🟢", name: "Node.js", color: "text-green-400" },
+            { icon: "🐘", name: "PostgreSQL", color: "text-blue-300" }
           ].map((tech, index) => (
             <div
               key={index}
@@ -200,7 +201,7 @@ const Loader = ({ onComplete }) => {
               className="w-12 h-12 bg-slate-700/80 dark:bg-slate-700/80 rounded-lg flex items-center justify-center border border-slate-600 dark:border-slate-600 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
               title={tech.name}
             >
-              <span className="text-xl">{tech.icon}</span>
+              <span className={`text-xl ${tech.color}`}>{tech.icon}</span>
             </div>
           ))}
         </div>
@@ -218,7 +219,7 @@ const Loader = ({ onComplete }) => {
           ref={textRef}
           className="flex items-center space-x-2 text-slate-300 dark:text-slate-300 text-lg font-medium"
         >
-          <span className="font-sans">Loading Developer Environment</span>
+          <span className="font-sans">Crafting Digital Excellence</span>
           {[0, 1, 2].map((index) => (
             <div
               key={index}

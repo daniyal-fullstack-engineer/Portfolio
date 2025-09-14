@@ -12,10 +12,22 @@ Disallow: /admin/
 Disallow: /private/
 Disallow: /_next/
 Disallow: /api/
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /package*
+Disallow: /vite.config*
+Disallow: /tailwind.config*
+Disallow: /eslint.config*
+Disallow: /postcss.config*
+Disallow: /vercel.json
 
-# Allow important pages
+# Allow important pages and assets
 Allow: /
 Allow: /all-projects
+Allow: /all-testimonials
+Allow: /projects/
+Allow: /testimonials/
 Allow: /*.css
 Allow: /*.js
 Allow: /*.png
@@ -25,3 +37,44 @@ Allow: /*.gif
 Allow: /*.svg
 Allow: /*.webp
 Allow: /*.ico
+Allow: /*.pdf
+Allow: /manifest.json
+Allow: /sw.js
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
