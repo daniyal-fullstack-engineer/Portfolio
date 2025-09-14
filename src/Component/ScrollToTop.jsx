@@ -60,7 +60,7 @@ const ScrollToTop = () => {
       {/* Modern Back to Top Button */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 z-50 group transition-all duration-500 transform ${
+        className={`fixed bottom-6 right-6 z-50 group transition-all duration-500 transform cursor-pointer ${
           isVisible 
             ? 'opacity-100 scale-100 translate-y-0' 
             : 'opacity-0 scale-75 translate-y-4 pointer-events-none'

@@ -13,7 +13,7 @@ const FiverrIcon = () => {
         onClick={handleFiverr}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="group relative w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl shadow-2xl hover:shadow-green-500/25 transition-all duration-300 hover:scale-110 hover:rotate-3 flex items-center justify-center"
+        className="group relative w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl shadow-2xl hover:shadow-green-500/25 transition-all duration-300 hover:scale-110 hover:rotate-3 flex items-center justify-center cursor-pointer"
         title="Hire me on Fiverr"
         aria-label="Fiverr Profile"
       >

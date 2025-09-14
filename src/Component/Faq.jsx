@@ -270,7 +270,7 @@ export default function Faq() {
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5"></div>
                   
                   <button
-                    className="faq-button relative z-10 w-full px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 text-left transition-all duration-300 hover:bg-slate-50/50 dark:hover:bg-slate-700/50 rounded-2xl sm:rounded-3xl"
+                    className="faq-button relative z-10 w-full px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 text-left transition-all duration-300 hover:bg-slate-50/50 dark:hover:bg-slate-700/50 rounded-2xl sm:rounded-3xl cursor-pointer"
                     onClick={() => toggleFaq(faq.id)}
                   >
                     <div className="flex items-center justify-between">

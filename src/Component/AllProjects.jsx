@@ -293,7 +293,7 @@ export default function AllProjects() {
                 <button
                   key={category}
                   onClick={() => setActiveFilter(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer ${
                     activeFilter === category
                       ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
                       : 'bg-slate-700 dark:bg-slate-700 text-slate-300 dark:text-slate-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white hover:shadow-lg'
@@ -326,7 +326,7 @@ export default function AllProjects() {
                   setSearchTerm('');
                   setActiveFilter('All');
                 }}
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-2 px-6 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
+                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-2 px-6 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1 cursor-pointer"
               >
                 Clear Filters
               </button>
@@ -383,7 +383,7 @@ export default function AllProjects() {
                     
                     <button
                       onClick={() => window.open(project.link, '_blank')}
-                      className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1"
+                      className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1 cursor-pointer"
                     >
                       View Project
                     </button>

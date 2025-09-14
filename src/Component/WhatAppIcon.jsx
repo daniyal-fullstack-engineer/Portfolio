@@ -32,7 +32,7 @@ const WhatAppIcon = () => {
         onClick={handleWhatsApp}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="group relative w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl shadow-2xl hover:shadow-green-500/30 transition-all duration-300 hover:scale-110 hover:rotate-3 flex items-center justify-center animate-bounce-slow"
+        className="group relative w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl shadow-2xl hover:shadow-green-500/30 transition-all duration-300 hover:scale-110 hover:rotate-3 flex items-center justify-center animate-bounce-slow cursor-pointer"
         title="Chat on WhatsApp (+92 304 5485310)"
         aria-label="WhatsApp Chat"
       >

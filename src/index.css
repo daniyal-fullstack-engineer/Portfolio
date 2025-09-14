@@ -47,6 +47,146 @@ body {
   }
 }
 
+/* Global cursor pointer for clickable elements */
+button, a, [role="button"], [onclick], .clickable, .cursor-pointer {
+  cursor: pointer !important;
+}
+
+/* Ensure button text and content also show pointer cursor */
+button *, button span, button i, button .icon, button .text {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+/* Links and navigation */
+nav a, .nav-link, Link, .social-link {
+  cursor: pointer !important;
+}
+
+nav a *, nav a span, nav a i, .nav-link *, .nav-link span, .nav-link i {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+/* Interactive elements */
+.hire-button, .btn-primary, .btn-secondary, .btn-outline, .btn-ghost, .cta-button {
+  cursor: pointer !important;
+}
+
+.hire-button *, .hire-button span, .hire-button i,
+.btn-primary *, .btn-primary span, .btn-primary i,
+.btn-secondary *, .btn-secondary span, .btn-secondary i,
+.btn-outline *, .btn-outline span, .btn-outline i,
+.btn-ghost *, .btn-ghost span, .btn-ghost i,
+.cta-button *, .cta-button span, .cta-button i {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+/* Contact and social links */
+.contact-card, .social-link {
+  cursor: pointer !important;
+}
+
+.contact-card *, .contact-card span, .contact-card i,
+.social-link *, .social-link span, .social-link i {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+/* Portfolio and project links */
+.project-link, .visit-button, .preview-button {
+  cursor: pointer !important;
+}
+
+.project-link *, .project-link span, .project-link i,
+.visit-button *, .visit-button span, .visit-button i,
+.preview-button *, .preview-button span, .preview-button i {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+/* Testimonial and review elements */
+.testimonial-card, .stat-item {
+  cursor: pointer !important;
+}
+
+.testimonial-card *, .testimonial-card span, .testimonial-card i,
+.stat-item *, .stat-item span, .stat-item i {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+/* Mobile menu and hamburger */
+.hamburger, .mobile-menu-button {
+  cursor: pointer !important;
+}
+
+.hamburger *, .hamburger span, .hamburger i,
+.mobile-menu-button *, .mobile-menu-button span, .mobile-menu-button i {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+/* All anchor tags and buttons */
+a[href], button[type], input[type="submit"], input[type="button"] {
+  cursor: pointer !important;
+}
+
+a[href] *, a[href] span, a[href] i,
+button[type] *, button[type] span, button[type] i,
+input[type="submit"] *, input[type="submit"] span, input[type="submit"] i,
+input[type="button"] *, input[type="button"] span, input[type="button"] i {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+/* Specific component classes */
+.header-logo, .nav-item, .menu-toggle {
+  cursor: pointer !important;
+}
+
+.header-logo *, .header-logo span, .header-logo i,
+.nav-item *, .nav-item span, .nav-item i,
+.menu-toggle *, .menu-toggle span, .menu-toggle i {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+/* FAQ buttons and other interactive elements */
+.faq-button, .pricing-card, .service-card {
+  cursor: pointer !important;
+}
+
+.faq-button *, .faq-button span, .faq-button i,
+.pricing-card *, .pricing-card span, .pricing-card i,
+.service-card *, .service-card span, .service-card i {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+/* Universal rule for all interactive elements - ensures text content shows pointer cursor */
+button *, button span, button i, button div, button p, button h1, button h2, button h3, button h4, button h5, button h6,
+a *, a span, a i, a div, a p, a h1, a h2, a h3, a h4, a h5, a h6,
+[role="button"] *, [role="button"] span, [role="button"] i, [role="button"] div, [role="button"] p,
+.clickable *, .clickable span, .clickable i, .clickable div, .clickable p,
+.cursor-pointer *, .cursor-pointer span, .cursor-pointer i, .cursor-pointer div, .cursor-pointer p {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+/* Ensure all button and link text elements maintain pointer cursor */
+button, a, [role="button"], .clickable, .cursor-pointer {
+  user-select: none !important;
+}
+
+/* Specific text elements that might override cursor */
+button p, button span, button div, button h1, button h2, button h3, button h4, button h5, button h6,
+a p, a span, a div, a h1, a h2, a h3, a h4, a h5, a h6 {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
 /* Touch improvements */
 @media (hover: none) and (pointer: coarse) {
   .hover\:scale-105:hover {
