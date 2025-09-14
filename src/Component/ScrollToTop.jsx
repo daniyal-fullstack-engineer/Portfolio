@@ -2,15 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      
-      setScrollProgress(scrollPercent);
       setIsVisible(scrollTop > 300);
     };
 
@@ -49,14 +44,6 @@ const ScrollToTop = () => {
 
   return (
     <>
-      {/* Scroll Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-slate-200/50 dark:bg-slate-700/50 z-50 backdrop-blur-sm">
-        <div 
-          className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 transition-all duration-300 ease-out shadow-lg"
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div>
-
       {/* Modern Back to Top Button */}
       <button
         onClick={scrollToTop}
@@ -90,12 +77,7 @@ const ScrollToTop = () => {
           </div>
           
           {/* Animated Border */}
-          <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-br from-blue-400 via-purple-400 to-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
-               style={{
-                 background: `conic-gradient(from 0deg, 
-                   rgba(59, 130, 246, 0.8) ${scrollProgress}%, 
-                   transparent ${scrollProgress}%)`
-               }}>
+          <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-br from-blue-400 via-purple-400 to-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           </div>
           
           {/* Progress Indicator */}
