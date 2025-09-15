@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://daniyal-dev-portfolio.vercel.app/sitemap.xml
+Sitemap: https://daniyalamjadali.vercel.app/sitemap.xml
 
 # Crawl-delay for better server performance
 Crawl-delay: 1

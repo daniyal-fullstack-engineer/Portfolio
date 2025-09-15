@@ -4,7 +4,7 @@ export const generateProjectStructuredData = (project) => {
   return {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    "@id": `https://daniyal-dev-portfolio.vercel.app/projects/${project.slug}`,
+    "@id": `https://daniyalamjadali.vercel.app/projects/${project.slug}`,
     "name": project.title,
     "description": project.description,
     "url": project.link,
@@ -31,7 +31,7 @@ export const generateProjectStructuredData = (project) => {
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://daniyal-dev-portfolio.vercel.app/projects/${project.slug}`
+      "@id": `https://daniyalamjadali.vercel.app/projects/${project.slug}`
     }
   };
 };
@@ -40,7 +40,7 @@ export const generateTestimonialStructuredData = (testimonial) => {
   return {
     "@context": "https://schema.org",
     "@type": "Review",
-    "@id": `https://daniyal-dev-portfolio.vercel.app/testimonials/${testimonial.slug}`,
+    "@id": `https://daniyalamjadali.vercel.app/testimonials/${testimonial.slug}`,
     "itemReviewed": {
       "@type": "Service",
       "name": testimonial.project,
@@ -72,7 +72,7 @@ export const generateTestimonialStructuredData = (testimonial) => {
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://daniyal-dev-portfolio.vercel.app/testimonials/${testimonial.slug}`
+      "@id": `https://daniyalamjadali.vercel.app/testimonials/${testimonial.slug}`
     }
   };
 };
@@ -84,8 +84,8 @@ export const generatePortfolioStructuredData = () => {
     "name": "M Daniyal",
     "jobTitle": "Full Stack Developer",
     "description": "Professional Full Stack Developer specializing in React, Node.js, React Native, and modern web technologies",
-    "url": "https://daniyal-dev-portfolio.vercel.app",
-    "image": "https://daniyal-dev-portfolio.vercel.app/favicon.svg",
+    "url": "https://daniyalamjadali.vercel.app",
+    "image": "https://daniyalamjadali.vercel.app/favicon.svg",
     "sameAs": [
       "https://github.com/daniyal-dev",
       "https://linkedin.com/in/daniyal-dev",
@@ -122,7 +122,7 @@ export const generateWebsiteStructuredData = () => {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "M Daniyal Portfolio",
-    "url": "https://daniyal-dev-portfolio.vercel.app",
+    "url": "https://daniyalamjadali.vercel.app",
     "description": "Professional portfolio of M Daniyal, Full Stack Developer",
     "author": {
       "@type": "Person",
@@ -130,7 +130,7 @@ export const generateWebsiteStructuredData = () => {
     },
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://daniyal-dev-portfolio.vercel.app/?q={search_term_string}",
+      "target": "https://daniyalamjadali.vercel.app/?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -153,7 +153,7 @@ export const getProjectSEOData = (project) => {
     title: `${project.title} - ${project.category} | M Daniyal Portfolio`,
     description: `${project.description} Built with ${project.tech.join(', ')}. Professional ${project.category.toLowerCase()} development by M Daniyal.`,
     keywords: `${project.title}, ${project.category.toLowerCase()}, ${project.tech.join(', ')}, web development, mobile app development, M Daniyal`,
-    url: `https://daniyal-dev-portfolio.vercel.app/projects/${slug}`,
+    url: `https://daniyalamjadali.vercel.app/projects/${slug}`,
     image: project.img,
     structuredData: generateProjectStructuredData({ ...project, slug })
   };
@@ -166,7 +166,7 @@ export const getTestimonialSEOData = (testimonial) => {
     title: `${testimonial.name} Review - ${testimonial.project} | M Daniyal Portfolio`,
     description: `Client testimonial from ${testimonial.name} from ${testimonial.country} about ${testimonial.project} development. ${testimonial.text}`,
     keywords: `${testimonial.name}, ${testimonial.project}, client testimonial, review, M Daniyal, ${testimonial.country}`,
-    url: `https://daniyal-dev-portfolio.vercel.app/testimonials/${slug}`,
+    url: `https://daniyalamjadali.vercel.app/testimonials/${slug}`,
     image: testimonial.img,
     structuredData: generateTestimonialStructuredData({ ...testimonial, slug })
   };

@@ -6,13 +6,13 @@ const SEOHead = ({
   description = "Professional Full Stack Developer specializing in React, Node.js, React Native, and modern web technologies. 5+ years experience building scalable web and mobile applications. Available for freelance projects.",
   keywords = "full stack developer, react developer, node.js developer, react native developer, javascript developer, web developer, mobile app developer, freelance developer, portfolio, M Daniyal",
   image = "/favicon.svg",
-  url = "https://daniyal-dev-portfolio.vercel.app",
+  url = "https://daniyalamjadali.vercel.app",
   type = "website",
   structuredData = null,
   canonical = null
 }) => {
   const fullUrl = canonical || url;
-  const fullImageUrl = image.startsWith('http') ? image : `https://daniyal-dev-portfolio.vercel.app${image}`;
+  const fullImageUrl = image.startsWith('http') ? image : `https://daniyalamjadali.vercel.app${image}`;
 
   return (
     <Helmet>

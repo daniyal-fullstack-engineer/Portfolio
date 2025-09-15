@@ -144,7 +144,7 @@ export default function AllTestimonials() {
         title="Client Testimonials & Reviews - M Daniyal Portfolio"
         description="Read authentic client testimonials and reviews from satisfied customers who have worked with M Daniyal on web development, mobile app development, and full-stack projects. 5-star ratings from clients worldwide."
         keywords="client testimonials, customer reviews, web developer reviews, mobile app developer feedback, M Daniyal reviews, satisfied clients, 5-star ratings, development testimonials"
-        url="https://daniyal-dev-portfolio.vercel.app/all-testimonials"
+        url="https://daniyalamjadali.vercel.app/all-testimonials"
       />
       <div className="all-testimonials-page min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden" style={{
         scrollBehavior: 'smooth',
