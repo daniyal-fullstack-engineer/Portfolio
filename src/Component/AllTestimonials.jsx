@@ -150,6 +150,7 @@ export default function AllTestimonials() {
         scrollBehavior: 'smooth',
         overflowX: 'hidden'
       }}>
+        
       {/* Enhanced Background Animations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating Geometric Shapes */}
