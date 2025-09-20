@@ -13,7 +13,7 @@ const Button = ({
   type = 'button',
   ...props 
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer hover-scale active:scale-95 focus:scale-105';
+  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer hover-scale active:scale-95 focus:scale-105';
   
   const variants = {
     primary: 'bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 focus:ring-blue-500 focus:ring-offset-2 shadow-lg hover:shadow-xl active:from-blue-700 active:to-purple-700',
@@ -25,26 +25,26 @@ const Button = ({
   };
   
   const sizes = {
-    xs: 'px-2 py-1 text-xs',
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-sm',
-    lg: 'px-6 py-3 text-base',
-    xl: 'px-8 py-4 text-lg'
+    xs: 'px-3 py-1.5 text-xs min-h-[32px]',
+    sm: 'px-4 py-2 text-sm min-h-[40px]',
+    md: 'px-6 py-3 text-base min-h-[48px]',
+    lg: 'px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg min-h-[48px] sm:min-h-[56px]',
+    xl: 'px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl min-h-[56px] sm:min-h-[64px]'
   };
   
   const iconSizes = {
     xs: 'w-3 h-3',
     sm: 'w-4 h-4',
     md: 'w-4 h-4',
-    lg: 'w-5 h-5',
-    xl: 'w-6 h-6'
+    lg: 'w-4 sm:w-5 h-4 sm:h-5',
+    xl: 'w-5 sm:w-6 h-5 sm:h-6'
   };
   
   const iconSpacing = {
     xs: 'gap-1',
-    sm: 'gap-1.5',
+    sm: 'gap-2',
     md: 'gap-2',
-    lg: 'gap-2',
+    lg: 'gap-2 sm:gap-3',
     xl: 'gap-3'
   };
 

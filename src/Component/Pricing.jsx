@@ -1,13 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SmoothScroll from "./SmoothScroll";
 import useSmoothScroll from "../hooks/useSmoothScroll";
 
 export default function Pricing() {
   const { scrollToSection } = useSmoothScroll();
   const [activeTab, setActiveTab] = useState(0); // Default to first tab
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleTabSelect = (index) => {
+    if (index === activeTab || isTransitioning) return;
+    
+    setIsTransitioning(true);
+    
+    // Fade out current content
+    setTimeout(() => {
     setActiveTab(index);
+      // Fade in new content
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 300);
   };
 
   const handleContactClick = (planTitle) => {
@@ -297,7 +309,12 @@ export default function Pricing() {
                 <button
                   key={index}
                   onClick={() => handleTabSelect(index)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
+                  disabled={isTransitioning}
+                  className={`px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-medium transition-all duration-300 cursor-pointer min-h-[48px] sm:min-h-[56px] ${
+                    isTransitioning 
+                      ? 'opacity-50 cursor-not-allowed'
+                      : 'cursor-pointer'
+                  } ${
                     activeTab === index
                       ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
                       : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
@@ -311,12 +328,25 @@ export default function Pricing() {
           </div>
 
           {/* Active Tab Content */}
-          <div className="mb-16">
+          <div className="mb-16 relative">
+            {/* Loading Indicator */}
+            {isTransitioning && (
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-full p-4 shadow-lg">
+                  <div className="w-8 h-8 border-4 border-blue-200 border-t-blue-500 rounded-full animate-spin"></div>
+                </div>
+              </div>
+            )}
+            
             {serviceCategories.map((category, categoryIndex) => (
               <div 
                 key={categoryIndex} 
-                className={`fade-in-up transition-all duration-500 ${
-                  activeTab === categoryIndex ? 'block' : 'hidden'
+                className={`transition-all duration-300 ease-in-out ${
+                  activeTab === categoryIndex 
+                    ? isTransitioning 
+                      ? 'opacity-0 transform translate-y-4' 
+                      : 'opacity-100 transform translate-y-0'
+                    : 'opacity-0 transform translate-y-4 pointer-events-none absolute inset-0'
                 }`}
               >
                 {/* Category Header */}
@@ -388,7 +418,7 @@ export default function Pricing() {
 
                         {/* Action Button */}
                         <button
-                          className={`w-full py-3 sm:py-4 px-4 sm:px-6 rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base transition-all duration-300 cursor-pointer ${
+                          className={`w-full py-3 sm:py-4 px-4 sm:px-6 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 cursor-pointer min-h-[48px] ${
                             pkg.popular
                               ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-xl hover:shadow-blue-500/25 hover:scale-105'
                               : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 hover:scale-105'
@@ -409,67 +439,100 @@ export default function Pricing() {
           </div>
 
           {/* Custom Development Section */}
-          <div className="text-center fade-in-up">
-            <div className="relative bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 border border-slate-200/50 dark:border-slate-600/50 overflow-hidden group hover:shadow-3xl transition-all duration-500">
-              {/* Background Effects */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl sm:rounded-3xl"></div>
-              <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-purple-500/10 to-indigo-500/10 rounded-full blur-xl animate-pulse-slow"></div>
-              <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '1s'}}></div>
-              
-              {/* Floating Elements */}
-              <div className="absolute top-6 right-6 w-3 h-3 bg-purple-400 rounded-full animate-ping opacity-60"></div>
-              <div className="absolute bottom-6 left-6 w-2 h-2 bg-blue-400 rounded-full animate-ping opacity-60" style={{animationDelay: '1s'}}></div>
-              <div className="absolute top-1/2 right-8 w-1 h-1 bg-indigo-400 rounded-full animate-ping opacity-60" style={{animationDelay: '2s'}}></div>
+          <div className="text-center">
+            <div className="relative bg-gradient-to-br from-white via-slate-50 to-blue-50 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 rounded-3xl p-8 md:p-12 lg:p-16 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl overflow-hidden">
+              {/* Subtle Background Pattern */}
+              <div className="absolute inset-0 opacity-5">
+                <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-10 right-10 w-40 h-40 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-3xl"></div>
+              </div>
               
               <div className="relative z-10">
                 {/* Custom Development Icon */}
-                <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-3xl flex items-center justify-center mx-auto mb-6 animate-bounce-slow transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 shadow-xl group-hover:shadow-purple-500/25">
-                  <i className="fas fa-cogs text-white text-3xl animate-spin-slow"></i>
+                <div className="w-24 h-24 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-purple-500/25">
+                  <i className="fas fa-cogs text-white text-4xl"></i>
                 </div>
                 
-                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
-                  <span className="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 dark:from-purple-400 dark:via-indigo-400 dark:to-blue-400 bg-clip-text text-transparent animate-pulse">Custom Development</span>
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/30 dark:to-indigo-900/30 border border-purple-200/50 dark:border-purple-700/50 mb-6">
+                  <i className="fas fa-star text-purple-600 dark:text-purple-400"></i>
+                  <span className="text-sm font-medium text-purple-700 dark:text-purple-300">Premium Service</span>
+                </div>
+                
+                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+                  <span className="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 dark:from-purple-400 dark:via-indigo-400 dark:to-blue-400 bg-clip-text text-transparent">Custom Development</span>
                 </h3>
                 
-                <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors duration-300">
-                  Have a unique project that doesn&apos;t fit our standard packages? Let&apos;s discuss your specific requirements and create a completely custom solution tailored to your business needs.
+                <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mx-auto mb-8"></div>
+                
+                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+                  Have a unique project that doesn&apos;t fit my standard packages? Let&apos;s discuss your specific requirements and create a completely custom solution tailored to your business needs.
                 </p>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 max-w-4xl mx-auto">
-                  <div className="bg-white/50 dark:bg-slate-700/50 rounded-xl p-6 hover:bg-white/70 dark:hover:bg-slate-700/70 transition-all duration-300 group/card hover:scale-105 hover:shadow-xl">
-                    <i className="fas fa-lightbulb text-2xl text-yellow-500 mb-3 animate-pulse-slow"></i>
-                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2 group-hover/card:text-yellow-600 dark:group-hover/card:text-yellow-400 transition-colors duration-300">Unique Ideas</h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-300 group-hover/card:text-slate-700 dark:group-hover/card:text-slate-200 transition-colors duration-300">Complex business logic, custom integrations, or innovative features</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
+                  <div className="bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm rounded-3xl p-8 border border-white/50 dark:border-slate-600/50 shadow-xl">
+                    <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                      <i className="fas fa-lightbulb text-white text-2xl"></i>
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Unique Ideas</h4>
+                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed">Complex business logic, custom integrations, or innovative features that require specialized development expertise.</p>
                   </div>
-                  <div className="bg-white/50 dark:bg-slate-700/50 rounded-xl p-6 hover:bg-white/70 dark:hover:bg-slate-700/70 transition-all duration-300 group/card hover:scale-105 hover:shadow-xl">
-                    <i className="fas fa-rocket text-2xl text-blue-500 mb-3 animate-bounce-slow"></i>
-                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2 group-hover/card:text-blue-600 dark:group-hover/card:text-blue-400 transition-colors duration-300">Scalable Solutions</h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-300 group-hover/card:text-slate-700 dark:group-hover/card:text-slate-200 transition-colors duration-300">Enterprise-grade applications with advanced architecture</p>
+                  <div className="bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm rounded-3xl p-8 border border-white/50 dark:border-slate-600/50 shadow-xl">
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                      <i className="fas fa-rocket text-white text-2xl"></i>
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Scalable Solutions</h4>
+                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed">Enterprise-grade applications with advanced architecture designed to grow with your business needs.</p>
                   </div>
                 </div>
                 
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center relative z-20">
+                {/* Enhanced CTA Section */}
+                <div className="bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 mb-8">
+                  <h4 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">Ready to Start Your Custom Project?</h4>
+                  <p className="text-slate-600 dark:text-slate-300 mb-6">Let&apos;s discuss your vision and bring it to life with a tailored solution.</p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
                   <button 
                     onClick={() => scrollToSection('contact', -80)}
-                    className="btn-primary group px-8 sm:px-10 md:px-12 lg:px-16 py-4 sm:py-5 md:py-6 lg:py-7 text-base sm:text-lg md:text-xl lg:text-2xl hover:animate-pulse-slow relative z-30 cursor-pointer"
+                      className="btn-primary group flex items-center justify-center gap-3 cursor-pointer shadow-lg"
                   >
-                    <i className="fas fa-comments text-base sm:text-lg md:text-xl lg:text-2xl animate-pulse-slow"></i>
-                    <span>Let&apos;s Discuss Your Project</span>
+                      <i className="fas fa-comments text-lg"></i>
+                      <span>Let&apos;s Discuss Your Project</span>
                   </button>
                   <button 
                     onClick={() => scrollToSection('portfolio', -80)}
-                    className="btn-secondary group px-8 sm:px-10 md:px-12 lg:px-16 py-4 sm:py-5 md:py-6 lg:py-7 text-base sm:text-lg md:text-xl lg:text-2xl hover:animate-pulse-slow relative z-30 cursor-pointer"
+                      className="btn-secondary group flex items-center justify-center gap-3 cursor-pointer shadow-lg"
                   >
-                    <i className="fas fa-eye text-base sm:text-lg md:text-xl lg:text-2xl animate-pulse-slow"></i>
-                    <span>View Our Work</span>
+                      <i className="fas fa-eye text-lg"></i>
+                      <span>View My Work</span>
                   </button>
+                  </div>
                 </div>
                 
-                {/* Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-indigo-500/5 to-blue-500/5 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                
-                {/* Shine Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl sm:rounded-3xl pointer-events-none"></div>
+                {/* Additional Info */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                  <div className="flex flex-col items-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-3">
+                      <i className="fas fa-clock text-white text-lg"></i>
+                    </div>
+                    <h5 className="font-semibold text-slate-900 dark:text-white mb-2">Fast Delivery</h5>
+                    <p className="text-sm text-slate-600 dark:text-slate-300">Quick turnaround times</p>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-3">
+                      <i className="fas fa-shield-alt text-white text-lg"></i>
+                    </div>
+                    <h5 className="font-semibold text-slate-900 dark:text-white mb-2">Quality Assured</h5>
+                    <p className="text-sm text-slate-600 dark:text-slate-300">Professional development</p>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-3">
+                      <i className="fas fa-headset text-white text-lg"></i>
+                    </div>
+                    <h5 className="font-semibold text-slate-900 dark:text-white mb-2">24/7 Support</h5>
+                    <p className="text-sm text-slate-600 dark:text-slate-300">Continuous communication</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

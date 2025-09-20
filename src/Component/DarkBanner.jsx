@@ -123,20 +123,20 @@ const DarkBanner = () => {
         </p>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12 sm:mb-16 px-4">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16 px-4">
           <a 
             href="#portfolio" 
-            className="btn-primary group px-6 sm:px-8 md:px-10 lg:px-12 py-4 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl min-h-[48px] touch-manipulation flex items-center justify-center gap-2 active:scale-95"
+            className="btn-primary group touch-manipulation flex items-center justify-center gap-3"
           >
-            <i className="fas fa-eye group-hover:animate-pulse text-sm sm:text-base md:text-lg lg:text-xl"></i>
+            <i className="fas fa-eye group-hover:animate-pulse text-lg"></i>
             <span>View My Work</span>
           </a>
-          
+
           <a 
             href="#contact" 
-            className="btn-secondary group px-6 sm:px-8 md:px-10 lg:px-12 py-4 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl min-h-[48px] touch-manipulation flex items-center justify-center gap-2 active:scale-95"
+            className="btn-secondary group touch-manipulation flex items-center justify-center gap-3"
           >
-            <i className="fas fa-paper-plane group-hover:animate-bounce text-sm sm:text-base md:text-lg lg:text-xl"></i>
+            <i className="fas fa-paper-plane group-hover:animate-bounce text-lg"></i>
             <span>Get In Touch</span>
           </a>
         </div>

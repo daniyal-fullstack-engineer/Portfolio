@@ -1,253 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useState } from "react";
 import useSmoothScroll from "../hooks/useSmoothScroll";
 
 export default function HireMe() {
   const { scrollToSection } = useSmoothScroll();
   const [isHovered, setIsHovered] = useState(false);
-  const [animatedStats, setAnimatedStats] = useState({
-    projects: 0,
-    satisfaction: 0,
-    experience: 0,
-    support: 0
-  });
-  
-  const sectionRef = useRef(null);
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const descriptionRef = useRef(null);
-  const featuresRef = useRef(null);
-  const buttonsRef = useRef(null);
-  const statsRef = useRef(null);
-  const backgroundRef = useRef(null);
 
-  useEffect(() => {
-    // Register GSAP plugins
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Set initial states
-    gsap.set([titleRef.current, subtitleRef.current, descriptionRef.current, featuresRef.current, buttonsRef.current, statsRef.current], {
-      opacity: 0,
-      y: 60
-    });
-
-    gsap.set(backgroundRef.current, {
-      scale: 1.1,
-      opacity: 0
-    });
-
-    // Set initial states for feature cards and stats
-    gsap.set('.feature-card', {
-      opacity: 0,
-      y: 50,
-      scale: 0.9
-    });
-
-    gsap.set('.stat-item', {
-      opacity: 0,
-      y: 30,
-      scale: 0.8
-    });
-
-    // Create main timeline
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse"
-      }
-    });
-
-    // Animate elements in sequence
-    tl.to(backgroundRef.current, {
-      scale: 1,
-      opacity: 1,
-      duration: 1.5,
-      ease: "power2.out"
-    })
-    .to(titleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=1")
-    .to(subtitleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.8")
-    .to(descriptionRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.6")
-    .to(featuresRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.4")
-    .to(buttonsRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.2")
-    .to(statsRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.1");
-
-    // Animate feature cards with stagger
-    gsap.utils.toArray('.feature-card').forEach((card, index) => {
-      gsap.fromTo(card, {
-        opacity: 0,
-        y: 50,
-        scale: 0.9
-      }, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: card,
-          start: "top 85%",
-          toggleActions: "play none none reverse"
-        },
-        delay: index * 0.1
-      });
-    });
-
-    // Animate stats with stagger and counter animation
-    gsap.utils.toArray('.stat-item').forEach((stat, index) => {
-      gsap.fromTo(stat, {
-        opacity: 0,
-        y: 30,
-        scale: 0.8
-      }, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: stat,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-          onEnter: () => {
-            // Start counter animation when stats come into view
-            animateCounter(index);
-          }
-        },
-        delay: index * 0.1
-      });
-    });
-
-    // Continuous background animation
-    gsap.to(backgroundRef.current, {
-      rotation: 360,
-      duration: 60,
-      ease: "none",
-      repeat: -1
-    });
-
-    // Feature card hover animations
-    gsap.utils.toArray('.feature-card').forEach((card) => {
-      card.addEventListener('mouseenter', () => {
-        gsap.to(card, {
-          scale: 1.05,
-          rotation: 2,
-          duration: 0.4,
-          ease: "power2.out"
-        });
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          scale: 1,
-          rotation: 0,
-          duration: 0.4,
-          ease: "power2.out"
-        });
-      });
-    });
-
-    // Stat item hover animations
-    gsap.utils.toArray('.stat-item').forEach((stat) => {
-      stat.addEventListener('mouseenter', () => {
-        gsap.to(stat, {
-          scale: 1.1,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-      
-      stat.addEventListener('mouseleave', () => {
-        gsap.to(stat, {
-          scale: 1,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-    });
-
-    // Button hover animations
-    gsap.utils.toArray('.hire-button').forEach((button) => {
-      button.addEventListener('mouseenter', () => {
-        gsap.to(button, {
-          scale: 1.05,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-      
-      button.addEventListener('mouseleave', () => {
-        gsap.to(button, {
-          scale: 1,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-    });
-
-  }, []);
-
-  // Counter animation function
-  const animateCounter = (index) => {
-    const targets = [50, 100, 5, 24]; // Target values for each stat
-    const target = targets[index];
-    const duration = 2000; // 2 seconds
-    const steps = 60; // Number of animation steps
-    const stepDuration = duration / steps;
-    const increment = target / steps;
-    
-    let current = 0;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        current = target;
-        clearInterval(timer);
-      }
-      
-      setAnimatedStats(prev => {
-        const newStats = { ...prev };
-        switch(index) {
-          case 0: newStats.projects = Math.floor(current); break;
-          case 1: newStats.satisfaction = Math.floor(current); break;
-          case 2: newStats.experience = Math.floor(current); break;
-          case 3: newStats.support = Math.floor(current); break;
-        }
-        return newStats;
-      });
-    }, stepDuration);
-  };
 
   const handleViewCV = () => {
     window.open('/DaniyalCv.pdf', '_blank');
@@ -277,21 +34,20 @@ export default function HireMe() {
   ];
 
   const stats = [
-    { number: `${animatedStats.projects}+`, label: "Projects Completed" },
-    { number: `${animatedStats.satisfaction}%`, label: "Client Satisfaction" },
-    { number: `${animatedStats.experience}+`, label: "Years Experience" },
-    { number: `${animatedStats.support}/7`, label: "Support Available" }
+    { number: "50+", label: "Projects Completed" },
+    { number: "100%", label: "Client Satisfaction" },
+    { number: "5+", label: "Years Experience" },
+    { number: "24/7", label: "Support Available" }
   ];
 
   return (
     <>
       <section 
-        ref={sectionRef}
         className="relative min-h-screen py-20 px-4 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" 
         id="hire-me"
       >
         {/* Enhanced Background Elements */}
-        <div ref={backgroundRef} className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
           {/* Floating Geometric Shapes */}
           <div className="absolute top-20 left-10 w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-20 animate-float"></div>
           <div className="absolute top-40 right-20 w-12 h-12 bg-gradient-to-r from-purple-400 to-indigo-400 rounded-lg rotate-45 opacity-20 animate-float" style={{animationDelay: '1s'}}></div>
@@ -321,8 +77,8 @@ export default function HireMe() {
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-3xl"></div>
             
             {/* Enhanced Header Section */}
-            <div ref={titleRef} className="text-center mb-12">
-              <div ref={subtitleRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-6">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-6">
                 <i className="fas fa-handshake text-blue-600 dark:text-blue-400 animate-pulse"></i>
                 <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Let&apos;s Work Together</span>
               </div>
@@ -337,16 +93,16 @@ export default function HireMe() {
             </div>
 
             {/* Enhanced Description Section */}
-            <div ref={descriptionRef} className="text-center mb-12">
+            <div className="text-center mb-12">
               <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
                 I&apos;d love to hear about it! Whether it&apos;s a small idea or a grand vision, 
                 I&apos;m ready to bring it to life. Let&apos;s collaborate and create something amazing together.
               </p>
               
               {/* Enhanced Features Grid */}
-              <div ref={featuresRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 {features.map((feature, index) => (
-                  <div key={index} className="feature-card group p-6 rounded-3xl bg-white/80 dark:bg-slate-700/80 backdrop-blur-xl border border-white/30 dark:border-slate-600/40 shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <div key={index} className="group p-6 rounded-3xl bg-white/80 dark:bg-slate-700/80 backdrop-blur-xl border border-white/30 dark:border-slate-600/40 shadow-xl hover:shadow-2xl transition-all duration-300">
                     <div className="flex flex-col items-center text-center">
                       <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                         <i className={`${feature.icon} text-white text-xl`}></i>
@@ -360,23 +116,23 @@ export default function HireMe() {
             </div>
 
             {/* Enhanced Action Buttons */}
-            <div ref={buttonsRef} className="text-center mb-12">
+            <div className="text-center mb-12">
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8">
                 <button 
                   onClick={handleViewCV} 
-                  className="hire-button bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                  className="btn-primary group flex items-center justify-center gap-3"
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
-                  <i className="fas fa-file-pdf text-sm sm:text-base md:text-lg lg:text-xl"></i>
+                  <i className="fas fa-file-pdf text-lg"></i>
                   <span>View My CV</span>
                 </button>
-                
+
                 <button 
                   onClick={handleHireMe} 
-                  className="hire-button bg-slate-800/50 hover:bg-slate-700/50 text-white rounded-lg font-semibold border border-slate-600 hover:border-slate-500 transition-all duration-300 hover:scale-105 group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                  className="btn-secondary group flex items-center justify-center gap-3"
                 >
-                  <i className="fas fa-rocket text-sm sm:text-base md:text-lg lg:text-xl"></i>
+                  <i className="fas fa-rocket text-lg"></i>
                   <span>Hire Me Now</span>
                 </button>
               </div>
@@ -386,16 +142,16 @@ export default function HireMe() {
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <a 
                     href="mailto:your-email@example.com" 
-                    className="bg-slate-800/30 hover:bg-slate-700/30 text-white rounded-lg font-semibold border border-slate-600/50 hover:border-slate-500 transition-all duration-300 hover:scale-105 group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                    className="btn-secondary group flex items-center justify-center gap-3"
                   >
-                    <i className="fas fa-envelope text-sm sm:text-base md:text-lg lg:text-xl"></i>
+                    <i className="fas fa-envelope text-lg"></i>
                     <span>Email Me</span>
                   </a>
                   <a 
                     href="tel:+1234567890" 
-                    className="bg-slate-800/30 hover:bg-slate-700/30 text-white rounded-lg font-semibold border border-slate-600/50 hover:border-slate-500 transition-all duration-300 hover:scale-105 group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                    className="btn-secondary group flex items-center justify-center gap-3"
                   >
-                    <i className="fas fa-phone text-sm sm:text-base md:text-lg lg:text-xl"></i>
+                    <i className="fas fa-phone text-lg"></i>
                     <span>Call Me</span>
                   </a>
                 </div>
@@ -403,10 +159,10 @@ export default function HireMe() {
             </div>
 
             {/* Enhanced Stats Section */}
-            <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {stats.map((stat, index) => (
-                <div key={index} className="stat-item text-center group">
-                  <div className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white counter group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                <div key={index} className="text-center group">
+                  <div className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                     {stat.number}
                   </div>
                   <div className="text-sm text-slate-600 dark:text-slate-300 mt-1">

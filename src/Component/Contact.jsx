@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { errorMessges, successMessges, validateInput } from "../CommonFunction";
 import Button from "./Button";
+import { useToast } from "./ToastContainer";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -12,6 +12,7 @@ export default function Contact() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const { showSuccess, showError } = useToast();
   
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
@@ -25,41 +26,54 @@ export default function Contact() {
   const validateForm = () => {
     const newErrors = {};
     
-    // Name validation
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-    } else if (formData.name.trim().length < 2) {
-      newErrors.name = "Name must be at least 2 characters";
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
-    }
-    
-    // Phone validation (optional but if provided, should be valid)
-    if (formData.phone.trim()) {
-      const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-      if (!phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
-        newErrors.phone = "Please enter a valid phone number";
+    try {
+      // Name validation
+      if (!formData.name || !formData.name.trim()) {
+        newErrors.name = "Name is required";
+      } else if (formData.name.trim().length < 2) {
+        newErrors.name = "Name must be at least 2 characters";
       }
-    }
-    
-    // Subject validation
-    if (!formData.subject.trim()) {
-      newErrors.subject = "Subject is required";
-    } else if (formData.subject.trim().length < 5) {
-      newErrors.subject = "Subject must be at least 5 characters";
-    }
-    
-    // Message validation
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters";
+      
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!formData.email || !formData.email.trim()) {
+        newErrors.email = "Email is required";
+      } else if (!emailRegex.test(formData.email.trim())) {
+        newErrors.email = "Please enter a valid email address";
+      }
+      
+      // Phone validation (optional but if provided, should be valid)
+      if (formData.phone && formData.phone.trim()) {
+        const cleanPhone = formData.phone.replace(/\s/g, '');
+        
+        // Check if phone number starts with country code (+)
+        if (!cleanPhone.startsWith('+')) {
+          newErrors.phone = "Please include country code (e.g., +1 for US, +44 for UK)";
+        } else {
+          // Validate phone number with country code
+          const phoneRegex = /^\+[1-9]\d{6,14}$/;
+          if (!phoneRegex.test(cleanPhone)) {
+            newErrors.phone = "Please enter a valid phone number with country code";
+          }
+        }
+      }
+      
+      // Subject validation
+      if (!formData.subject || !formData.subject.trim()) {
+        newErrors.subject = "Subject is required";
+      } else if (formData.subject.trim().length < 5) {
+        newErrors.subject = "Subject must be at least 5 characters";
+      }
+      
+      // Message validation
+      if (!formData.message || !formData.message.trim()) {
+        newErrors.message = "Message is required";
+      } else if (formData.message.trim().length < 10) {
+        newErrors.message = "Message must be at least 10 characters";
+      }
+    } catch (error) {
+      console.error("Validation error:", error);
+      newErrors.general = "Validation error occurred";
     }
     
     setErrors(newErrors);
@@ -67,18 +81,29 @@ export default function Contact() {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({
+    try {
+      const { name, value } = e.target;
+      
+      // Validate input name exists in formData
+      if (!formData.hasOwnProperty(name)) {
+        console.warn(`Unknown form field: ${name}`);
+        return;
+      }
+      
+      setFormData(prev => ({
         ...prev,
-        [name]: ""
+        [name]: value || ""
       }));
+      
+      // Clear error when user starts typing
+      if (errors && errors[name]) {
+        setErrors(prev => ({
+          ...prev,
+          [name]: ""
+        }));
+      }
+    } catch (error) {
+      console.error("Input change error:", error);
     }
   };
 
@@ -86,11 +111,6 @@ export default function Contact() {
   useEffect(() => {
     // Lightweight animations using CSS transitions
   }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -109,25 +129,24 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const result = await response.json();
       if (result.success) {
         // Show success toast
-        if (window.showToast) {
-          window.showToast("Email sent successfully! I'll get back to you soon.", 'success', 5000);
-        }
+        showSuccess("🎉 Email sent successfully! I'll get back to you soon.", 6000);
         setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
         setErrors({}); // Clear any errors
       } else {
         // Show error toast
-        if (window.showToast) {
-          window.showToast("Failed to send email. Please try again.", 'error', 5000);
-        }
+        showError("❌ Failed to send email. Please try again.", 5000);
       }
     } catch (error) {
+      console.error("Form submission error:", error);
       // Show error toast
-      if (window.showToast) {
-        window.showToast("An error occurred. Please try again later.", 'error', 5000);
-      }
+      showError("⚠️ An error occurred. Please try again later.", 5000);
     } finally {
       setIsLoading(false);
     }
@@ -287,7 +306,7 @@ export default function Contact() {
                               ? 'border-red-500 focus:ring-red-500' 
                               : 'border-slate-200 dark:border-slate-600'
                           }`}
-                          placeholder="+1 (555) 123-4567"
+                          placeholder="+1 (555) 123-4567 (with country code)"
                         />
                         {errors.phone && (
                           <p className="mt-1 text-xs text-red-500 dark:text-red-400 flex items-center gap-1">

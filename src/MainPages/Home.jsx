@@ -6,7 +6,7 @@ import ScrollToTop from '../Component/ScrollToTop';
 import ParticleBackground from '../Component/ParticleBackground';
 import MobileGestures from '../Component/MobileGestures';
 import PWA from '../Component/PWA';
-import ToastContainer from '../Component/ToastContainer';
+import { ToastProvider } from '../Component/ToastContainer';
 import Footer from '../Component/Footer';
 import About from '../Component/About';
 import Services from '../Component/Services';
@@ -35,7 +35,7 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <ToastProvider>
       <div className='main-wrapper scrollable-content min-h-screen bg-slate-900 dark:bg-slate-900 transition-colors duration-300'>
         {/* Particle Background */}
         <ParticleBackground />
@@ -46,9 +46,6 @@ const Home = () => {
       
       {/* PWA Install Prompt */}
       <PWA />
-      
-      {/* Toast Notifications */}
-      <ToastContainer />
       
       {/* <FormTesting /> */}
       <div className='navbar-section'>
@@ -94,7 +91,7 @@ const Home = () => {
         <FiverrIcon />
         <WhatAppIcon />
       </div>
-    </>
+    </ToastProvider>
   );
 };
 

@@ -4,8 +4,6 @@ import useSmoothScroll from '../hooks/useSmoothScroll';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState('home');
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -21,36 +19,52 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const isScrollingDown = currentScrollY > lastScrollY;
-      const isScrollingUp = currentScrollY < lastScrollY;
       
       setIsScrolled(currentScrollY > 50);
       
-      // Hide navbar when scrolling down, show when scrolling up
-      if (isScrollingDown && currentScrollY > 100) {
-        setIsNavbarVisible(false);
-      } else if (isScrollingUp || currentScrollY < 100) {
-        setIsNavbarVisible(true);
-      }
-      
-      setLastScrollY(currentScrollY);
-      
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'services', 'portfolio', 'testimonials', 'pricing', 'contact'];
-      const scrollPosition = currentScrollY + 100;
+      const sections = [
+        { id: 'home-section', navId: 'home' },
+        { id: 'about', navId: 'about' },
+        { id: 'services', navId: 'services' },
+        { id: 'portfolio', navId: 'portfolio' },
+        { id: 'testimonials', navId: 'testimonials' },
+        { id: 'hire-me', navId: 'hire-me' },
+        { id: 'pricing', navId: 'pricing' },
+        { id: 'faq', navId: 'faq' },
+        { id: 'contact', navId: 'contact' }
+      ];
+      const scrollPosition = currentScrollY + 200; // Increased offset for better detection
       
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const element = document.getElementById(sections[i]);
-        if (element && element.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
+      let currentSection = 'home'; // Default to home
+      
+      for (let i = 0; i < sections.length; i++) {
+        const element = document.getElementById(sections[i].id);
+        if (element) {
+          const elementTop = element.offsetTop;
+          const elementBottom = elementTop + element.offsetHeight;
+          
+          // Check if the scroll position is within this section
+          if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+            currentSection = sections[i].navId;
           break;
+          }
+          // If we're past the last section, set it as active
+          else if (i === sections.length - 1 && scrollPosition >= elementTop) {
+            currentSection = sections[i].navId;
+          }
         }
       }
+      
+      setActiveSection(currentSection);
     };
+    
+    // Call once on mount to set initial state
+    handleScroll();
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   // Theme management
   useEffect(() => {
@@ -170,7 +184,9 @@ const Header = () => {
     { href: '#services', label: 'Services', section: 'services' },
     { href: '#portfolio', label: 'Portfolio', section: 'portfolio' },
     { href: '#testimonials', label: 'Testimonials', section: 'testimonials' },
+    { href: '#hire-me', label: 'Hire Me', section: 'hire-me' },
     { href: '#pricing', label: 'Pricing', section: 'pricing' },
+    { href: '#faq', label: 'FAQ', section: 'faq' },
     { href: '#contact', label: 'Contact', section: 'contact' },
   ];
 
@@ -179,13 +195,9 @@ const Header = () => {
       ref={navbarRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl shadow-2xl border-b border-slate-200/50 dark:border-slate-700/50' 
+          ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl shadow-2xl' 
           : 'bg-transparent'
       }`}
-      style={{
-        transform: isNavbarVisible ? 'translateY(0)' : 'translateY(-100%)',
-        transition: 'transform 0.3s ease-in-out'
-      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
