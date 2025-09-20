@@ -1,6 +1,6 @@
-'use client';
+'use client'
 import React, { useRef, useLayoutEffect, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
@@ -149,7 +149,7 @@ export default function PortfolioCardStackFinal() {
           trigger: stackContainer.current,
           start: "top top",
           end: `+=${(cards.length) * 500}`,
-          pin: true, // ✅ FIX 1: Enabled pinning on all devices
+          pin: true,
           scrub: 1.5,
         }
       });
@@ -330,7 +330,7 @@ export default function PortfolioCardStackFinal() {
             </p>
             
             {/* Animated Button */}
-            <Link to="/all-projects" className="inline-block group/btn relative z-20">
+            <Link href="/all-projects" className="inline-block group/btn relative z-20">
               <Button
                 variant="primary"
                 size="lg"

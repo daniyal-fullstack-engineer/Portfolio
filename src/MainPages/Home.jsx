@@ -1,7 +1,4 @@
 import React, { useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lenis from 'lenis';
 import Header from '../Component/Header';
 import Banner from '../Component/Banner';
 import WhatAppIcon from '../Component/WhatAppIcon';
@@ -21,8 +18,6 @@ import Faq from '../Component/Faq';
 import Contact from '../Component/Contact';
 import DarkBanner from '../Component/DarkBanner';
 import FormTesting from '../Component/FormTesting';
-import SEOHead from '../Component/SEOHead';
-import "aos/dist/aos.css";
 import FiverrIcon from '../Component/FiverrIcon';
 import { generatePortfolioStructuredData, generateWebsiteStructuredData } from '../utils/seoData';
 
@@ -35,61 +30,12 @@ import { generatePortfolioStructuredData, generateWebsiteStructuredData } from '
 
 const Home = () => {
   useEffect(() => {
-    // Register GSAP plugins
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Detect mobile devices
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
-
-    // Clean up any existing Lenis instance
-    if (window.lenis) {
-      window.lenis.destroy();
-      window.lenis = null;
-    }
-
-    // Only initialize Lenis on desktop devices
-    if (!isMobile) {
-      // Initialize Lenis smooth scroll for desktop only
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-      });
-
-      // Make Lenis globally available
-      window.lenis = lenis;
-
-      // Lenis animation frame
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-
-      // Update ScrollTrigger when Lenis updates
-      lenis.on('scroll', ScrollTrigger.update);
-
-      return () => {
-        lenis.destroy();
-        window.lenis = null;
-      };
-    }
+    // Simple scroll to top on mount
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
     <>
-      <SEOHead 
-        title="M Daniyal - Full Stack Developer | React, Node.js, Mobile Apps"
-        description="Professional Full Stack Developer specializing in React, Node.js, React Native, and modern web technologies. 5+ years experience building scalable web and mobile applications. Available for freelance projects."
-        keywords="full stack developer, react developer, node.js developer, react native developer, javascript developer, web developer, mobile app developer, freelance developer, portfolio, M Daniyal, Pakistan developer, remote developer"
-        structuredData={[generatePortfolioStructuredData(), generateWebsiteStructuredData()]}
-      />
       <div className='main-wrapper scrollable-content min-h-screen bg-slate-900 dark:bg-slate-900 transition-colors duration-300'>
         {/* Particle Background */}
         <ParticleBackground />

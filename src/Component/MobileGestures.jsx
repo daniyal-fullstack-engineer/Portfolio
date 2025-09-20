@@ -11,8 +11,8 @@ const MobileGestures = () => {
       const target = e.target;
       const isInteractiveElement = target.closest('button, a, [role="button"], .swipe-enabled');
       
-      // Skip gesture handling for interactive elements and normal scroll areas
-      if (isInteractiveElement || target.closest('.scrollable-content')) {
+      // Skip gesture handling for interactive elements, scroll areas, and testimonials page
+      if (isInteractiveElement || target.closest('.scrollable-content') || document.body.classList.contains('all-testimonials-active')) {
         return;
       }
       
@@ -26,8 +26,8 @@ const MobileGestures = () => {
       const target = e.target;
       const isInteractiveElement = target.closest('button, a, [role="button"], .swipe-enabled');
       
-      // Skip gesture handling for interactive elements and normal scroll areas
-      if (isInteractiveElement || target.closest('.scrollable-content')) {
+      // Skip gesture handling for interactive elements, scroll areas, and testimonials page
+      if (isInteractiveElement || target.closest('.scrollable-content') || document.body.classList.contains('all-testimonials-active')) {
         return;
       }
       
@@ -38,13 +38,13 @@ const MobileGestures = () => {
       const deltaY = touchEndRef.current.y - touchStartRef.current.y;
       const deltaTime = Date.now() - lastTouchTimeRef.current;
       
-      // More restrictive swipe detection to avoid interfering with normal scroll
-      const minSwipeDistance = 100; // Increased from 50
-      const maxSwipeTime = 300; // Reduced from 500
-      const minHorizontalRatio = 2; // Require horizontal movement to be 2x vertical
+      // Very restrictive swipe detection to avoid interfering with normal scroll
+      const minSwipeDistance = 150; // Increased further
+      const maxSwipeTime = 250; // Reduced further
+      const minHorizontalRatio = 3; // Require horizontal movement to be 3x vertical
       
       if (deltaTime < maxSwipeTime) {
-        // Only handle horizontal swipes with clear horizontal dominance
+        // Only handle horizontal swipes with very clear horizontal dominance
         if (Math.abs(deltaX) > Math.abs(deltaY) * minHorizontalRatio) {
           if (Math.abs(deltaX) > minSwipeDistance) {
             if (deltaX > 0) {
@@ -56,7 +56,7 @@ const MobileGestures = () => {
             }
           }
         }
-        // Remove vertical swipe handling to avoid scroll interference
+        // Completely remove vertical swipe handling to avoid scroll interference
       }
     };
 

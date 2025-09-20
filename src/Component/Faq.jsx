@@ -244,7 +244,7 @@ export default function Faq() {
           <div ref={titleRef} className="text-center mb-16">
             <div ref={subtitleRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-6">
               <i className="fas fa-question-circle text-blue-600 dark:text-blue-400 animate-pulse"></i>
-              <span className="text-sm font-medium text-blue-700 dark:text-blue-300">FAQ's</span>
+              <span className="text-sm font-medium text-blue-700 dark:text-blue-300">FAQ&apos;s</span>
             </div>
             
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
@@ -256,7 +256,7 @@ export default function Faq() {
             </div>
             
             <p ref={descriptionRef} className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-              Got questions? I've got answers! Here are some common questions about my services and development process.
+              Got questions? I&apos;ve got answers! Here are some common questions about my services and development process.
             </p>
           </div>
 
@@ -323,7 +323,7 @@ export default function Faq() {
                   Still Have Questions?
                 </h3>
                 <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
-                  Can't find the answer you're looking for? Feel free to reach out and I'll be happy to help!
+                  Can&apos;t find the answer you&apos;re looking for? Feel free to reach out and I&apos;ll be happy to help!
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center relative z-10">
                   <button 

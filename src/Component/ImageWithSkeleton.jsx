@@ -1,5 +1,7 @@
+'use client'
 import React from 'react';
 import useImageLoading from '../hooks/useImageLoading';
+import Image from 'next/image';
 
 const ImageWithSkeleton = ({ 
   src, 
@@ -100,9 +102,11 @@ const ImageWithSkeleton = ({
       
       {hasError && <ErrorFallback />}
       
-      <img
+      <Image
         src={imageSrc}
         alt={alt}
+        width={500}
+        height={300}
         className={`w-full h-full object-cover transition-opacity duration-500 ${
           isLoaded ? 'opacity-100' : 'opacity-0 absolute inset-0'
         }`}

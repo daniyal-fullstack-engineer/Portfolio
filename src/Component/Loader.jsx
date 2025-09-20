@@ -104,8 +104,9 @@ const Loader = ({ onComplete }) => {
       opacity: 0,
       duration: 0.8,
       ease: "power2.inOut",
-      onComplete: () => {
-        if (onComplete) onComplete();
+      onStart: () => {
+        // Call onComplete when fade out starts, not when it ends
+      if (onComplete) onComplete();
       }
     }, "+=0.5");
 
@@ -118,7 +119,7 @@ const Loader = ({ onComplete }) => {
   return (
     <div 
       ref={loaderRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900"
     >
       {/* Minimalist background */}
       <div className="absolute inset-0 overflow-hidden">

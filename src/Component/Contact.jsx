@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { errorMessges, successMessges, validateInput } from "../CommonFunction";
 import Button from "./Button";
 
@@ -86,194 +84,7 @@ export default function Contact() {
 
 
   useEffect(() => {
-    // Register GSAP plugins
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Set initial states
-    gsap.set([titleRef.current, subtitleRef.current, descriptionRef.current, formRef.current, contactInfoRef.current], {
-      opacity: 0,
-      y: 60
-    });
-
-    gsap.set(backgroundRef.current, {
-      scale: 1.1,
-      opacity: 0
-    });
-
-    // Set initial states for form elements
-    gsap.set('.form-input', {
-      opacity: 0,
-      y: 30,
-      scale: 0.95
-    });
-
-    gsap.set('.contact-card', {
-      opacity: 0,
-      x: 50,
-      scale: 0.9
-    });
-
-    // Create main timeline
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse"
-      }
-    });
-
-    // Animate elements in sequence
-    tl.to(backgroundRef.current, {
-      scale: 1,
-      opacity: 1,
-      duration: 1.5,
-      ease: "power2.out"
-    })
-    .to(titleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=1")
-    .to(subtitleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.8")
-    .to(descriptionRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.6")
-    .to(formRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.4")
-    .to(contactInfoRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.2");
-
-    // Animate form inputs with stagger
-    gsap.utils.toArray('.form-input').forEach((input, index) => {
-      gsap.fromTo(input, {
-        opacity: 0,
-        y: 30,
-        scale: 0.95
-      }, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: input,
-          start: "top 85%",
-          toggleActions: "play none none reverse"
-        },
-        delay: index * 0.1
-      });
-    });
-
-    // Animate contact cards with unique effects
-    gsap.utils.toArray('.contact-card').forEach((card, index) => {
-      gsap.fromTo(card, {
-        opacity: 0,
-        x: 50,
-        scale: 0.9,
-        rotation: 5
-      }, {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-        rotation: 0,
-        duration: 1,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: card,
-          start: "top 85%",
-          toggleActions: "play none none reverse"
-        },
-        delay: index * 0.15
-      });
-    });
-
-    // Continuous background animation
-    gsap.to(backgroundRef.current, {
-      rotation: 360,
-      duration: 40,
-      ease: "none",
-      repeat: -1
-    });
-
-    // Form input focus animations
-    gsap.utils.toArray('.form-input').forEach((input) => {
-      input.addEventListener('focus', () => {
-        gsap.to(input, {
-          scale: 1.02,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-      
-      input.addEventListener('blur', () => {
-        gsap.to(input, {
-          scale: 1,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-    });
-
-    // Contact card hover animations
-    gsap.utils.toArray('.contact-card').forEach((card) => {
-      card.addEventListener('mouseenter', () => {
-        gsap.to(card, {
-          scale: 1.05,
-          rotation: 2,
-          duration: 0.4,
-          ease: "power2.out"
-        });
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          scale: 1,
-          rotation: 0,
-          duration: 0.4,
-          ease: "power2.out"
-        });
-      });
-    });
-
-    // Social link hover animations
-    gsap.utils.toArray('.social-link').forEach((link) => {
-      link.addEventListener('mouseenter', () => {
-        gsap.to(link, {
-          scale: 1.2,
-          rotation: 15,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-      
-      link.addEventListener('mouseleave', () => {
-        gsap.to(link, {
-          scale: 1,
-          rotation: 0,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-    });
-
+    // Lightweight animations using CSS transitions
   }, []);
 
   const handleChange = (e) => {
@@ -392,7 +203,7 @@ export default function Contact() {
             </div>
             
             <p ref={descriptionRef} className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
-              Ready to start your project? Have questions about my services? I'd love to hear from you. Let's discuss how I can help bring your ideas to life.
+              Ready to start your project? Have questions about my services? I&apos;d love to hear from you. Let&apos;s discuss how I can help bring your ideas to life.
             </p>
           </div>
 
@@ -559,10 +370,10 @@ export default function Contact() {
             <div ref={contactInfoRef}>
               <div className="space-y-6 sm:space-y-8">
                 <div>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6">Let's connect</h3>
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6">Let&apos;s connect</h3>
                   <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6 sm:mb-8 px-4 sm:px-0">
-                    I'm always excited to work on new projects and help bring innovative ideas to life. 
-                    Whether you have a clear vision or just a concept, I'm here to help you succeed.
+                    I&apos;m always excited to work on new projects and help bring innovative ideas to life. 
+                    Whether you have a clear vision or just a concept, I&apos;m here to help you succeed.
                   </p>
                 </div>
 

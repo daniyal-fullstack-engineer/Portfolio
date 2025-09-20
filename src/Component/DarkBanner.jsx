@@ -103,7 +103,7 @@ const DarkBanner = () => {
             </div>
             <i className="fas fa-hand-wave text-blue-400 dark:text-blue-400 text-base sm:text-lg"></i>
             <span className="text-blue-300 dark:text-blue-300 text-xs sm:text-sm font-medium tracking-wide">
-              Hello, I'm
+              Hello, I&apos;m
             </span>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
 
 const Toast = ({ message, type = 'success', duration = 5000, onClose }) => {
@@ -32,9 +32,9 @@ const Toast = ({ message, type = 'success', duration = 5000, onClose }) => {
 
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [duration, handleClose]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     if (toastRef.current) {
       gsap.to(toastRef.current, {
         opacity: 0,
@@ -49,7 +49,7 @@ const Toast = ({ message, type = 'success', duration = 5000, onClose }) => {
         }
       });
     }
-  };
+  }, [onClose]);
 
   if (!isVisible) return null;
 

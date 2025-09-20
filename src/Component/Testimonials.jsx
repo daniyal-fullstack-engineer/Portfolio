@@ -1,5 +1,6 @@
+'use client'
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Button from "./Button";
 import ImageWithSkeleton from "./ImageWithSkeleton";
 import useSmoothScroll from "../hooks/useSmoothScroll";
@@ -181,7 +182,7 @@ export default function Testimonials() {
             <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
           </div>
           <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
-            Don't just take our word for it. Here's what our satisfied clients have to say about working with us.
+            Don&apos;t just take our word for it. Here&apos;s what our satisfied clients have to say about working with us.
           </p>
         </div>
 
@@ -211,7 +212,7 @@ export default function Testimonials() {
               {/* Testimonial Text */}
               <blockquote className="mb-6 text-center">
                 <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed italic group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors duration-300">
-                  "{testimonial.text}"
+                  &ldquo;{testimonial.text}&rdquo;
                     </p>
                   </blockquote>
                   
@@ -279,7 +280,7 @@ export default function Testimonials() {
               </p>
               
               {/* Animated Button */}
-              <Link to="/all-testimonials" className="inline-block group/btn relative z-20">
+              <Link href="/all-testimonials" className="inline-block group/btn relative z-20">
             <Button
                   variant="primary"
                   size="lg"

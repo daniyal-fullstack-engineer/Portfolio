@@ -324,7 +324,7 @@ export default function HireMe() {
             <div ref={titleRef} className="text-center mb-12">
               <div ref={subtitleRef} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-6">
                 <i className="fas fa-handshake text-blue-600 dark:text-blue-400 animate-pulse"></i>
-                <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Let's Work Together</span>
+                <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Let&apos;s Work Together</span>
               </div>
               
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
@@ -339,8 +339,8 @@ export default function HireMe() {
             {/* Enhanced Description Section */}
             <div ref={descriptionRef} className="text-center mb-12">
               <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-                I'd love to hear about it! Whether it's a small idea or a grand vision, 
-                I'm ready to bring it to life. Let's collaborate and create something amazing together.
+                I&apos;d love to hear about it! Whether it&apos;s a small idea or a grand vision, 
+                I&apos;m ready to bring it to life. Let&apos;s collaborate and create something amazing together.
               </p>
               
               {/* Enhanced Features Grid */}
@@ -364,7 +364,7 @@ export default function HireMe() {
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8">
                 <button 
                   onClick={handleViewCV} 
-                  className="hire-button btn-primary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                  className="hire-button bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
@@ -374,7 +374,7 @@ export default function HireMe() {
                 
                 <button 
                   onClick={handleHireMe} 
-                  className="hire-button btn-secondary group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                  className="hire-button bg-slate-800/50 hover:bg-slate-700/50 text-white rounded-lg font-semibold border border-slate-600 hover:border-slate-500 transition-all duration-300 hover:scale-105 group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
                 >
                   <i className="fas fa-rocket text-sm sm:text-base md:text-lg lg:text-xl"></i>
                   <span>Hire Me Now</span>
@@ -386,14 +386,14 @@ export default function HireMe() {
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <a 
                     href="mailto:your-email@example.com" 
-                    className="btn-ghost group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                    className="bg-slate-800/30 hover:bg-slate-700/30 text-white rounded-lg font-semibold border border-slate-600/50 hover:border-slate-500 transition-all duration-300 hover:scale-105 group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
                   >
                     <i className="fas fa-envelope text-sm sm:text-base md:text-lg lg:text-xl"></i>
                     <span>Email Me</span>
                   </a>
                   <a 
                     href="tel:+1234567890" 
-                    className="btn-ghost group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
+                    className="bg-slate-800/30 hover:bg-slate-700/30 text-white rounded-lg font-semibold border border-slate-600/50 hover:border-slate-500 transition-all duration-300 hover:scale-105 group px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 text-sm sm:text-base md:text-lg lg:text-xl"
                   >
                     <i className="fas fa-phone text-sm sm:text-base md:text-lg lg:text-xl"></i>
                     <span>Call Me</span>

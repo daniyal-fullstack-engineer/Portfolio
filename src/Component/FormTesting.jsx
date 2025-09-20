@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 
 const FormTesting = () => {
   const [formData, setFormData] = useState({});
 
-  const uiElements = [
+  const uiElements = useMemo(() => [
     {
       type: "section",
       props: { style: { padding: "1rem", backgroundColor: "#f9f9f9" } },
@@ -203,7 +203,7 @@ const FormTesting = () => {
         },
       ],
     },
-  ];
+  ], []);
 
   // Auto-generate state based on ids
   useEffect(() => {
@@ -221,7 +221,7 @@ const FormTesting = () => {
     };
     extractFields(uiElements);
     setFormData(fields);
-  }, []);
+  }, [uiElements]);
 
   const handleChange = (e) => {
     const { id, value, type, checked, name } = e.target;

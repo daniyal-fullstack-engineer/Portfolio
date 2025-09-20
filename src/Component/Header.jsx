@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { gsap } from 'gsap';
 import useSmoothScroll from '../hooks/useSmoothScroll';
 
 const Header = () => {
@@ -78,46 +77,7 @@ const Header = () => {
     }
   }, []);
 
-  // GSAP animations for navbar visibility
-  useEffect(() => {
-    if (navbarRef.current) {
-      gsap.to(navbarRef.current, {
-        y: isNavbarVisible ? 0 : -100,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-    }
-  }, [isNavbarVisible]);
-
-  // GSAP animations for mobile menu
-  useEffect(() => {
-    if (mobileMenuRef.current) {
-      if (isMenuOpen) {
-        gsap.fromTo(mobileMenuRef.current, 
-          { 
-            opacity: 0, 
-            y: -20,
-            scale: 0.95
-          },
-          { 
-            opacity: 1, 
-            y: 0,
-            scale: 1,
-            duration: 0.3,
-            ease: "back.out(1.7)"
-          }
-        );
-      } else {
-        gsap.to(mobileMenuRef.current, {
-          opacity: 0,
-          y: -20,
-          scale: 0.95,
-          duration: 0.2,
-          ease: "power2.in"
-        });
-      }
-    }
-  }, [isMenuOpen]);
+  // Simple CSS transitions handle navbar visibility and mobile menu animations
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -288,7 +248,7 @@ const Header = () => {
 
           {/* Enhanced Mobile menu button */}
           <button
-            className={`md:hidden p-2.5 sm:p-3 rounded-xl transition-all duration-300 relative group border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-blue-500/25 hover:scale-105 overflow-hidden touch-manipulation focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 ${
+            className={`md:hidden p-2.5 sm:p-3 rounded-xl transition-all duration-300 relative group border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-blue-500/25 hover:scale-105 active:scale-95 focus:scale-105 overflow-hidden touch-manipulation focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 ${
               isMenuOpen 
                 ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white' 
                 : 'text-slate-700 dark:text-slate-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white'

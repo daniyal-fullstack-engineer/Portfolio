@@ -1,8 +1,8 @@
+'use client'
 import React, { useState, useMemo, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import SEOHead from './SEOHead';
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import ImageWithSkeleton from './ImageWithSkeleton';
-import './AllProjects.css';
 
 // Import the same projects data
 const projects = [
@@ -111,7 +111,7 @@ export default function AllProjects() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
-  const navigate = useNavigate();
+  const router = useRouter();
 
   // Unique scroll implementation for AllProjects
   useEffect(() => {
@@ -182,12 +182,6 @@ export default function AllProjects() {
 
   return (
     <>
-      <SEOHead 
-        title="All Projects - Web & Mobile Development Portfolio | M Daniyal"
-        description="Complete portfolio showcasing all web applications, mobile apps, e-commerce platforms, and business solutions developed by M Daniyal. Featured projects built with React, Node.js, React Native, and modern technologies."
-        keywords="portfolio projects, web development projects, mobile app projects, e-commerce development, React projects, Node.js projects, React Native apps, M Daniyal portfolio, development showcase"
-        url="https://daniyalamjadali.vercel.app/all-projects"
-      />
       <div className="all-projects-page min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden" style={{
         scrollBehavior: 'smooth',
         overflowX: 'hidden'
@@ -246,7 +240,7 @@ export default function AllProjects() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link
-              to="/"
+              href="/"
               className="flex items-center gap-2 text-slate-300 dark:text-slate-300 hover:text-blue-400 dark:hover:text-blue-400"
             >
               <i className="fas fa-arrow-left"></i>
@@ -415,7 +409,7 @@ export default function AllProjects() {
             <p className="text-slate-300 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
               Return to the main portfolio section to see the curated selection of my best work.
             </p>
-            <Link to="/">
+            <Link href="/">
               <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1">
                 Back to Portfolio
               </button>

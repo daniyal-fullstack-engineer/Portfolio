@@ -32,93 +32,88 @@ const SmoothScroll = () => {
       link.addEventListener('click', handleAnchorClick);
     });
 
-    // Enhanced scroll animations with more variety
+    // Optimized scroll animations with reduced complexity
     gsap.utils.toArray('.fade-in-up').forEach((element, index) => {
       gsap.fromTo(element, 
         {
-          y: 50,
-          opacity: 0,
-          scale: 0.98
+          y: 30,
+          opacity: 0
         },
         {
           y: 0,
           opacity: 1,
-          scale: 1,
-          duration: 0.3,
-          delay: index * 0.03,
+          duration: 0.4,
+          delay: index * 0.05,
           ease: "power2.out",
           scrollTrigger: {
             trigger: element,
-            start: "top 98%",
-            end: "bottom 2%",
+            start: "top 95%",
+            end: "bottom 5%",
             toggleActions: "play none none reverse"
           }
         }
       );
     });
 
-    // Slide in from left animation
+    // Simplified slide animations
     gsap.utils.toArray('.slide-in-left').forEach((element, index) => {
       gsap.fromTo(element,
         {
-          x: -60,
+          x: -40,
           opacity: 0
         },
         {
           x: 0,
           opacity: 1,
-          duration: 0.3,
-          delay: index * 0.05,
+          duration: 0.4,
+          delay: index * 0.08,
           ease: "power2.out",
           scrollTrigger: {
             trigger: element,
-            start: "top 95%",
+            start: "top 90%",
             toggleActions: "play none none reverse"
           }
         }
       );
     });
 
-    // Slide in from right animation
     gsap.utils.toArray('.slide-in-right').forEach((element, index) => {
       gsap.fromTo(element,
         {
-          x: 60,
+          x: 40,
           opacity: 0
         },
         {
           x: 0,
           opacity: 1,
-          duration: 0.3,
-          delay: index * 0.05,
+          duration: 0.4,
+          delay: index * 0.08,
           ease: "power2.out",
           scrollTrigger: {
             trigger: element,
-            start: "top 95%",
+            start: "top 90%",
             toggleActions: "play none none reverse"
           }
         }
       );
     });
 
-    // Scale in animation
+    // Simplified scale animation
     gsap.utils.toArray('.scale-in').forEach((element, index) => {
       gsap.fromTo(element,
         {
-          scale: 0.8,
-          opacity: 0,
-          rotation: 5
+          scale: 0.9,
+          opacity: 0
         },
         {
           scale: 1,
           opacity: 1,
-          rotation: 0,
-          duration: 0.3,
-          delay: index * 0.03,
-          ease: "back.out(1.2)",
+          duration: 0.4,
+          delay: index * 0.06,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: element,
-            start: "top 95%",
+            start: "top 90%",
             toggleActions: "play none none reverse"
           }
         }
@@ -139,75 +134,59 @@ const SmoothScroll = () => {
       });
     });
 
-    // Enhanced portfolio items animation
+    // Simplified portfolio items animation
     gsap.utils.toArray('.portfolio-item').forEach((item, index) => {
       gsap.fromTo(item,
         {
-          scale: 0.9,
-          opacity: 0,
-          y: 40,
-          rotationY: 8
+          y: 30,
+          opacity: 0
         },
         {
-          scale: 1,
-          opacity: 1,
           y: 0,
-          rotationY: 0,
-          duration: 0.3,
-          delay: index * 0.05,
+          opacity: 1,
+          duration: 0.4,
+          delay: index * 0.08,
           ease: "power2.out",
           scrollTrigger: {
             trigger: item,
-            start: "top 95%",
+            start: "top 90%",
             toggleActions: "play none none reverse"
           }
         }
       );
     });
 
-    // Service cards animation
+    // Simplified service cards animation
     gsap.utils.toArray('.service-card').forEach((card, index) => {
       gsap.fromTo(card,
         {
-          y: 50,
-          opacity: 0,
-          scale: 0.95
+          y: 30,
+          opacity: 0
         },
         {
           y: 0,
           opacity: 1,
-          scale: 1,
-          duration: 0.3,
-          delay: index * 0.04,
+          duration: 0.4,
+          delay: index * 0.06,
           ease: "power2.out",
           scrollTrigger: {
             trigger: card,
-            start: "top 95%",
+            start: "top 90%",
             toggleActions: "play none none reverse"
           }
         }
       );
     });
 
-    // Text reveal animation
+    // Simplified text reveal animation
     gsap.utils.toArray('.text-reveal').forEach((element) => {
-      const text = element.textContent;
-      element.innerHTML = '';
-      
-      for (let i = 0; i < text.length; i++) {
-        const span = document.createElement('span');
-        span.textContent = text[i];
-        span.style.display = 'inline-block';
-        span.style.opacity = '0';
-        span.style.transform = 'translateY(50px)';
-        element.appendChild(span);
-      }
-      
-      gsap.to(element.children, {
-        opacity: 1,
+      gsap.fromTo(element, {
+        y: 20,
+        opacity: 0
+      }, {
         y: 0,
-        duration: 0.4,
-        stagger: 0.02,
+        opacity: 1,
+        duration: 0.6,
         ease: "power2.out",
         scrollTrigger: {
           trigger: element,
@@ -217,74 +196,49 @@ const SmoothScroll = () => {
       });
     });
 
-    // Floating animation for decorative elements
+    // Simplified floating animation for decorative elements
     gsap.utils.toArray('.float-element').forEach((element, index) => {
       gsap.to(element, {
-        y: -30,
-        duration: 3 + index * 0.5,
+        y: -15,
+        duration: 4 + index * 0.5,
         repeat: -1,
         yoyo: true,
         ease: "power2.inOut"
       });
     });
 
-    // Counter animation for numbers
+    // Simplified counter animation for numbers
     gsap.utils.toArray('.counter').forEach((counter) => {
       const target = parseInt(counter.textContent);
       gsap.fromTo(counter, 
         { textContent: 0 },
         {
           textContent: target,
-          duration: 1.2,
+          duration: 1.5,
           ease: "power2.out",
           snap: { textContent: 1 },
           scrollTrigger: {
             trigger: counter,
-            start: "top 95%",
+            start: "top 90%",
             toggleActions: "play none none reverse"
           }
         }
       );
     });
 
-    // Progress bar animation
+    // Simplified progress bar animation
     gsap.utils.toArray('.progress-bar').forEach((bar) => {
       const width = bar.style.width;
       bar.style.width = '0%';
       gsap.to(bar, {
         width: width,
-        duration: 1,
+        duration: 1.2,
         ease: "power2.out",
         scrollTrigger: {
           trigger: bar,
-          start: "top 85%",
+          start: "top 90%",
           toggleActions: "play none none reverse"
         }
-      });
-    });
-
-    // Magnetic hover effect for buttons
-    gsap.utils.toArray('.magnetic').forEach((element) => {
-      element.addEventListener('mousemove', (e) => {
-        const rect = element.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        
-        gsap.to(element, {
-          x: x * 0.1,
-          y: y * 0.1,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-      
-      element.addEventListener('mouseleave', () => {
-        gsap.to(element, {
-          x: 0,
-          y: 0,
-          duration: 0.3,
-          ease: "elastic.out(1, 0.3)"
-        });
       });
     });
 

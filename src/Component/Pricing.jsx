@@ -1,20 +1,10 @@
-import React, { useEffect, useState } from "react";
-import AOS from "aos";
+import React, { useState } from "react";
 import SmoothScroll from "./SmoothScroll";
 import useSmoothScroll from "../hooks/useSmoothScroll";
 
 export default function Pricing() {
   const { scrollToSection } = useSmoothScroll();
   const [activeTab, setActiveTab] = useState(0); // Default to first tab
-
-  useEffect(() => {
-    AOS.init({
-      duration: 400,
-      once: true,
-      easing: "ease-out",
-      offset: 100,
-    });
-  }, []);
 
   const handleTabSelect = (index) => {
     setActiveTab(index);
@@ -283,7 +273,7 @@ export default function Pricing() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
           {/* Section Title */}
-          <div className="text-center mb-16 fade-in-up" data-aos="fade-up">
+          <div className="text-center mb-16 fade-in-up">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-6">
               <i className="fas fa-tag text-blue-600 dark:text-blue-400"></i>
               <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Pricing Plans</span>
@@ -328,8 +318,6 @@ export default function Pricing() {
                 className={`fade-in-up transition-all duration-500 ${
                   activeTab === categoryIndex ? 'block' : 'hidden'
                 }`}
-                data-aos="fade-up"
-                data-aos-delay="100"
               >
                 {/* Category Header */}
                 <div className="text-center mb-12">
@@ -351,8 +339,6 @@ export default function Pricing() {
                         pkg.popular ? 'lg:scale-105' : ''
                       }`}
                       onClick={() => handleContactClick(`${category.title} - ${pkg.title}`)}
-                      data-aos="fade-up"
-                      data-aos-delay={100 + (pkgIndex * 100)}
                     >
                       {/* Popular Badge */}
                       {pkg.popular && (
@@ -423,7 +409,7 @@ export default function Pricing() {
           </div>
 
           {/* Custom Development Section */}
-          <div className="text-center fade-in-up" data-aos="fade-up" data-aos-delay="200">
+          <div className="text-center fade-in-up">
             <div className="relative bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 border border-slate-200/50 dark:border-slate-600/50 overflow-hidden group hover:shadow-3xl transition-all duration-500">
               {/* Background Effects */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl sm:rounded-3xl"></div>
@@ -446,7 +432,7 @@ export default function Pricing() {
                 </h3>
                 
                 <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors duration-300">
-                  Have a unique project that doesn't fit our standard packages? Let's discuss your specific requirements and create a completely custom solution tailored to your business needs.
+                  Have a unique project that doesn&apos;t fit our standard packages? Let&apos;s discuss your specific requirements and create a completely custom solution tailored to your business needs.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 max-w-4xl mx-auto">
@@ -468,7 +454,7 @@ export default function Pricing() {
                     className="btn-primary group px-8 sm:px-10 md:px-12 lg:px-16 py-4 sm:py-5 md:py-6 lg:py-7 text-base sm:text-lg md:text-xl lg:text-2xl hover:animate-pulse-slow relative z-30 cursor-pointer"
                   >
                     <i className="fas fa-comments text-base sm:text-lg md:text-xl lg:text-2xl animate-pulse-slow"></i>
-                    <span>Let's Discuss Your Project</span>
+                    <span>Let&apos;s Discuss Your Project</span>
                   </button>
                   <button 
                     onClick={() => scrollToSection('portfolio', -80)}

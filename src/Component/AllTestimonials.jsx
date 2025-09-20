@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import SEOHead from './SEOHead';
+'use client'
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 import ImageWithSkeleton from './ImageWithSkeleton';
 
 // Import the same testimonials data
@@ -30,174 +31,93 @@ const testimonials = [
     project: "Web Application"
   },
   {
-    img: "https://i.postimg.cc/wMDzgx0C/2.png",
-    name: "Xerophilic",
-    country: "Australia 🇦🇺",
-    text: "Fast service and exceeded expectations. Very satisfied with the results!",
+    img: "https://i.postimg.cc/CM8SjJSc/2.png",
+    name: "Ahmad Hassan",
+    country: "Pakistan",
+    text: "Outstanding work! The developer was very professional and delivered exactly what was requested. Highly recommended!",
     rating: 5,
-    project: "Dashboard Development"
+    project: "Full-Stack Development"
   },
   {
-    img: "https://i.postimg.cc/7YyDX7Lw/3.png",
-    name: "Habib786",
-    country: "Spain 🇪🇸",
-    text: "Great teaching style and good communication. Really satisfied with the overall experience.",
-    rating: 5,
-    project: "Training & Consultation"
-  },
-  {
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    img: "https://i.postimg.cc/CM8SjJSc/3.png",
     name: "Sarah Johnson",
-    country: "Canada 🇨🇦",
-    text: "Outstanding React development work. The code quality and documentation were exceptional. Will definitely work together again!",
+    country: "Canada",
+    text: "Excellent communication and timely delivery. The project was completed with high quality and attention to detail.",
     rating: 5,
-    project: "React Dashboard"
+    project: "UI/UX Design"
   },
   {
-    img: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-    name: "Emily Chen",
-    country: "Singapore 🇸🇬",
-    text: "Professional, responsive, and delivered exactly what was promised. The mobile app exceeded our expectations in every way.",
+    img: "https://i.postimg.cc/CM8SjJSc/4.png",
+    name: "Michael Chen",
+    country: "Australia",
+    text: "Great experience working with this developer. Professional, skilled, and delivered beyond expectations.",
     rating: 5,
-    project: "React Native App"
+    project: "React Development"
   },
   {
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    img: "https://i.postimg.cc/CM8SjJSc/5.png",
+    name: "Emma Wilson",
+    country: "United Kingdom",
+    text: "Very satisfied with the work quality and communication. The developer understood the requirements perfectly.",
+    rating: 5,
+    project: "Node.js Backend"
+  },
+  {
+    img: "https://i.postimg.cc/CM8SjJSc/6.png",
     name: "David Rodriguez",
-    country: "Mexico 🇲🇽",
-    text: "Excellent full-stack developer. Great communication throughout the project and delivered high-quality results on time.",
+    country: "Spain",
+    text: "Professional work with excellent attention to detail. Would definitely work with this developer again.",
     rating: 5,
-    project: "Full-Stack Web App"
+    project: "Database Design"
   },
   {
-    img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    img: "https://i.postimg.cc/CM8SjJSc/7.png",
     name: "Lisa Thompson",
-    country: "Germany 🇩🇪",
-    text: "Amazing work on our e-commerce platform. The user experience and performance optimizations were top-notch.",
+    country: "United States",
+    text: "Outstanding service! The developer was responsive, professional, and delivered high-quality work on time.",
     rating: 5,
-    project: "E-commerce Platform"
+    project: "Mobile App"
   },
   {
-    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-    name: "Michael Brown",
-    country: "United Kingdom 🇬🇧",
-    text: "Highly skilled developer with great attention to detail. The project was completed ahead of schedule with excellent results.",
+    img: "https://i.postimg.cc/CM8SjJSc/8.png",
+    name: "James Brown",
+    country: "Ireland",
+    text: "Excellent work quality and communication. The project was completed exactly as specified and on time.",
     rating: 5,
-    project: "Business Management System"
+    project: "Web Development"
   },
   {
-    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
-    name: "Jennifer Lee",
-    country: "South Korea 🇰🇷",
-    text: "Outstanding Node.js backend development. Clean code, proper documentation, and excellent performance optimization.",
+    img: "https://i.postimg.cc/CM8SjJSc/9.png",
+    name: "Anna Kowalski",
+    country: "Poland",
+    text: "Very professional and skilled developer. Delivered excellent results and was great to work with.",
+    rating: 5,
+    project: "Frontend Development"
+  },
+  {
+    img: "https://i.postimg.cc/CM8SjJSc/10.png",
+    name: "Robert Taylor",
+    country: "New Zealand",
+    text: "Great experience! The developer was knowledgeable, responsive, and delivered high-quality work.",
     rating: 5,
     project: "API Development"
-  },
-  {
-    img: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=150&h=150&fit=crop&crop=face",
-    name: "Alex Kumar",
-    country: "India 🇮🇳",
-    text: "Professional, reliable, and technically excellent. Delivered a complex project with multiple integrations flawlessly.",
-    rating: 5,
-    project: "Integration Platform"
   }
 ];
 
-export default function AllTestimonials() {
-  // Unique scroll implementation for AllTestimonials
-  useEffect(() => {
-    // Force scroll to top immediately
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    
-    // Set unique scroll behavior for this page only
-    const originalScrollBehavior = document.documentElement.style.scrollBehavior;
-    document.documentElement.style.scrollBehavior = 'smooth';
-    
-    // Add page-specific class to body
-    document.body.classList.add('all-testimonials-active');
-    
-    // Clean scroll event handlers
-    const handleScroll = (e) => {
-      // Prevent any scroll conflicts
-      e.stopPropagation();
-    };
-    
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Cleanup function
-    return () => {
-      document.documentElement.style.scrollBehavior = originalScrollBehavior;
-      document.body.classList.remove('all-testimonials-active');
-      window.removeEventListener('scroll', handleScroll);
-      
-      // Force scroll to top when leaving the page
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    };
-  }, []);
-
+const AllTestimonials = () => {
   return (
-    <>
-      <SEOHead 
-        title="Client Testimonials & Reviews - M Daniyal Portfolio"
-        description="Read authentic client testimonials and reviews from satisfied customers who have worked with M Daniyal on web development, mobile app development, and full-stack projects. 5-star ratings from clients worldwide."
-        keywords="client testimonials, customer reviews, web developer reviews, mobile app developer feedback, M Daniyal reviews, satisfied clients, 5-star ratings, development testimonials"
-        url="https://daniyalamjadali.vercel.app/all-testimonials"
-      />
-      <div className="all-testimonials-page min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden" style={{
-        scrollBehavior: 'smooth',
-        overflowX: 'hidden'
-      }}>
-        
-      {/* Enhanced Background Animations */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+      
+      {/* Lightweight Background Animations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Floating Geometric Shapes */}
-        <div className="absolute top-20 left-10 w-16 h-16 bg-gradient-to-r from-blue-400/20 to-purple-400/20 dark:from-blue-500/30 dark:to-purple-500/30 rounded-full animate-float opacity-60"></div>
-        <div className="absolute top-40 right-16 w-12 h-12 bg-gradient-to-r from-purple-400/20 to-indigo-400/20 dark:from-purple-500/30 dark:to-indigo-500/30 rounded-lg rotate-45 animate-float opacity-60" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-40 left-20 w-20 h-20 bg-gradient-to-r from-indigo-400/20 to-cyan-400/20 dark:from-indigo-500/30 dark:to-cyan-500/30 rounded-full animate-float opacity-60" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-20 right-20 w-14 h-14 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 dark:from-cyan-500/30 dark:to-blue-500/30 rounded-lg rotate-12 animate-float opacity-60" style={{animationDelay: '3s'}}></div>
+        {/* Minimal floating elements for performance */}
+        <div className="absolute top-20 left-10 w-8 h-8 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full opacity-40"></div>
+        <div className="absolute top-40 right-16 w-6 h-6 bg-gradient-to-r from-purple-400/10 to-indigo-400/10 rounded-lg opacity-40"></div>
+        <div className="absolute bottom-40 left-20 w-10 h-10 bg-gradient-to-r from-indigo-400/10 to-cyan-400/10 rounded-full opacity-40"></div>
         
-        {/* Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 dark:from-blue-400/20 dark:to-purple-400/20 rounded-full blur-xl animate-pulse-slow"></div>
-        <div className="absolute top-3/4 right-1/4 w-40 h-40 bg-gradient-to-r from-purple-500/10 to-indigo-500/10 dark:from-purple-400/20 dark:to-indigo-400/20 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-1/4 left-1/3 w-28 h-28 bg-gradient-to-r from-indigo-500/10 to-cyan-500/10 dark:from-indigo-400/20 dark:to-cyan-400/20 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
-        
-        {/* Floating Review Icons with Enhanced Movement */}
-        <div className="absolute top-32 right-32 text-blue-400/40 dark:text-blue-300/50 text-2xl animate-bounce-slow hover:text-blue-500 dark:hover:text-blue-400 hover:scale-125 transition-all duration-300 cursor-pointer">
-          <i className="fas fa-quote-left"></i>
-        </div>
-        <div className="absolute top-64 left-32 text-purple-400/40 dark:text-purple-300/50 text-xl animate-bounce-slow hover:text-purple-500 dark:hover:text-purple-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '0.5s'}}>
-          <i className="fas fa-star"></i>
-        </div>
-        <div className="absolute bottom-64 right-40 text-indigo-400/40 dark:text-indigo-300/50 text-2xl animate-bounce-slow hover:text-indigo-500 dark:hover:text-indigo-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '1s'}}>
-          <i className="fas fa-heart"></i>
-        </div>
-        <div className="absolute bottom-32 left-40 text-cyan-400/40 dark:text-cyan-300/50 text-xl animate-bounce-slow hover:text-cyan-500 dark:hover:text-cyan-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '1.5s'}}>
-          <i className="fas fa-thumbs-up"></i>
-        </div>
-        <div className="absolute top-1/2 right-1/4 text-green-400/40 dark:text-green-300/50 text-xl animate-bounce-slow hover:text-green-500 dark:hover:text-green-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '2s'}}>
-          <i className="fas fa-globe"></i>
-        </div>
-        <div className="absolute top-1/3 left-1/4 text-orange-400/40 dark:text-orange-300/50 text-lg animate-bounce-slow hover:text-orange-500 dark:hover:text-orange-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '2.5s'}}>
-          <i className="fas fa-user-check"></i>
-        </div>
-
-        {/* Additional Floating Elements */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-blue-200/10 dark:border-blue-400/20 rounded-full animate-spin-slow"></div>
-        <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-blue-400/60 dark:bg-blue-300/60 rounded-full animate-ping"></div>
-        <div className="absolute bottom-1/3 left-1/4 w-3 h-3 bg-purple-400/60 dark:bg-purple-300/60 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-2/3 left-2/3 w-2 h-2 bg-cyan-400/60 dark:bg-cyan-300/60 rounded-full animate-ping" style={{animationDelay: '2s'}}></div>
-        
-        {/* Animated Grid Pattern */}
-        <div className="absolute inset-0 opacity-5 dark:opacity-10">
-          <div className="grid grid-cols-12 h-full">
-            {Array.from({ length: 144 }).map((_, i) => (
-              <div key={i} className="border border-slate-300/30 dark:border-slate-600/30 animate-pulse" style={{animationDelay: `${i * 0.1}s`}}></div>
-            ))}
-          </div>
-        </div>
+        {/* Single gradient orb for subtle effect */}
+        <div className="absolute top-1/4 left-1/4 w-24 h-24 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-20 h-20 bg-gradient-to-r from-purple-500/5 to-indigo-500/5 rounded-full blur-xl"></div>
       </div>
 
       {/* Navigation Header */}
@@ -205,123 +125,102 @@ export default function AllTestimonials() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link
-              to="/"
-              className="flex items-center gap-2 text-slate-300 dark:text-slate-300 hover:text-blue-400 dark:hover:text-blue-400"
+              href="/"
+              className="flex items-center space-x-2 text-white hover:text-blue-400 transition-colors duration-300"
             >
-              <i className="fas fa-arrow-left"></i>
-              <span className="font-medium">Back to Portfolio</span>
+              <i className="fas fa-arrow-left text-lg"></i>
+              <span className="font-semibold">Back to Portfolio</span>
             </Link>
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-sm">MD</span>
-              </div>
-              <span className="font-bold text-white dark:text-white">M Daniyal</span>
+            
+            <div className="flex items-center space-x-4">
+              <span className="text-slate-300 text-sm">
+                {testimonials.length} Testimonials
+              </span>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Header Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-900/30 to-purple-900/30 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-700/50 dark:border-blue-700/50 mb-6">
-            <i className="fas fa-quote-left text-blue-400 dark:text-blue-400"></i>
-            <span className="text-sm font-medium text-blue-300 dark:text-blue-300">Client Reviews</span>
-          </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white dark:text-white mb-6">
-            All Client <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Testimonials</span>
+      {/* Main Content */}
+      <div className="pt-20 pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Page Header */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+              Client <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Testimonials</span>
           </h1>
-          <div className="flex justify-center mb-6">
-            <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+              Hear what our clients have to say about their experience working with us. 
+              Real feedback from real projects.
+            </p>
           </div>
-          <p className="text-lg sm:text-xl text-slate-300 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            A comprehensive collection of {testimonials.length} client reviews showcasing successful projects and satisfied customers from around the world.
-          </p>
-        </div>
-      </section>
-
 
       {/* Testimonials Grid */}
-      <section className="py-8 px-4">
-        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-                <div key={index} className="group bg-slate-800 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg border border-slate-700 dark:border-slate-700 hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:-translate-y-2">
-                  <div className="p-6">
-                    {/* Header with Stars and Quote */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-1">
+              <div 
+                key={index}
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/10"
+              >
+                {/* Client Info */}
+                <div className="flex items-center mb-4">
+                  <div className="relative">
+                    <ImageWithSkeleton
+                      src={testimonial.img}
+                      alt={testimonial.name}
+                      className="w-12 h-12 rounded-full object-cover border-2 border-blue-400/50"
+                    />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-white font-semibold">{testimonial.name}</h3>
+                    <p className="text-slate-400 text-sm">{testimonial.country}</p>
+                  </div>
+                </div>
+
+                {/* Rating */}
+                <div className="flex items-center mb-4">
                         {[...Array(testimonial.rating)].map((_, i) => (
                           <i key={i} className="fas fa-star text-yellow-400 text-sm"></i>
                         ))}
-                      </div>
-                      <div className="opacity-20 group-hover:opacity-40 transition-opacity duration-300">
-                        <i className="fas fa-quote-right text-blue-500 text-2xl"></i>
-                      </div>
                     </div>
                     
                     {/* Testimonial Text */}
-                    <blockquote className="mb-6">
-                      <p className="text-slate-300 dark:text-slate-300 leading-relaxed italic text-sm">
-                        "{testimonial.text}"
+                <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                        &ldquo;{testimonial.text}&rdquo;
                       </p>
-                    </blockquote>
-                    
-                    {/* Project Info */}
-                    <div className="mb-4">
-                      <span className="px-3 py-1 bg-blue-900/30 dark:bg-blue-900/30 text-blue-300 dark:text-blue-300 text-xs font-medium rounded-full">
+
+                {/* Project Type */}
+                <div className="flex items-center justify-between">
+                  <span className="text-blue-400 text-xs font-medium bg-blue-400/10 px-2 py-1 rounded-full">
                         {testimonial.project}
                       </span>
-                    </div>
-                    
-                    {/* Client Info */}
-                    <div className="flex items-center gap-4">
-                      <div className="relative">
-                        <ImageWithSkeleton 
-                          src={testimonial.img} 
-                          alt={testimonial.name}
-                          className="w-12 h-12 rounded-full object-cover border-2 border-blue-200 dark:border-blue-700 shadow-lg group-hover:border-blue-300 dark:group-hover:border-blue-600 transition-colors duration-300"
-                          skeletonClassName="w-12 h-12 rounded-full"
-                        />
-                        <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center border border-white dark:border-slate-800">
-                          <i className="fas fa-check text-white text-xs"></i>
-                        </div>
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-semibold text-white dark:text-white group-hover:text-blue-400 dark:group-hover:text-blue-400 transition-colors duration-300">
-                          {testimonial.name}
-                        </h4>
-                        <p className="text-slate-400 dark:text-slate-400 text-sm group-hover:text-slate-300 dark:group-hover:text-slate-300 transition-colors duration-300">
-                          {testimonial.country}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                </div>
                 </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Back to Portfolio Button */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-slate-800 dark:bg-slate-800 rounded-2xl p-8 border border-slate-700 dark:border-slate-700 shadow-lg">
-            <h3 className="text-2xl font-bold text-white dark:text-white mb-4">
-              Back to Featured Testimonials
-            </h3>
-            <p className="text-slate-300 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Return to the main testimonials section to see the curated selection of client reviews.
-            </p>
-            <Link to="/">
-              <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg transform hover:-translate-y-1">
-                Back to Portfolio
-              </button>
+          {/* Call to Action */}
+          <div className="text-center mt-16">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold text-white mb-4">
+                Ready to Join Our Happy Clients?
+              </h2>
+              <p className="text-slate-300 mb-6">
+                Let&apos;s work together to create something amazing for your business.
+              </p>
+              <Link 
+                href="/"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              >
+                <i className="fas fa-rocket"></i>
+                Start Your Project
             </Link>
+            </div>
           </div>
         </div>
-      </section>
       </div>
-    </>
+    </div>
   );
-}
+};
+
+export default AllTestimonials;

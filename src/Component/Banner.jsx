@@ -1,6 +1,7 @@
 import React from "react";
 import ImageWithSkeleton from "./ImageWithSkeleton";
 import useSmoothScroll from "../hooks/useSmoothScroll";
+import Image from 'next/image';
 
 const Banner = () => {
   const { scrollToSection } = useSmoothScroll();
@@ -21,47 +22,47 @@ const Banner = () => {
       <div className="header-content d-flex align-items-center">
         <div id="parallax">
           <div className="header-shape shape-one" data-depth="0.10">
-            <img src="https://i.postimg.cc/J7bRR2cK/shape-1.png" alt="Decorative geometric shape for portfolio background" />
+            <Image src="https://i.postimg.cc/J7bRR2cK/shape-1.png" alt="Decorative geometric shape for portfolio background" width={100} height={100} />
           </div>
           <div className="header-shape shape-two" data-depth="0.30">
-            <img src="https://i.postimg.cc/437TqLx6/shape-2.png" alt="Decorative floating shape element" />
+            <Image src="https://i.postimg.cc/437TqLx6/shape-2.png" alt="Decorative floating shape element" width={100} height={100} />
           </div>
           <div className="header-shape shape-three" data-depth="0.40">
-            <img src="https://i.postimg.cc/63Cx58RT/shape-3.png" alt="Background decoration shape" />
+            <Image src="https://i.postimg.cc/63Cx58RT/shape-3.png" alt="Background decoration shape" width={100} height={100} />
           </div>
           <div className="header-shape shape-four" data-depth="0.60">
-            <img src="https://i.postimg.cc/437TqLx6/shape-2.png" alt="Decorative floating shape element" />
+            <Image src="https://i.postimg.cc/437TqLx6/shape-2.png" alt="Decorative floating shape element" width={100} height={100} />
           </div>
           <div className="header-shape shape-five" data-depth="0.20">
-            <img src="https://i.postimg.cc/J7bRR2cK/shape-1.png" alt="Decorative geometric shape for portfolio background" />
+            <Image src="https://i.postimg.cc/J7bRR2cK/shape-1.png" alt="Decorative geometric shape for portfolio background" width={100} height={100} />
           </div>
           <div className="header-shape shape-six" data-depth="0.15">
-            <img src="https://i.postimg.cc/bNyfpNvN/shape-4.png" alt="Portfolio background decoration" />
+            <Image src="https://i.postimg.cc/bNyfpNvN/shape-4.png" alt="Portfolio background decoration" width={100} height={100} />
           </div>
           <div className="header-shape shape-seven" data-depth="0.50">
-            <img src="https://i.postimg.cc/9FL5M54P/shape-5.png" alt="Portfolio visual element" />
+            <Image src="https://i.postimg.cc/9FL5M54P/shape-5.png" alt="Portfolio visual element" width={100} height={100} />
           </div>
           <div className="header-shape shape-eight" data-depth="0.40">
-            <img src="https://i.postimg.cc/63Cx58RT/shape-3.png" alt="Background decoration shape" />
+            <Image src="https://i.postimg.cc/63Cx58RT/shape-3.png" alt="Background decoration shape" width={100} height={100} />
           </div>
           <div className="header-shape shape-nine" data-depth="0.20">
-            <img src="https://i.postimg.cc/sgLkYY4v/shape-6.png" alt="Design decoration element" />
+            <Image src="https://i.postimg.cc/sgLkYY4v/shape-6.png" alt="Design decoration element" width={100} height={100} />
           </div>
           <div className="header-shape shape-ten" data-depth="0.30">
-            <img src="https://i.postimg.cc/63Cx58RT/shape-3.png" alt="Background decoration shape" />
+            <Image src="https://i.postimg.cc/63Cx58RT/shape-3.png" alt="Background decoration shape" width={100} height={100} />
           </div>
         </div>
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="home-text">
-                <h4>HELLO, I'M</h4>
+                <h4>HELLO, I&apos;M</h4>
                 <h1>Hamid Raza</h1>
                 <p>A freelancer UI Designer & Web Developer</p>
                 <div className="home-btn">
                   <button 
                     onClick={handleViewWork}
-                    className="btn-1 cursor-pointer"
+                    className="btn-primary animate-fade-in-up"
                     type="button"
                   >
                     View my Work
