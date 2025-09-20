@@ -14,6 +14,7 @@ export const useImageLoading = (src, options = {}) => {
   } = options;
 
   const loadImage = useCallback((imageSrc, attempt = 1) => {
+    console.log(`Loading image: ${imageSrc} (attempt ${attempt})`);
     const img = new Image();
     
     // Set loading timeout for better UX
@@ -30,6 +31,7 @@ export const useImageLoading = (src, options = {}) => {
     }, 10000);
     
     img.onload = () => {
+      console.log(`Image loaded successfully: ${imageSrc}`);
       clearTimeout(timeoutId);
       setImageStatus('loaded');
       setImageSrc(imageSrc);
@@ -37,6 +39,7 @@ export const useImageLoading = (src, options = {}) => {
     };
 
     img.onerror = () => {
+      console.log(`Image failed to load: ${imageSrc} (attempt ${attempt})`);
       clearTimeout(timeoutId);
       if (attempt < retryAttempts) {
         // Retry with exponential backoff and jitter

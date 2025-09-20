@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../Component/Header';
 import Banner from '../Component/Banner';
 import WhatAppIcon from '../Component/WhatAppIcon';
@@ -18,8 +18,12 @@ import Faq from '../Component/Faq';
 import Contact from '../Component/Contact';
 import DarkBanner from '../Component/DarkBanner';
 import FormTesting from '../Component/FormTesting';
+import useCustomUltraSmoothScroll from '../hooks/useCustomUltraSmoothScroll';
+import useUltraSmoothPerformance from '../hooks/useUltraSmoothPerformance';
 import FiverrIcon from '../Component/FiverrIcon';
 import { generatePortfolioStructuredData, generateWebsiteStructuredData } from '../utils/seoData';
+import UltraSmoothLoader from '../Component/UltraSmoothLoader';
+import BackgroundAnimations from '../Component/BackgroundAnimations';
 
 
 // useEffect(() => {
@@ -29,16 +33,37 @@ import { generatePortfolioStructuredData, generateWebsiteStructuredData } from '
 // }, []);
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // Initialize custom ultra-smooth scroll and performance optimizations
+  useCustomUltraSmoothScroll();
+  useUltraSmoothPerformance();
+
   useEffect(() => {
-    // Simple scroll to top on mount
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Ultra-smooth scroll to top on mount
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 100);
   }, []);
+
+  const handleLoaderComplete = () => {
+    // Ultra-smooth transition
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 200);
+  };
 
   return (
     <ToastProvider>
-      <div className='main-wrapper scrollable-content min-h-screen bg-slate-900 dark:bg-slate-900 transition-colors duration-300'>
-        {/* Particle Background */}
-        <ParticleBackground />
+      {/* Loader */}
+      {isLoading && <UltraSmoothLoader onComplete={handleLoaderComplete} />}
+      
+          <div className={`main-wrapper scrollable-content min-h-screen bg-slate-900 dark:bg-slate-900 transition-all duration-1000 ease-out ${isLoading ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+            {/* Background Animations */}
+            <BackgroundAnimations />
+            
+            {/* Particle Background */}
+            <ParticleBackground />
       
       
       {/* Mobile Gestures */}

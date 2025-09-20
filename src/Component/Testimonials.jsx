@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Button from "./Button";
 import ImageWithSkeleton from "./ImageWithSkeleton";
-import useSmoothScroll from "../hooks/useSmoothScroll";
+import useCustomUltraSmoothScroll from "../hooks/useCustomUltraSmoothScroll";
 
 const testimonials = [
   {
@@ -105,7 +105,7 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
-  const { scrollToSection } = useSmoothScroll();
+  const { scrollToElement } = useCustomUltraSmoothScroll();
   const [displayedTestimonials, setDisplayedTestimonials] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -136,7 +136,7 @@ export default function Testimonials() {
 
   return (
     <section 
-      className="relative min-h-screen py-20 px-4 sm:px-6 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" 
+      className="relative min-h-screen py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" 
       id="testimonials" 
       data-scroll-index={5}
     >
@@ -249,7 +249,7 @@ export default function Testimonials() {
                 </div>
                 
         {/* View All Testimonials Button Section */}
-        <section className="relative z-10 py-20 px-4">
+        <section className="relative z-10 py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
           {/* Background Effects */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl animate-pulse-slow"></div>
@@ -325,7 +325,7 @@ export default function Testimonials() {
             variant="primary"
             size="lg"
             icon="fas fa-rocket"
-            onClick={() => scrollToSection('contact', -80)}
+            onClick={() => scrollToElement(document.getElementById('contact'), -80)}
           >
             Ready to work together?
           </Button>

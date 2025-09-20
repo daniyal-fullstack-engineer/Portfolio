@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import useSmoothScroll from "../hooks/useSmoothScroll";
+import useCustomUltraSmoothScroll from "../hooks/useCustomUltraSmoothScroll";
 
 export default function HireMe() {
-  const { scrollToSection } = useSmoothScroll();
+  const { scrollToElement } = useCustomUltraSmoothScroll();
   const [isHovered, setIsHovered] = useState(false);
 
 
@@ -12,7 +12,7 @@ export default function HireMe() {
 
   const handleHireMe = () => {
     // Smooth scroll to contact section
-    scrollToSection('contact', -80);
+    scrollToElement(document.getElementById('contact'), -80);
   };
 
   const features = [
@@ -43,7 +43,7 @@ export default function HireMe() {
   return (
     <>
       <section 
-        className="relative min-h-screen py-20 px-4 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" 
+        className="relative min-h-screen py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" 
         id="hire-me"
       >
         {/* Enhanced Background Elements */}
@@ -124,7 +124,7 @@ export default function HireMe() {
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
-                  <i className="fas fa-file-pdf text-lg"></i>
+                  <i className="fas fa-file-pdf"></i>
                   <span>View My CV</span>
                 </button>
 
@@ -132,7 +132,7 @@ export default function HireMe() {
                   onClick={handleHireMe} 
                   className="btn-secondary group flex items-center justify-center gap-3"
                 >
-                  <i className="fas fa-rocket text-lg"></i>
+                  <i className="fas fa-rocket"></i>
                   <span>Hire Me Now</span>
                 </button>
               </div>
@@ -144,14 +144,14 @@ export default function HireMe() {
                     href="mailto:your-email@example.com" 
                     className="btn-secondary group flex items-center justify-center gap-3"
                   >
-                    <i className="fas fa-envelope text-lg"></i>
+                    <i className="fas fa-envelope"></i>
                     <span>Email Me</span>
                   </a>
                   <a 
                     href="tel:+1234567890" 
                     className="btn-secondary group flex items-center justify-center gap-3"
                   >
-                    <i className="fas fa-phone text-lg"></i>
+                    <i className="fas fa-phone"></i>
                     <span>Call Me</span>
                   </a>
                 </div>

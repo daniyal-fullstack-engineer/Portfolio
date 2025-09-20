@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import useSmoothScroll from '../hooks/useSmoothScroll';
+import useCustomUltraSmoothScroll from '../hooks/useCustomUltraSmoothScroll';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +14,7 @@ const Header = () => {
 
   const navbarRef = useRef(null);
   const mobileMenuRef = useRef(null);
-  const { scrollToSection, scrollToHome } = useSmoothScroll();
+  const { scrollToElement, scrollToTop } = useCustomUltraSmoothScroll();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -170,10 +170,10 @@ const Header = () => {
     if (sectionId === 'home') {
       // For home, scroll to the very top of the page
       console.log('Scrolling to home (top)');
-      scrollToHome();
+      scrollToTop();
     } else {
       console.log(`Scrolling to section: ${sectionId}`);
-      scrollToSection(sectionId, -80);
+      scrollToElement(document.getElementById(sectionId), -80);
     }
     closeMenu();
   };
@@ -193,7 +193,7 @@ const Header = () => {
   return (
     <nav 
       ref={navbarRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
           ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl shadow-2xl' 
           : 'bg-transparent'

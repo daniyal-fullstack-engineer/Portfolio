@@ -1,8 +1,8 @@
 import React from "react";
-import useSmoothScroll from "../hooks/useSmoothScroll";
+import useCustomUltraSmoothScroll from "../hooks/useCustomUltraSmoothScroll";
 
 const About = () => {
-  const { scrollToSection } = useSmoothScroll();
+  const { scrollToElement } = useCustomUltraSmoothScroll();
 
   const techStack = {
     frontend: [
@@ -68,7 +68,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="relative py-20 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+    <section id="about" className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
       {/* Modern Background Pattern */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated Grid */}
@@ -81,27 +81,27 @@ const About = () => {
         </div>
         
         {/* Floating Geometric Elements */}
-        <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl animate-float"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-lg rotate-45 blur-xl animate-float" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-40 left-20 w-28 h-28 bg-gradient-to-r from-indigo-500/10 to-cyan-500/10 rounded-full blur-xl animate-float" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-20 right-20 w-20 h-20 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-lg rotate-12 blur-xl animate-float" style={{animationDelay: '3s'}}></div>
+        <div className="absolute top-10 sm:top-20 left-4 sm:left-20 w-16 sm:w-32 h-16 sm:h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl animate-float"></div>
+        <div className="absolute top-20 sm:top-40 right-4 sm:right-20 w-12 sm:w-24 h-12 sm:h-24 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-lg rotate-45 blur-xl animate-float" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 sm:bottom-40 left-4 sm:left-20 w-14 sm:w-28 h-14 sm:h-28 bg-gradient-to-r from-indigo-500/10 to-cyan-500/10 rounded-full blur-xl animate-float" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-10 sm:bottom-20 right-4 sm:right-20 w-10 sm:w-20 h-10 sm:h-20 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-lg rotate-12 blur-xl animate-float" style={{animationDelay: '3s'}}></div>
         
         {/* Tech Icons Floating */}
-        <div className="absolute top-32 right-32 text-blue-400/30 text-4xl animate-bounce-slow">
+        <div className="absolute top-16 sm:top-32 right-8 sm:right-32 text-blue-400/30 text-2xl sm:text-4xl animate-bounce-slow">
             <i className="fab fa-react"></i>
           </div>
-        <div className="absolute top-64 left-32 text-purple-400/30 text-3xl animate-bounce-slow" style={{animationDelay: '0.5s'}}>
+        <div className="absolute top-32 sm:top-64 left-8 sm:left-32 text-purple-400/30 text-xl sm:text-3xl animate-bounce-slow" style={{animationDelay: '0.5s'}}>
             <i className="fab fa-node-js"></i>
           </div>
-        <div className="absolute bottom-64 right-40 text-indigo-400/30 text-4xl animate-bounce-slow" style={{animationDelay: '1s'}}>
+        <div className="absolute bottom-32 sm:bottom-64 right-10 sm:right-40 text-indigo-400/30 text-2xl sm:text-4xl animate-bounce-slow" style={{animationDelay: '1s'}}>
           <i className="fab fa-js-square"></i>
           </div>
-        <div className="absolute bottom-32 left-40 text-cyan-400/30 text-3xl animate-bounce-slow" style={{animationDelay: '1.5s'}}>
+        <div className="absolute bottom-16 sm:bottom-32 left-10 sm:left-40 text-cyan-400/30 text-xl sm:text-3xl animate-bounce-slow" style={{animationDelay: '1.5s'}}>
             <i className="fab fa-python"></i>
           </div>
         </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 max-w-7xl mx-auto">
         {/* Modern Section Header */}
         <div className="text-center mb-16 sm:mb-20 lg:mb-24">
           <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-blue-900/40 to-purple-900/40 backdrop-blur-xl border border-blue-700/30 mb-8">
@@ -110,47 +110,47 @@ const About = () => {
             <span className="text-sm font-semibold text-blue-300 tracking-wide">About Me</span>
             </div>
           
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8 px-4">
             About <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Me</span>
           </h2>
           
-          <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed px-4">
                 I&apos;m a passionate full-stack developer with expertise in modern web technologies, 
             dedicated to creating exceptional digital experiences that drive business growth.
           </p>
       </div>
 
         {/* Modern Card Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {/* Main Story Card */}
           <div className="lg:col-span-2">
-            <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-3xl p-8 border border-slate-700/30 shadow-2xl overflow-hidden">
+            <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-slate-700/30 shadow-2xl overflow-hidden">
               {/* Card Background Effects */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-2xl"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-purple-500/20 to-pink-500/20 rounded-full blur-2xl"></div>
               
               <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center">
-                    <i className="fas fa-user text-white text-xl"></i>
+                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center">
+                    <i className="fas fa-user text-white text-lg sm:text-xl"></i>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white">My Story</h3>
-                    <p className="text-slate-400 text-sm">Full-Stack Developer & Digital Creator</p>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white">My Story</h3>
+                    <p className="text-slate-400 text-xs sm:text-sm">Full-Stack Developer & Digital Creator</p>
                   </div>
                 </div>
                 
-                <div className="space-y-6 text-slate-300 leading-relaxed">
-                  <p className="text-lg">
+                <div className="space-y-4 sm:space-y-6 text-slate-300 leading-relaxed">
+                  <p className="text-sm sm:text-base lg:text-lg">
                     With over <span className="text-blue-400 font-semibold">5 years of experience</span> in full-stack development, 
                     I&apos;ve had the privilege of working with diverse clients and creating solutions that make a real impact.
                 </p>
-                <p>
+                <p className="text-sm sm:text-base">
                     My journey began with a curiosity about how websites work, which evolved into a passion for building 
                     digital experiences that combine <span className="text-purple-400 font-semibold">technical expertise</span> with 
                     <span className="text-pink-400 font-semibold"> creative problem-solving</span>.
                 </p>
-                <p>
+                <p className="text-sm sm:text-base">
                     I specialize in modern web and mobile technologies including React, Next.js, React Native, Node.js, and Python. 
                     From responsive web applications to cross-platform mobile apps, I create solutions that work seamlessly across all devices.
                   When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to open-source 
@@ -158,26 +158,26 @@ const About = () => {
                     </p>
                   </div>
                   
-                <div className="flex flex-wrap gap-4 mt-8">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mt-6 sm:mt-8">
                 <button 
                   onClick={() => scrollToSection('contact', -80)}
                     className="btn-primary group flex items-center justify-center gap-3"
                 >
-                    <i className="fas fa-paper-plane text-lg"></i>
+                    <i className="fas fa-paper-plane"></i>
                   <span>Get In Touch</span>
                 </button>
                 <button 
                   onClick={() => scrollToSection('portfolio', -80)}
                     className="btn-secondary group flex items-center justify-center gap-3"
                 >
-                    <i className="fas fa-eye text-lg"></i>
+                    <i className="fas fa-eye"></i>
                   <span>View Work</span>
                 </button>
-                  <button 
-                    onClick={() => scrollToSection('tech-skills', -80)}
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg group px-8 py-4 text-lg min-h-[56px] flex items-center justify-center gap-3"
-                  >
-                    <svg className="w-5 h-5 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <button
+      onClick={() => scrollToElement(document.getElementById('tech-skills'), -80)}
+      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg group flex items-center justify-center gap-3 btn-primary"
+    >
+                    <svg className="w-4 sm:w-5 h-4 sm:h-5 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
                     <span>Show My Story</span>
@@ -394,14 +394,14 @@ const About = () => {
                   onClick={() => scrollToSection('contact', -80)}
                   className="btn-primary group px-8 py-4 text-lg min-h-[56px] flex items-center justify-center gap-3"
                 >
-                  <i className="fas fa-rocket text-lg"></i>
+                  <i className="fas fa-rocket"></i>
                   <span>Start a Project</span>
                 </button>
                 <button 
                   onClick={() => scrollToSection('services', -80)}
                   className="btn-secondary group px-8 py-4 text-lg min-h-[56px] flex items-center justify-center gap-3"
                 >
-                  <i className="fas fa-cogs text-lg"></i>
+                  <i className="fas fa-cogs"></i>
                   <span>View Services</span>
                 </button>
               </div>

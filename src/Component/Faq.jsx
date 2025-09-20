@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import useSmoothScroll from "../hooks/useSmoothScroll";
+import useCustomUltraSmoothScroll from "../hooks/useCustomUltraSmoothScroll";
 
 export default function Faq() {
-  const { scrollToSection } = useSmoothScroll();
+  const { scrollToElement } = useCustomUltraSmoothScroll();
   const [openFaq, setOpenFaq] = useState(null);
 
   const faqs = [
@@ -55,7 +55,7 @@ export default function Faq() {
   return (
     <>
       <section 
-        className="relative min-h-screen py-20 px-4 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
+        className="relative min-h-screen py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
         id="faq"
       >
         {/* Background Elements */}
@@ -164,17 +164,17 @@ export default function Faq() {
               
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
                 <button 
-                  onClick={() => scrollToSection('contact', -80)}
+                  onClick={() => scrollToElement(document.getElementById('contact'), -80)}
                   className="btn-primary group flex items-center justify-center gap-3 cursor-pointer"
                 >
-                  <i className="fas fa-envelope text-lg"></i>
+                  <i className="fas fa-envelope"></i>
                   <span>Contact Me</span>
                 </button>
                 <button 
-                  onClick={() => scrollToSection('portfolio', -80)}
+                  onClick={() => scrollToElement(document.getElementById('portfolio'), -80)}
                   className="btn-secondary group flex items-center justify-center gap-3 cursor-pointer"
                 >
-                  <i className="fas fa-eye text-lg"></i>
+                  <i className="fas fa-eye"></i>
                   <span>View My Work</span>
                 </button>
               </div>

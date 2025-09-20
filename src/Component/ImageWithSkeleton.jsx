@@ -16,14 +16,20 @@ const ImageWithSkeleton = ({
   const { imageStatus, imageSrc, retry, isLoading, isLoaded, hasError } = useImageLoading(src, {
     retryAttempts: 3,
     retryDelay: 1000,
-    onLoad,
-    onError,
+    onLoad: () => {
+      console.log('Image loaded successfully:', src);
+      if (onLoad) onLoad();
+    },
+    onError: () => {
+      console.log('Image failed to load:', src);
+      if (onError) onError();
+    },
     fallbackSrc
   });
 
   // Enhanced animated skeleton component that covers entire image space
-  const SkeletonLoader = () => (
-    <div className={`absolute inset-0 w-full h-full bg-slate-800 rounded-lg overflow-hidden ${skeletonClassName}`}>
+  const SkeletonLoader = ({ borderRadiusClass = 'rounded-lg' }) => (
+    <div className={`absolute inset-0 w-full h-full bg-slate-800 overflow-hidden ${borderRadiusClass} ${skeletonClassName}`}>
       {/* Main shimmer effect */}
       <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
       
@@ -55,8 +61,8 @@ const ImageWithSkeleton = ({
   );
 
   // Enhanced error fallback component that covers entire image space
-  const ErrorFallback = () => (
-    <div className={`absolute inset-0 w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-600/50 rounded-lg overflow-hidden ${skeletonClassName}`}>
+  const ErrorFallback = ({ borderRadiusClass = 'rounded-lg' }) => (
+    <div className={`absolute inset-0 w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-600/50 overflow-hidden ${borderRadiusClass} ${skeletonClassName}`}>
       {/* Subtle error shimmer */}
       <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-red-500/10 to-transparent"></div>
       
@@ -96,11 +102,25 @@ const ImageWithSkeleton = ({
     </div>
   );
 
+  // Extract border radius classes from className
+  const getBorderRadiusClass = (className) => {
+    if (className.includes('rounded-full')) return 'rounded-full';
+    if (className.includes('rounded-3xl')) return 'rounded-3xl';
+    if (className.includes('rounded-2xl')) return 'rounded-2xl';
+    if (className.includes('rounded-xl')) return 'rounded-xl';
+    if (className.includes('rounded-lg')) return 'rounded-lg';
+    if (className.includes('rounded-md')) return 'rounded-md';
+    if (className.includes('rounded-sm')) return 'rounded-sm';
+    return 'rounded-lg'; // default
+  };
+
+  const borderRadiusClass = getBorderRadiusClass(className);
+
   return (
     <div className={`relative w-full h-full ${className}`}>
-      {isLoading && <SkeletonLoader />}
+      {isLoading && <SkeletonLoader borderRadiusClass={borderRadiusClass} />}
       
-      {hasError && <ErrorFallback />}
+      {hasError && <ErrorFallback borderRadiusClass={borderRadiusClass} />}
       
       <Image
         src={imageSrc}

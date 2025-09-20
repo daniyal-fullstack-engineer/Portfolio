@@ -1,8 +1,8 @@
 import React from "react";
-import useSmoothScroll from "../hooks/useSmoothScroll";
+import useCustomUltraSmoothScroll from "../hooks/useCustomUltraSmoothScroll";
 
 export default function Services() {
-  const { scrollToSection } = useSmoothScroll();
+  const { scrollToElement } = useCustomUltraSmoothScroll();
 
   const services = [
     {
@@ -50,7 +50,7 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="relative py-20 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+    <section id="services" className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div 
@@ -92,7 +92,7 @@ export default function Services() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 max-w-7xl mx-auto">
         {/* Enhanced Section Title */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-900/30 to-purple-900/30 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-700/50 dark:border-blue-700/50 mb-6">
@@ -176,14 +176,14 @@ export default function Services() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
                 <button 
-                  onClick={() => scrollToSection('contact', -80)}
+                  onClick={() => scrollToElement(document.getElementById('contact'), -80)}
                   className="btn-primary animate-fade-in-up"
                 >
                   <i className="fas fa-rocket mr-2"></i>
                   Start a Project
                 </button>
                 <button 
-                  onClick={() => scrollToSection('portfolio', -80)}
+                  onClick={() => scrollToElement(document.getElementById('portfolio'), -80)}
                   className="btn-secondary animate-fade-in-up"
                   style={{animationDelay: '0.1s'}}
                 >

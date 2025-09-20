@@ -14,15 +14,11 @@ const ScrollToTop = () => {
   }, []);
 
   const scrollToTop = () => {
-    // Use Lenis if available, otherwise fallback to native smooth scroll
-    if (window.lenis) {
-      window.lenis.scrollTo(0, { duration: 1.2 });
-    } else {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
+    // Use native smooth scroll (custom smooth scroll is handled globally)
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   // Ensure page starts at top on refresh and handle page load
@@ -47,7 +43,7 @@ const ScrollToTop = () => {
       {/* Modern Back to Top Button */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 z-50 group transition-all duration-500 transform cursor-pointer ${
+        className={`fixed bottom-20 right-6 z-[9999] group transition-all duration-500 transform cursor-pointer ${
           isVisible 
             ? 'opacity-100 scale-100 translate-y-0' 
             : 'opacity-0 scale-75 translate-y-4 pointer-events-none'

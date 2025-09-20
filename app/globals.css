@@ -94,6 +94,401 @@ body {
   animation: progress-bar linear;
 }
 
+/* Responsive Utilities */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .text-responsive {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  .spacing-responsive {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .text-responsive {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .spacing-responsive {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .text-responsive {
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+  
+  .spacing-responsive {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Ultra-Smooth Loading and Transitions */
+.main-wrapper {
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+/* Ultra-smooth scrolling */
+html {
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 80px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure smooth scrolling works on all elements */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Smooth animations for all elements */
+* {
+  transition: all 0.3s ease;
+}
+
+/* Fade in animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0,0,0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+/* Animation utility classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.6s ease-out;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.6s ease-out;
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 0.6s ease-out;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin 8s linear infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce 2s infinite;
+}
+
+/* Hover animations */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-rotate {
+  transition: transform 0.3s ease;
+}
+
+.hover-rotate:hover {
+  transform: rotate(5deg);
+}
+
+/* Stagger animations */
+.animate-stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.animate-stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.animate-stagger-3 {
+  animation-delay: 0.3s;
+}
+
+.animate-stagger-4 {
+  animation-delay: 0.4s;
+}
+
+.animate-stagger-5 {
+  animation-delay: 0.5s;
+}
+
+/* Prevent flash of unstyled content */
+body {
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ultra-smooth page transitions */
+.page-transition {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+/* Z-index management */
+.loader-container {
+  z-index: 9999;
+}
+
+.main-content {
+  z-index: 1;
+}
+
+/* Ultra-smooth scroll for all devices */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Enhanced smooth scrolling */
+  * {
+    scroll-behavior: smooth;
+  }
+  
+  /* GPU acceleration for smooth animations */
+  .animate-pulse,
+  .animate-bounce,
+  .animate-spin,
+  .animate-ping {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+}
+
+/* Disable smooth scroll for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Ultra-smooth button interactions */
+.btn-primary,
+.btn-secondary {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow, background-color;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  will-change: transform;
+}
+
+/* Ultra-smooth card animations */
+.card,
+.service-card,
+.portfolio-item {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.card:hover,
+.service-card:hover,
+.portfolio-item:hover {
+  transform: translateY(-4px);
+  will-change: transform;
+}
+
+/* Ultra-smooth text animations */
+h1, h2, h3, h4, h5, h6 {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ultra-smooth image loading */
+img {
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+/* Ultra-smooth form interactions */
+input,
+textarea,
+select {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: border-color, box-shadow, transform;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  transform: scale(1.02);
+  will-change: transform;
+}
+
+/* Ultra-smooth mobile optimizations */
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Reduce motion on mobile for better performance */
+  .animate-pulse,
+  .animate-bounce {
+    animation-duration: 2s;
+  }
+  
+  /* Optimize touch interactions */
+  button,
+  a,
+  [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Ultra-smooth desktop optimizations */
+@media (min-width: 1024px) {
+  /* Enhanced hover effects for desktop */
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Smooth parallax effects */
+  .parallax {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+}
+
+/* Ultra-smooth loading states */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loaded {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @keyframes slideInLeft {
   from {
     opacity: 0;
@@ -199,11 +594,19 @@ body {
 
 /* Button Consistency */
 .btn-primary {
-  @apply bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-full font-medium transition-all duration-300 hover:from-blue-600 hover:to-purple-600 hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95 active:from-blue-700 active:to-purple-700 min-h-[48px] sm:min-h-[56px];
+  @apply bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg rounded-full font-medium transition-all duration-300 hover:from-blue-600 hover:to-purple-600 hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95 active:from-blue-700 active:to-purple-700 min-h-[44px] sm:min-h-[48px] md:min-h-[56px];
+}
+
+.btn-primary i {
+  @apply text-sm sm:text-base md:text-lg;
 }
 
 .btn-secondary {
-  @apply bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-full font-medium transition-all duration-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 active:scale-95 active:bg-slate-300 dark:active:bg-slate-600 min-h-[48px] sm:min-h-[56px];
+  @apply bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg rounded-full font-medium transition-all duration-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 active:scale-95 active:bg-slate-300 dark:active:bg-slate-600 min-h-[44px] sm:min-h-[48px] md:min-h-[56px];
+}
+
+.btn-secondary i {
+  @apply text-sm sm:text-base md:text-lg;
 }
 
 .btn-outline {

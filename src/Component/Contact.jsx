@@ -156,19 +156,19 @@ export default function Contact() {
     {
       icon: "fas fa-envelope",
       title: "Email",
-      value: "your-email@example.com",
-      link: "mailto:your-email@example.com"
+      value: "daniyalamjadali@gmail.com",
+      link: "mailto:daniyalamjadali@gmail.com"
     },
     {
       icon: "fas fa-phone",
       title: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567"
+      value: "+92 304 5485310",
+      link: "tel:+923045485310"
     },
     {
       icon: "fas fa-map-marker-alt",
       title: "Location",
-      value: "Your City, Country",
+      value: "Lahore, Pakistan",
       link: "#"
     }
   ];
@@ -177,7 +177,7 @@ export default function Contact() {
     <>
       <section 
         ref={sectionRef}
-        className="relative min-h-screen py-20 px-4 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" 
+        className="relative min-h-screen py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" 
         data-scroll-index={6} 
         id="contact"
       >
@@ -205,7 +205,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="relative z-10 max-w-7xl mx-auto">
           {/* Enhanced Section Title */}
           <div ref={titleRef} className="text-center mb-12 sm:mb-16">
             <div ref={subtitleRef} className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-gradient-to-r from-blue-900/30 to-purple-900/30 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-700/50 dark:border-blue-700/50 mb-4 sm:mb-6">

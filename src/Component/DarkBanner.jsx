@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 
 const DarkBanner = () => {
   const bannerRef = useRef(null);
@@ -9,42 +8,15 @@ const DarkBanner = () => {
   useEffect(() => {
     // Register GSAP plugins
     gsap.registerPlugin(ScrollTrigger);
-
-    // Detect mobile devices
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
     
-    // Only initialize Lenis on desktop devices
-    if (!isMobile) {
-      // Initialize Lenis smooth scroll for desktop only
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-      });
-
-      // Lenis animation frame
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-
-      return () => {
-        lenis.destroy();
-      };
-    }
+    // Smooth scroll is now handled globally by useCustomUltraSmoothScroll
+    // No need for component-specific scroll initialization
   }, []);
 
   return (
     <main 
       ref={bannerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-0 mt-0 -mt-16 pb-20 sm:pb-24 md:pb-32" 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-0 mt-0 -mt-16 pb-16 sm:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-8" 
       id="home-section"
       role="main"
       aria-label="Main content"
@@ -53,9 +25,9 @@ const DarkBanner = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-transparent to-purple-900/30 dark:from-blue-900/30 dark:via-transparent dark:to-purple-900/30"></div>
       
       {/* Floating Geometric Shapes */}
-      <div className="absolute top-20 left-10 w-16 h-16 bg-gradient-to-r from-blue-500/30 to-purple-500/30 dark:from-blue-500/30 dark:to-purple-500/30 rounded-full animate-float opacity-60"></div>
-      <div className="absolute top-40 right-16 w-12 h-12 bg-gradient-to-r from-purple-500/30 to-indigo-500/30 dark:from-purple-500/30 dark:to-indigo-500/30 rounded-lg rotate-45 animate-float opacity-60" style={{animationDelay: '1s'}}></div>
-      <div className="absolute bottom-40 left-20 w-20 h-20 bg-gradient-to-r from-indigo-500/30 to-cyan-500/30 dark:from-indigo-500/30 dark:to-cyan-500/30 rounded-full animate-float opacity-60" style={{animationDelay: '2s'}}></div>
+      <div className="absolute top-10 sm:top-20 left-4 sm:left-10 w-8 sm:w-16 h-8 sm:h-16 bg-gradient-to-r from-blue-500/30 to-purple-500/30 dark:from-blue-500/30 dark:to-purple-500/30 rounded-full animate-float opacity-60"></div>
+      <div className="absolute top-20 sm:top-40 right-4 sm:right-16 w-6 sm:w-12 h-6 sm:h-12 bg-gradient-to-r from-purple-500/30 to-indigo-500/30 dark:from-purple-500/30 dark:to-indigo-500/30 rounded-lg rotate-45 animate-float opacity-60" style={{animationDelay: '1s'}}></div>
+      <div className="absolute bottom-20 sm:bottom-40 left-4 sm:left-20 w-10 sm:w-20 h-10 sm:h-20 bg-gradient-to-r from-indigo-500/30 to-cyan-500/30 dark:from-indigo-500/30 dark:to-cyan-500/30 rounded-full animate-float opacity-60" style={{animationDelay: '2s'}}></div>
       <div className="absolute bottom-20 right-20 w-14 h-14 bg-gradient-to-r from-cyan-500/30 to-blue-500/30 dark:from-cyan-500/30 dark:to-blue-500/30 rounded-lg rotate-12 animate-float opacity-60" style={{animationDelay: '3s'}}></div>
       
       {/* Gradient Orbs */}
@@ -93,7 +65,7 @@ const DarkBanner = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center pt-16 sm:pt-24 md:pt-32">
+      <div className="relative z-10 max-w-6xl mx-auto text-center pt-16 sm:pt-24 md:pt-32">
         {/* Greeting */}
         <div className="mb-4 sm:mb-6 md:mb-8 mt-2 sm:mt-4 md:mt-6">
           <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-blue-900/40 to-purple-900/40 dark:from-blue-900/40 dark:to-purple-900/40 border border-blue-700/50 dark:border-blue-700/50 backdrop-blur-xl shadow-lg">
@@ -109,7 +81,7 @@ const DarkBanner = () => {
         </div>
 
         {/* Main Title */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 animate-fade-in-up">
           <span className="block text-white dark:text-white">M Daniyal</span>
           <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">
             Full-Stack Developer
@@ -117,26 +89,26 @@ const DarkBanner = () => {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg sm:text-xl md:text-2xl text-slate-300 dark:text-slate-300 mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-4">
+        <p className="text-lg sm:text-xl md:text-2xl text-slate-300 dark:text-slate-300 mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-4 animate-fade-in-up animate-stagger-1">
           I craft exceptional digital experiences through modern web and mobile development, 
           combining creativity with cutting-edge technology to bring your ideas to life.
         </p>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16 px-4">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16 px-4 animate-fade-in-up animate-stagger-2">
           <a 
             href="#portfolio" 
-            className="btn-primary group touch-manipulation flex items-center justify-center gap-3"
+            className="btn-primary group touch-manipulation flex items-center justify-center gap-3 hover-lift"
           >
-            <i className="fas fa-eye group-hover:animate-pulse text-lg"></i>
+            <i className="fas fa-eye group-hover:animate-pulse"></i>
             <span>View My Work</span>
           </a>
 
           <a 
             href="#contact" 
-            className="btn-secondary group touch-manipulation flex items-center justify-center gap-3"
+            className="btn-secondary group touch-manipulation flex items-center justify-center gap-3 hover-lift"
           >
-            <i className="fas fa-paper-plane group-hover:animate-bounce text-lg"></i>
+            <i className="fas fa-paper-plane group-hover:animate-bounce"></i>
             <span>Get In Touch</span>
           </a>
         </div>
@@ -152,7 +124,7 @@ const DarkBanner = () => {
             <div className="text-xs sm:text-sm text-slate-400 dark:text-slate-400 uppercase tracking-wider">Clients</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white dark:text-white mb-2">3+</div>
+            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white dark:text-white mb-2">5+</div>
             <div className="text-xs sm:text-sm text-slate-400 dark:text-slate-400 uppercase tracking-wider">Years</div>
           </div>
           <div className="text-center">
@@ -165,7 +137,7 @@ const DarkBanner = () => {
       {/* Enhanced Scroll Indicator */}
       <div className="absolute bottom-8 sm:bottom-12 md:bottom-16 left-1/2 transform -translate-x-1/2">
         <div className="flex flex-col items-center gap-3 text-slate-400 dark:text-slate-400">
-          <span className="text-sm font-medium tracking-wider uppercase animate-pulse">Scroll to explore</span>
+          {/* <span className="text-sm font-medium tracking-wider uppercase animate-pulse">Scroll to explore</span> */}
           <div className="w-6 h-10 border-2 border-slate-400/50 dark:border-slate-400/50 rounded-full flex justify-center relative overflow-hidden">
             <div className="w-1 h-3 bg-gradient-to-b from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 rounded-full mt-2 animate-bounce"></div>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/20 to-purple-500/20 rounded-full animate-pulse"></div>

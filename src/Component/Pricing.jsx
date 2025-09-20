@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import SmoothScroll from "./SmoothScroll";
-import useSmoothScroll from "../hooks/useSmoothScroll";
+import useCustomUltraSmoothScroll from "../hooks/useCustomUltraSmoothScroll";
 
 export default function Pricing() {
-  const { scrollToSection } = useSmoothScroll();
+  const { scrollToElement } = useCustomUltraSmoothScroll();
   const [activeTab, setActiveTab] = useState(0); // Default to first tab
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -24,7 +23,7 @@ export default function Pricing() {
 
   const handleContactClick = (planTitle) => {
     // Smooth scroll to contact section
-    scrollToSection('contact', -80);
+    scrollToElement(document.getElementById('contact'), -80);
   };
 
   const serviceCategories = [
@@ -257,8 +256,7 @@ export default function Pricing() {
 
   return (
     <>
-      <SmoothScroll />
-      <section className="relative min-h-screen py-20 px-4 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" id="pricing" data-scroll-index={5}>
+      <section className="relative min-h-screen py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" id="pricing" data-scroll-index={5}>
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Floating Geometric Shapes */}
@@ -283,34 +281,34 @@ export default function Pricing() {
           </div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="relative z-10 max-w-7xl mx-auto">
           {/* Section Title */}
-          <div className="text-center mb-16 fade-in-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-6">
-              <i className="fas fa-tag text-blue-600 dark:text-blue-400"></i>
-              <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Pricing Plans</span>
+          <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-4 sm:mb-6">
+              <i className="fas fa-tag text-blue-600 dark:text-blue-400 text-sm sm:text-base"></i>
+              <span className="text-xs sm:text-sm font-medium text-blue-700 dark:text-blue-300">Pricing Plans</span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 px-4">
               Choose Your <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Perfect</span> Plan
             </h2>
             
-            <div className="flex justify-center mb-8">
-              <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+            <div className="flex justify-center mb-6 sm:mb-8">
+              <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
             </div>
             
-            <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4">
               Professional website and mobile app development packages tailored to your business needs. From simple websites to complex mobile applications.
             </p>
 
             {/* Service Tabs */}
-            <div className="flex flex-wrap justify-center gap-2 mb-12">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-4">
               {serviceCategories.map((category, index) => (
                 <button
                   key={index}
                   onClick={() => handleTabSelect(index)}
                   disabled={isTransitioning}
-                  className={`px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-medium transition-all duration-300 cursor-pointer min-h-[48px] sm:min-h-[56px] ${
+                  className={`px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full text-sm sm:text-base md:text-lg font-medium transition-all duration-300 cursor-pointer min-h-[44px] sm:min-h-[48px] md:min-h-[56px] ${
                     isTransitioning 
                       ? 'opacity-50 cursor-not-allowed'
                       : 'cursor-pointer'
@@ -320,8 +318,9 @@ export default function Pricing() {
                       : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600'
                   }`}
                 >
-                  <i className={`${category.icon} mr-2`}></i>
-                  {category.title}
+                  <i className={`${category.icon} mr-1 sm:mr-2`}></i>
+                  <span className="hidden sm:inline">{category.title}</span>
+                  <span className="sm:hidden">{category.title.split(' ')[0]}</span>
                 </button>
               ))}
             </div>
@@ -493,17 +492,17 @@ export default function Pricing() {
                   
                   <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
                   <button 
-                    onClick={() => scrollToSection('contact', -80)}
+                    onClick={() => scrollToElement(document.getElementById('contact'), -80)}
                       className="btn-primary group flex items-center justify-center gap-3 cursor-pointer shadow-lg"
                   >
-                      <i className="fas fa-comments text-lg"></i>
-                      <span>Let&apos;s Discuss Your Project</span>
+                      <i className="fas fa-comments"></i>
+                    <span>Let&apos;s Discuss Your Project</span>
                   </button>
                   <button 
-                    onClick={() => scrollToSection('portfolio', -80)}
+                    onClick={() => scrollToElement(document.getElementById('portfolio'), -80)}
                       className="btn-secondary group flex items-center justify-center gap-3 cursor-pointer shadow-lg"
                   >
-                      <i className="fas fa-eye text-lg"></i>
+                      <i className="fas fa-eye"></i>
                       <span>View My Work</span>
                   </button>
                   </div>

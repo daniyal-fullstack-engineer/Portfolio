@@ -1,10 +1,10 @@
 import React from "react";
 import ImageWithSkeleton from "./ImageWithSkeleton";
-import useSmoothScroll from "../hooks/useSmoothScroll";
+import useCustomUltraSmoothScroll from "../hooks/useCustomUltraSmoothScroll";
 import Image from 'next/image';
 
 const Banner = () => {
-  const { scrollToSection } = useSmoothScroll();
+  const { scrollToElement } = useCustomUltraSmoothScroll();
 
   const handleViewWork = (e) => {
     e.preventDefault();
@@ -13,7 +13,7 @@ const Banner = () => {
     
     // Add a small delay to ensure everything is ready
     setTimeout(() => {
-      scrollToSection('portfolio', -80);
+      scrollToElement(document.getElementById('portfolio'), -80);
     }, 100);
   };
 

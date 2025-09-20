@@ -1,11 +1,11 @@
 'use client'
-import React, { useRef, useLayoutEffect, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
 import Button from "./Button";
 import ImageWithSkeleton from "./ImageWithSkeleton";
+import Image from "next/image";
 
 const projects = [
     {
@@ -15,7 +15,9 @@ const projects = [
         link: "https://admin.nexonpackaging.com/",
         tech: ["React", "Node.js", "MongoDB"],
         category: "Web App",
-        featured: true
+        featured: true,
+        status: "Live",
+        year: "2024"
       },
       {
         img: "https://i.postimg.cc/xjX5C26P/Screenshot-2025-04-06-024751.png",
@@ -24,7 +26,9 @@ const projects = [
         link: "https://www.nexonpackaging.com/",
         tech: ["Next.js", "Tailwind CSS", "Stripe"],
         category: "E-commerce",
-        featured: true
+    featured: true,
+    status: "Live",
+    year: "2024"
       },
       {
         img: "https://i.postimg.cc/d1H47SKg/Screenshot-2025-04-06-024039.png",
@@ -33,7 +37,9 @@ const projects = [
         link: "https://myquicks.com/",
         tech: ["React Native", "Firebase", "Maps API"],
         category: "Mobile App",
-        featured: true
+    featured: true,
+    status: "Live",
+    year: "2024"
       },
       {
         img: "https://i.postimg.cc/4x98Jmy5/dukhan.png",
@@ -42,7 +48,9 @@ const projects = [
         link: "https://dukanmine.com/",
         tech: ["Vue.js", "Python", "PostgreSQL"],
         category: "Web App",
-        featured: false
+    featured: false,
+    status: "Live",
+    year: "2023"
       },
       {
         img: "https://i.postimg.cc/sD0CRsBv/resume-builder.png",
@@ -51,7 +59,9 @@ const projects = [
         link: "https://app.thepathfinderhub.com/",
         tech: ["Next.js", "AI/ML", "PDF Generation"],
         category: "Web App",
-        featured: true
+    featured: true,
+    status: "Live",
+    year: "2024"
       },
       {
         img: "https://i.postimg.cc/Nf0vV5j3/roi.png",
@@ -60,7 +70,9 @@ const projects = [
         link: "https://roilevelup.com/",
         tech: ["React", "Chart.js", "Financial APIs"],
         category: "Web App",
-        featured: false
+    featured: false,
+    status: "Live",
+    year: "2023"
       },
       {
         img: "https://i.postimg.cc/2SQ6j1n0/gym.png",
@@ -69,7 +81,9 @@ const projects = [
         link: "https://herakleangym.vercel.app/login",
         tech: ["React", "Firebase", "Payment Gateway"],
         category: "Web App",
-        featured: false
+    featured: false,
+    status: "Live",
+    year: "2023"
       },
       {
         img: "https://i.postimg.cc/0QChXsR5/amberoil.png",
@@ -78,7 +92,9 @@ const projects = [
         link: "https://www.amberoil.ie/",
         tech: ["Angular", "TypeScript", "Trading APIs"],
         category: "Web App",
-        featured: false
+    featured: false,
+    status: "Live",
+    year: "2023"
       },
       {
         img: "https://i.postimg.cc/k5K08STb/mcc.png",
@@ -87,7 +103,9 @@ const projects = [
         link: "https://www.mcci.ie/",
         tech: ["WordPress", "PHP", "MySQL"],
         category: "Website",
-        featured: false
+    featured: false,
+    status: "Live",
+    year: "2023"
       },
       {
         img: "https://i.postimg.cc/C5PXYsxW/iki.png",
@@ -96,279 +114,399 @@ const projects = [
         link: "https://www.ikc.ie/",
         tech: ["React", "LMS", "Video Streaming"],
         category: "Web App",
-        featured: false
-      },
-      {
-        img: "https://i.postimg.cc/DZhtczNY/pegobal.png",
-        title: "PE Global",
-        description: "Global recruitment platform with job matching AI.",
-        link: "https://www.peglobal.net/",
-        tech: ["Next.js", "AI/ML", "Job APIs"],
-        category: "Web App",
-        featured: true
-      },
+    featured: false,
+    status: "Live",
+    year: "2023"
+  }
 ];
 
-export default function PortfolioCardStackFinal() {
-  const component = useRef(null);
-  const stackContainer = useRef(null);
-  
-  const featuredProjects = projects.filter(project => project.featured).slice(0, 6);
+const categories = [
+  { name: "All", value: "all", icon: "fas fa-th" },
+  { name: "Web App", value: "Web App", icon: "fas fa-laptop-code" },
+  { name: "Mobile App", value: "Mobile App", icon: "fas fa-mobile-alt" },
+  { name: "E-commerce", value: "E-commerce", icon: "fas fa-shopping-cart" },
+  { name: "Website", value: "Website", icon: "fas fa-globe" }
+];
 
-  // Lenis smooth scroll implementation
+export default function Portfolio() {
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [hoveredProject, setHoveredProject] = useState(null);
+  const [viewMode, setViewMode] = useState("grid"); // grid or list
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const filterRef = useRef(null);
+  const projectsRef = useRef(null);
+
+  // Filter projects based on active category
+  const filteredProjects = activeCategory === "all" 
+    ? projects 
+    : projects.filter(project => project.category === activeCategory);
+
+  const featuredProjects = projects.filter(project => project.featured);
+
+  // GSAP Animations
   useEffect(() => {
-    const lenis = new Lenis();
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    // Cleanup
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
-
-  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    let ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray(".card-item");
-      
-      gsap.set(cards, {
-        top: (i) => i * 15,
-        scale: (i) => 1 - i * 0.05,
-        zIndex: (i) => cards.length - i,
-      });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: stackContainer.current,
-          start: "top top",
-          end: `+=${(cards.length) * 500}`,
-          pin: true,
-          scrub: 1.5,
+    const ctx = gsap.context(() => {
+      // Title animation
+      gsap.fromTo(titleRef.current, 
+        { opacity: 0, y: 50 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.8, 
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
         }
-      });
+      );
 
-      cards.slice(0, -1).forEach((card, i) => {
-        const nextCard = cards[i + 1];
-        tl.to(card, {
-          autoAlpha: 0,
-          yPercent: -120,
-          ease: "power1.inOut"
-        }, `card-${i}`)
-        .to(nextCard, {
-            top: 0,
+      // Filter animation
+      gsap.fromTo(filterRef.current, 
+        { opacity: 0, y: 30 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.6, 
+          delay: 0.2,
+          ease: "power3.out",
+        scrollTrigger: {
+            trigger: filterRef.current,
+            start: "top 85%",
+            end: "bottom 15%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Projects animation
+      gsap.fromTo(projectsRef.current?.children, 
+        { opacity: 0, y: 60, scale: 0.9 },
+        { 
+          opacity: 1, 
+          y: 0, 
             scale: 1,
-            ease: "power1.inOut"
-        }, `card-${i}`);
-      });
+          duration: 0.8, 
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: projectsRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }, sectionRef);
 
-    }, component);
-    
-    return () => {
-      // Revert GSAP context and kill ScrollTriggers
-      ctx.revert();
-    };
-  }, []);
+    return () => ctx.revert();
+  }, [filteredProjects]);
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "Live": return "bg-green-500";
+      case "Development": return "bg-yellow-500";
+      case "Planning": return "bg-blue-500";
+      default: return "bg-gray-500";
+    }
+  };
+
+  const getCategoryColor = (category) => {
+    switch (category) {
+      case "Web App": return "from-blue-500 to-cyan-500";
+      case "Mobile App": return "from-purple-500 to-pink-500";
+      case "E-commerce": return "from-green-500 to-emerald-500";
+      case "Website": return "from-orange-500 to-red-500";
+      default: return "from-gray-500 to-gray-600";
+    }
+  };
 
   return (
-    <div ref={component} id="portfolio" className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-500">
-      {/* Enhanced Background Elements */}
+    <section 
+      ref={sectionRef}
+      className="relative min-h-screen py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" 
+      id="portfolio" 
+      data-scroll-index={3}
+    >
+      {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Animated Grid Pattern */}
-        <div className="absolute inset-0 opacity-5 dark:opacity-10">
-          <div className="grid grid-cols-12 h-full">
-            {Array.from({ length: 144 }).map((_, i) => (
-              <div key={i} className="border border-slate-300 dark:border-slate-600 animate-pulse" style={{animationDelay: `${i * 0.1}s`}}></div>
+        {/* Floating Geometric Shapes */}
+        <div className="absolute top-20 left-10 w-16 h-16 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full animate-float"></div>
+        <div className="absolute top-40 right-20 w-12 h-12 bg-gradient-to-r from-purple-400/20 to-indigo-400/20 rounded-lg rotate-45 animate-float" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 left-20 w-20 h-20 bg-gradient-to-r from-indigo-400/20 to-cyan-400/20 rounded-full animate-float" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-40 right-10 w-14 h-14 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 rounded-lg rotate-12 animate-float" style={{animationDelay: '3s'}}></div>
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="grid grid-cols-12 md:grid-cols-24 h-full">
+            {Array.from({ length: 288 }).map((_, i) => (
+              <div key={i} className="border border-blue-400/10"></div>
             ))}
           </div>
         </div>
-
-        {/* Floating Geometric Shapes with Enhanced Animations */}
-        <div className="absolute top-20 left-4 md:left-10 w-12 md:w-16 h-12 md:h-16 bg-gradient-to-r from-blue-400 to-purple-400 dark:from-blue-500 dark:to-purple-500 rounded-full opacity-20 dark:opacity-30 animate-float hover:scale-110 transition-transform duration-300"></div>
-        <div className="absolute top-40 right-4 md:right-20 w-8 md:w-12 h-8 md:h-12 bg-gradient-to-r from-purple-400 to-indigo-400 dark:from-purple-500 dark:to-indigo-500 rounded-lg rotate-45 opacity-20 dark:opacity-30 animate-float hover:rotate-90 transition-transform duration-500" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-40 left-4 md:left-20 w-16 md:w-20 h-16 md:h-20 bg-gradient-to-r from-indigo-400 to-cyan-400 dark:from-indigo-500 dark:to-cyan-500 rounded-full opacity-20 dark:opacity-30 animate-float hover:scale-125 transition-transform duration-300" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-20 right-4 md:right-10 w-10 md:w-14 h-10 md:h-14 bg-gradient-to-r from-cyan-400 to-blue-400 dark:from-cyan-500 dark:to-blue-500 rounded-lg rotate-12 opacity-20 dark:opacity-30 animate-float hover:rotate-45 transition-transform duration-500" style={{animationDelay: '3s'}}></div>
-        
-        {/* Enhanced Gradient Orbs with Movement */}
-        <div className="absolute top-1/4 left-1/4 w-24 md:w-32 h-24 md:h-32 bg-gradient-to-r from-blue-500/20 to-purple-500/20 dark:from-blue-400/30 dark:to-purple-400/30 rounded-full blur-xl animate-pulse-slow hover:scale-110 transition-transform duration-500"></div>
-        <div className="absolute top-3/4 right-1/4 w-32 md:w-40 h-32 md:h-40 bg-gradient-to-r from-purple-500/20 to-indigo-500/20 dark:from-purple-400/30 dark:to-indigo-400/30 rounded-full blur-xl animate-pulse-slow hover:scale-110 transition-transform duration-500" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-1/4 left-1/3 w-20 md:w-28 h-20 md:h-28 bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 dark:from-indigo-400/30 dark:to-cyan-400/30 rounded-full blur-xl animate-pulse-slow hover:scale-110 transition-transform duration-500" style={{animationDelay: '2s'}}></div>
-        
-        {/* Floating Tech Icons with Enhanced Movement */}
-        <div className="absolute top-32 right-8 md:right-32 text-blue-400/40 dark:text-blue-300/50 text-xl md:text-2xl animate-bounce-slow hover:text-blue-500 dark:hover:text-blue-400 hover:scale-125 transition-all duration-300 cursor-pointer">
-          <i className="fas fa-laptop-code"></i>
-        </div>
-        <div className="absolute top-64 left-8 md:left-32 text-purple-400/40 dark:text-purple-300/50 text-lg md:text-xl animate-bounce-slow hover:text-purple-500 dark:hover:text-purple-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '0.5s'}}>
-          <i className="fas fa-mobile-alt"></i>
-        </div>
-        <div className="absolute bottom-64 right-8 md:right-40 text-indigo-400/40 dark:text-indigo-300/50 text-xl md:text-2xl animate-bounce-slow hover:text-indigo-500 dark:hover:text-indigo-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '1s'}}>
-          <i className="fas fa-shopping-cart"></i>
-        </div>
-        <div className="absolute bottom-32 left-8 md:left-40 text-cyan-400/40 dark:text-cyan-300/50 text-lg md:text-xl animate-bounce-slow hover:text-cyan-500 dark:hover:text-cyan-400 hover:scale-125 transition-all duration-300 cursor-pointer" style={{animationDelay: '1.5s'}}>
-          <i className="fas fa-chart-line"></i>
-        </div>
-
-        {/* Additional Floating Elements */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-blue-200/20 dark:border-blue-400/20 rounded-full animate-spin-slow"></div>
-        <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-blue-400 dark:bg-blue-300 rounded-full animate-ping"></div>
-        <div className="absolute bottom-1/3 left-1/4 w-3 h-3 bg-purple-400 dark:bg-purple-300 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-2/3 left-2/3 w-2 h-2 bg-cyan-400 dark:bg-cyan-300 rounded-full animate-ping" style={{animationDelay: '2s'}}></div>
       </div>
 
-      {/* Professional Header Section */}
-      <section className="relative z-10 py-20 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-6">
-            <i className="fas fa-code text-blue-600 dark:text-blue-400 animate-spin-slow"></i>
-            <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Portfolio</span>
+      <div className="relative max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div ref={titleRef} className="text-center mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 dark:border-purple-500/20 mb-6">
+            <i className="fas fa-code text-blue-500 dark:text-blue-400 text-sm"></i>
+            <span className="text-sm font-medium text-blue-600 dark:text-blue-400">Portfolio</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-            My Creative <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Projects</span>
+          
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6">
+            My <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Creative</span> Works
           </h2>
-          <div className="flex justify-center mb-6">
-            <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-          </div>
-          <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
-            A showcase of my latest work, featuring modern web applications, e-commerce platforms, and business solutions built with cutting-edge technologies.
+          
+          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            Explore my collection of innovative projects that showcase modern web development, 
+            mobile applications, and creative solutions for real-world challenges.
           </p>
-          <p className="mt-8 text-slate-500 dark:text-slate-400 animate-pulse">Scroll down to explore</p>
         </div>
-      </section>
 
+        {/* Featured Projects Section */}
+        <div className="mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+              Featured Projects
+            </h3>
+            
+            {/* Debug info - remove this after testing */}
+            <div className="text-xs text-slate-500 dark:text-slate-400">
+              Debug: {projects.length} projects loaded
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-slate-500 dark:text-slate-400">View Mode:</span>
+              <button
+                onClick={() => setViewMode("grid")}
+                className={`p-2 rounded-lg transition-all duration-300 ${
+                  viewMode === "grid" 
+                    ? "bg-blue-500 text-white" 
+                    : "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600"
+                }`}
+              >
+                <i className="fas fa-th"></i>
+              </button>
+              <button
+                onClick={() => setViewMode("list")}
+                className={`p-2 rounded-lg transition-all duration-300 ${
+                  viewMode === "list" 
+                    ? "bg-blue-500 text-white" 
+                    : "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600"
+                }`}
+              >
+                <i className="fas fa-list"></i>
+              </button>
+            </div>
+          </div>
 
-      {/* Stacked Cards Section */}
-      <section className="relative z-10">
-        <div ref={stackContainer} className="relative h-screen">
-          {featuredProjects.map((project, index) => (
-            <div key={index} className="card-item absolute inset-0 flex items-center justify-center p-4">
-              <div className="w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-slate-200/50 dark:border-slate-700/50 bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl">
-                <div className="relative h-60 sm:h-72 md:h-96 overflow-hidden">
-                  <ImageWithSkeleton 
+          <div className={`grid gap-6 sm:gap-8 ${
+            viewMode === "grid" 
+              ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" 
+              : "grid-cols-1"
+          }`}>
+            {featuredProjects.slice(0, 6).map((project, index) => (
+              <div
+                key={index}
+                className="group relative bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                onMouseEnter={() => setHoveredProject(index)}
+                onMouseLeave={() => setHoveredProject(null)}
+              >
+                {/* Project Image */}
+                <div className="relative h-48 sm:h-56 overflow-hidden">
+                  <Image
                     src={project.img} 
                     alt={project.title} 
-                    className="w-full h-full object-cover"
-                    skeletonClassName="h-full"
+                    width={600}
+                    height={400}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      console.log('❌ Image error:', project.img);
+                      // Show fallback content
+                      e.target.style.display = 'none';
+                      const fallback = e.target.nextElementSibling;
+                      if (fallback) fallback.style.display = 'flex';
+                    }}
+                    onLoad={() => {
+                      console.log('✅ Image loaded successfully:', project.img);
+                    }}
+                    priority={index < 3} // Prioritize first 3 images
+                    unoptimized={true} // Disable Next.js optimization temporarily
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 hover:translate-y-0 transition-transform duration-500">
-                      <h3 className="text-white font-bold text-lg sm:text-xl mb-2">{project.title}</h3>
-                      <p className="text-white/80 text-sm sm:text-base">Click to view details</p>
+                  
+                  {/* Fallback content when image fails to load */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center" style={{display: 'none'}}>
+                    <div className="text-center p-4">
+                      <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-4 mx-auto">
+                        <i className="fas fa-image text-white text-2xl"></i>
+                      </div>
+                      <h3 className="text-white font-semibold mb-2">{project.title}</h3>
+                      <p className="text-slate-400 text-sm">Image Preview</p>
                     </div>
                   </div>
+                  
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  {/* Status Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-white ${getStatusColor(project.status)}`}>
+                      <div className="w-2 h-2 rounded-full bg-white animate-pulse"></div>
+                      {project.status}
+                    </span>
+                  </div>
+                  
+                  {/* Category Badge */}
+                  <div className="absolute top-4 right-4">
+                    <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${getCategoryColor(project.category)}`}>
+                      <i className="fas fa-tag"></i>
+                      {project.category}
+                    </span>
+                  </div>
+                  
+                  {/* Year Badge */}
+                  <div className="absolute bottom-4 right-4">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-white bg-black/50 backdrop-blur-sm">
+                      <i className="fas fa-calendar"></i>
+                      {project.year}
+                    </span>
+                    </div>
+                  
+                  {/* Hover Actions */}
+                  <div className={`absolute inset-0 flex items-center justify-center gap-4 transition-all duration-300 ${
+                    hoveredProject === index ? 'opacity-100' : 'opacity-0'
+                  }`}>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-900 rounded-full font-medium hover:bg-blue-50 transition-colors duration-300 shadow-lg"
+                    >
+                      <i className="fas fa-external-link-alt"></i>
+                      View Live
+                    </a>
+                    <button className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-colors duration-300 shadow-lg">
+                      <i className="fas fa-info-circle"></i>
+                      Details
+                    </button>
+                  </div>
                 </div>
-                <div className="p-6 sm:p-8">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-3">{project.title}</h3>
-                  <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((tech) => (
-                      <span key={tech} className="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300 text-xs sm:text-sm font-medium rounded-full border border-blue-200/50 dark:border-blue-700/50">
+                
+                {/* Project Content */}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-slate-600 dark:text-slate-300 mb-4 line-clamp-2">
+                    {project.description}
+                  </p>
+                  
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tech.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300"
+                      >
                         {tech}
                       </span>
                     ))}
                   </div>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      icon="fas fa-eye"
-                      className="flex-1"
+                  
+                  {/* Project Actions */}
+                  <div className="flex items-center justify-between">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors duration-300"
                     >
-                      Preview
-                    </Button>
-                    <Button
-                      variant="secondary"
-                      size="lg"
-                      icon="fas fa-external-link-alt"
-                      className="flex-1"
-                      onClick={() => window.open(project.link, '_blank', 'noopener,noreferrer')}
-                    >
-                      Visit
-                    </Button>
+                      <span>View Project</span>
+                      <i className="fas fa-arrow-right text-sm"></i>
+                    </a>
+                    
+                    <div className="flex items-center gap-2">
+                      <button className="p-2 text-slate-400 hover:text-blue-500 transition-colors duration-300">
+                        <i className="fas fa-heart"></i>
+                      </button>
+                      <button className="p-2 text-slate-400 hover:text-blue-500 transition-colors duration-300">
+                        <i className="fas fa-share"></i>
+                      </button>
                   </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-      </section>
-
-      {/* View All Projects Button Section */}
-      <section className="relative z-10 py-20 px-4">
-        {/* Background Effects */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl animate-pulse-slow"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-r from-purple-500/10 to-indigo-500/10 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '1s'}}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-blue-200/20 dark:border-blue-400/20 rounded-full animate-spin-slow"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500 group">
-            {/* Floating Elements */}
-            <div className="absolute top-4 right-4 w-3 h-3 bg-blue-400 rounded-full animate-ping opacity-60"></div>
-            <div className="absolute bottom-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping opacity-60" style={{animationDelay: '1s'}}></div>
-            <div className="absolute top-1/2 right-8 w-1 h-1 bg-indigo-400 rounded-full animate-ping opacity-60" style={{animationDelay: '2s'}}></div>
-            
-            {/* Animated Rocket Icon */}
-            <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center animate-bounce-slow transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 shadow-xl group-hover:shadow-blue-500/25">
-              <i className="fas fa-rocket text-white text-2xl animate-pulse-slow"></i>
-            </div>
-            
-            {/* Animated Title */}
-            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-              Explore More <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent animate-pulse">Projects</span>
-            </h3>
-            
-            {/* Animated Description */}
-            <p className="text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors duration-300">
-              Discover my complete portfolio including web applications, mobile apps, e-commerce platforms, and business solutions. See all <span className="font-semibold text-blue-600 dark:text-blue-400">{projects.length}</span> projects with detailed case studies.
-            </p>
-            
-            {/* Animated Button */}
-            <Link href="/all-projects" className="inline-block group/btn relative z-20">
+          
+          {/* Show All Portfolio Button */}
+          <div className="text-center mt-12">
+            <Link href="/all-projects">
               <Button
                 variant="primary"
                 size="lg"
                 icon="fas fa-arrow-right"
-                className="group hover:animate-pulse-slow relative z-30"
+                className="group"
               >
-                View All Projects
-                <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 animate-bounce-slow">
-                  <i className="fas fa-external-link-alt"></i>
-                </span>
+                View All Portfolio
+                <i className="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
               </Button>
             </Link>
+          </div>
+        </div>
+
+        {/* Category Filter */}
+       
+
+        {/* All Projects Grid */}
+        
             
-            {/* Animated Features */}
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm text-slate-500 dark:text-slate-400 relative z-20">
-              <div className="flex items-center gap-2 hover:text-green-600 dark:hover:text-green-400 transition-colors duration-300 animate-bounce-slow">
-                <i className="fas fa-check-circle text-green-500 animate-pulse-slow"></i>
-                <span>All {projects.length} Projects</span>
-              </div>
-              <div className="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 animate-bounce-slow" style={{animationDelay: '0.5s'}}>
-                <i className="fas fa-code text-blue-500 animate-pulse-slow"></i>
-                <span>Multiple Technologies</span>
-              </div>
-              <div className="flex items-center gap-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300 animate-bounce-slow" style={{animationDelay: '1s'}}>
-                <i className="fas fa-mobile-alt text-purple-500 animate-pulse-slow"></i>
-                <span>Web & Mobile</span>
-              </div>
+        {/* CTA Section */}
+        <div className="text-center bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 rounded-3xl p-8 sm:p-12 border border-blue-500/20 dark:border-purple-500/20">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+              Ready to Start Your Project?
+            </h3>
+            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
+              Let's collaborate and bring your ideas to life with cutting-edge technology and creative solutions.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+              <Button
+                variant="primary"
+                size="lg"
+                icon="fas fa-rocket"
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                Start a Project
+              </Button>
+              
+              <Button
+                variant="secondary"
+                size="lg"
+                icon="fas fa-download"
+                onClick={() => {
+                  // Add download CV functionality
+                  window.open('/DaniyalCv.pdf', '_blank');
+                }}
+              >
+                Download CV
+              </Button>
             </div>
-            
-            {/* Glow Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-indigo-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            
-            {/* Shine Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-3xl pointer-events-none"></div>
+          </div>
           </div>
         </div>
       </section>
-     
-    </div>
   );
 }

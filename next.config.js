@@ -6,7 +6,22 @@ const nextConfig = {
       'i.postimg.cc',
       'images.unsplash.com',
       'via.placeholder.com'
-    ]
+    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.postimg.cc',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'fiverr-res.cloudinary.com',
+        port: '',
+        pathname: '/**',
+      }
+    ],
+    unoptimized: true
   },
   trailingSlash: true,
   webpack: (config) => {
