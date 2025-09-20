@@ -173,3 +173,4 @@ export const WaveLoader = ({ onComplete }) => {
 const LightweightLoader = CSSSpinner;
 
 export default LightweightLoader;
+
