@@ -12,10 +12,10 @@ const UltraSmoothLoader = ({ onComplete }) => {
   const ringRef = useRef(null);
 
   const phases = [
-    { text: 'Initializing', color: 'from-blue-500 to-cyan-500' },
-    { text: 'Loading Assets', color: 'from-cyan-500 to-purple-500' },
-    { text: 'Optimizing', color: 'from-purple-500 to-pink-500' },
-    { text: 'Ready', color: 'from-pink-500 to-indigo-500' }
+    { text: 'Initializing', color: 'from-blue-500 to-cyan-500', icon: 'fas fa-cog' },
+    { text: 'Loading Assets', color: 'from-cyan-500 to-purple-500', icon: 'fas fa-download' },
+    { text: 'Optimizing', color: 'from-purple-500 to-pink-500', icon: 'fas fa-rocket' },
+    { text: 'Ready', color: 'from-pink-500 to-indigo-500', icon: 'fas fa-check' }
   ];
 
   useEffect(() => {
@@ -24,17 +24,17 @@ const UltraSmoothLoader = ({ onComplete }) => {
 
     const updateProgress = () => {
       setProgress(prev => {
-        const increment = prev < 30 ? 10 : prev < 70 ? 7 : prev < 95 ? 3 : 1;
+        const increment = prev < 20 ? 8 : prev < 50 ? 6 : prev < 80 ? 4 : prev < 95 ? 2 : 1;
         const newProgress = Math.min(prev + increment, 100);
         
         // Update phase based on progress
-        if (newProgress >= 25 && phaseIndex === 0) {
+        if (newProgress >= 20 && phaseIndex === 0) {
           setCurrentPhase(1);
           phaseIndex = 1;
-        } else if (newProgress >= 50 && phaseIndex === 1) {
+        } else if (newProgress >= 45 && phaseIndex === 1) {
           setCurrentPhase(2);
           phaseIndex = 2;
-        } else if (newProgress >= 80 && phaseIndex === 2) {
+        } else if (newProgress >= 75 && phaseIndex === 2) {
           setCurrentPhase(3);
           phaseIndex = 3;
         }
@@ -44,14 +44,14 @@ const UltraSmoothLoader = ({ onComplete }) => {
           setIsComplete(true);
           setTimeout(() => {
             if (onComplete) onComplete();
-          }, 1200);
+          }, 1000);
           return 100;
         }
         return newProgress;
       });
     };
 
-    progressInterval = setInterval(updateProgress, 50);
+    progressInterval = setInterval(updateProgress, 40);
 
     return () => clearInterval(progressInterval);
   }, [onComplete]);
@@ -63,15 +63,14 @@ const UltraSmoothLoader = ({ onComplete }) => {
     }
   }, [progress]);
 
-  // Ultra-smooth completion animation
+  // Simple fade out animation
   useEffect(() => {
     if (isComplete && loaderRef.current) {
       const tl = gsap.timeline();
       tl.to(loaderRef.current, {
         opacity: 0,
-        scale: 0.95,
-        duration: 1.2,
-        ease: "power3.inOut"
+        duration: 0.5,
+        ease: "power2.out"
       }).to(loaderRef.current, {
         display: 'none',
         duration: 0
@@ -85,7 +84,6 @@ const UltraSmoothLoader = ({ onComplete }) => {
       className="fixed inset-0 z-[9999] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center"
       style={{ 
         opacity: 1,
-        transform: 'scale(1)',
         display: 'block'
       }}
     >
@@ -98,6 +96,12 @@ const UltraSmoothLoader = ({ onComplete }) => {
         <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-2xl animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-r from-purple-500/10 to-indigo-500/10 rounded-full blur-2xl animate-pulse" style={{animationDelay: '1s'}} />
         
+        {/* Additional Floating Shapes */}
+        <div className="absolute top-1/6 right-1/6 w-16 h-16 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-xl animate-float" />
+        <div className="absolute bottom-1/6 left-1/6 w-20 h-20 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-full blur-xl animate-float" style={{animationDelay: '2s'}} />
+        <div className="absolute top-1/2 left-1/8 w-12 h-12 bg-gradient-to-r from-green-500/20 to-cyan-500/20 rounded-lg rotate-45 animate-float" style={{animationDelay: '1s'}} />
+        <div className="absolute top-1/2 right-1/8 w-14 h-14 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-lg rotate-12 animate-float" style={{animationDelay: '3s'}} />
+        
         {/* Animated Grid */}
         <div className="absolute inset-0 opacity-5">
           <div className="grid grid-cols-20 h-full">
@@ -108,8 +112,59 @@ const UltraSmoothLoader = ({ onComplete }) => {
         </div>
       </div>
 
+      {/* Floating Animated Icons Around Loader */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Top Left */}
+        <div className="absolute top-1/4 left-1/4 text-blue-400/60 text-2xl animate-bounce-slow">
+          <i className="fas fa-laptop-code"></i>
+        </div>
+        
+        {/* Top Right */}
+        <div className="absolute top-1/3 right-1/4 text-purple-400/60 text-xl animate-bounce-slow" style={{animationDelay: '0.5s'}}>
+          <i className="fas fa-mobile-alt"></i>
+        </div>
+        
+        {/* Bottom Left */}
+        <div className="absolute bottom-1/3 left-1/3 text-indigo-400/60 text-2xl animate-bounce-slow" style={{animationDelay: '1s'}}>
+          <i className="fas fa-code"></i>
+        </div>
+        
+        {/* Bottom Right */}
+        <div className="absolute bottom-1/4 right-1/3 text-cyan-400/60 text-xl animate-bounce-slow" style={{animationDelay: '1.5s'}}>
+          <i className="fas fa-chart-line"></i>
+        </div>
+        
+        {/* Left Side */}
+        <div className="absolute top-1/2 left-1/6 text-green-400/60 text-lg animate-bounce-slow" style={{animationDelay: '2s'}}>
+          <i className="fas fa-database"></i>
+        </div>
+        
+        {/* Right Side */}
+        <div className="absolute top-1/2 right-1/6 text-yellow-400/60 text-lg animate-bounce-slow" style={{animationDelay: '2.5s'}}>
+          <i className="fas fa-server"></i>
+        </div>
+        
+        {/* Top Center */}
+        <div className="absolute top-1/6 left-1/2 transform -translate-x-1/2 text-pink-400/60 text-lg animate-bounce-slow" style={{animationDelay: '3s'}}>
+          <i className="fas fa-rocket"></i>
+        </div>
+        
+        {/* Bottom Center */}
+        <div className="absolute bottom-1/6 left-1/2 transform -translate-x-1/2 text-orange-400/60 text-lg animate-bounce-slow" style={{animationDelay: '3.5s'}}>
+          <i className="fas fa-cog"></i>
+        </div>
+        
+        {/* Small Animated Dots */}
+        <div className="absolute top-1/5 left-1/5 w-2 h-2 bg-blue-400/60 rounded-full animate-ping" />
+        <div className="absolute top-1/5 right-1/5 w-2 h-2 bg-purple-400/60 rounded-full animate-ping" style={{animationDelay: '0.5s'}} />
+        <div className="absolute bottom-1/5 left-1/5 w-2 h-2 bg-cyan-400/60 rounded-full animate-ping" style={{animationDelay: '1s'}} />
+        <div className="absolute bottom-1/5 right-1/5 w-2 h-2 bg-pink-400/60 rounded-full animate-ping" style={{animationDelay: '1.5s'}} />
+        <div className="absolute top-1/2 left-1/12 w-1 h-1 bg-green-400/60 rounded-full animate-ping" style={{animationDelay: '2s'}} />
+        <div className="absolute top-1/2 right-1/12 w-1 h-1 bg-yellow-400/60 rounded-full animate-ping" style={{animationDelay: '2.5s'}} />
+      </div>
+
       {/* Main Content */}
-      <div className="relative z-10 text-center">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-screen">
         {/* Logo with Rotating Ring */}
         <div className="relative mb-10">
           <div 
@@ -136,7 +191,7 @@ const UltraSmoothLoader = ({ onComplete }) => {
         </div>
 
         {/* Progress Container */}
-        <div className="w-64 mx-auto">
+        <div className="w-64 mx-auto flex flex-col items-center">
           {/* Progress Bar */}
           <div className="w-full h-1 bg-slate-700/50 rounded-full overflow-hidden mb-4">
             <div
@@ -150,9 +205,15 @@ const UltraSmoothLoader = ({ onComplete }) => {
           </div>
           
           {/* Phase Text */}
-          <p className="text-slate-400 text-sm">
-            {phases[currentPhase]?.text || 'Loading'}...
-          </p>
+          <div className="flex items-center justify-center gap-2 text-slate-400 text-sm mb-2">
+            <i className={`${phases[currentPhase]?.icon || 'fas fa-spinner'} animate-spin`}></i>
+            <span>{phases[currentPhase]?.text || 'Loading'}...</span>
+          </div>
+          
+          {/* Progress Percentage */}
+          <div className="text-center">
+            <span className="text-white font-semibold text-lg">{progress}%</span>
+          </div>
         </div>
 
         {/* Loading Animation */}
@@ -168,13 +229,13 @@ const UltraSmoothLoader = ({ onComplete }) => {
             />
           ))}
         </div>
-      </div>
-
-      {/* Bottom Text */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
-        <p className="text-slate-500 text-xs">
-          Crafting exceptional digital experiences
-        </p>
+        
+        {/* Bottom Text */}
+        <div className="mt-8 text-center">
+          <p className="text-slate-500 text-xs">
+            Crafting exceptional digital experiences
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -1,17 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 const ScrollToTop = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-      setIsVisible(scrollTop > 300);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const scrollToTop = () => {
     // Use native smooth scroll (custom smooth scroll is handled globally)
@@ -43,11 +32,7 @@ const ScrollToTop = () => {
       {/* Modern Back to Top Button */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-20 right-6 z-[9999] group transition-all duration-500 transform cursor-pointer ${
-          isVisible 
-            ? 'opacity-100 scale-100 translate-y-0' 
-            : 'opacity-0 scale-75 translate-y-4 pointer-events-none'
-        }`}
+        className="fixed bottom-20 right-6 z-[9999] group transition-all duration-300 transform cursor-pointer"
         title="Back to top"
       >
         {/* Main Button Container */}

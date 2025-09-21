@@ -1,33 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const WhatAppIcon = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      
-      // Hide WhatsApp icon when scroll position is > 300px (when back-to-top shows)
-      setIsVisible(scrollY < 300);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const handleWhatsApp = () => {
     window.open("https://wa.me/923045485310", "_blank", "noopener,noreferrer");
   };
 
   return (
-    <div className={`fixed bottom-32 right-6 z-[9997] transition-all duration-500 ${
-      isVisible 
-        ? 'opacity-100 scale-100 translate-y-0' 
-        : 'opacity-0 scale-75 translate-y-4 pointer-events-none'
-    }`}>
+    <div className="fixed bottom-40 right-6 z-[99999] bg-red-500 p-2">
       <button
         onClick={handleWhatsApp}
         onMouseEnter={() => setIsHovered(true)}

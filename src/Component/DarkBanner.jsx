@@ -16,7 +16,7 @@ const DarkBanner = () => {
   return (
     <main 
       ref={bannerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-0 mt-0 -mt-16 pb-16 sm:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-8" 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-0 mt-0 -mt-16 pb-8 sm:pb-12 lg:pb-16 px-4 sm:px-6 lg:px-8" 
       id="home-section"
       role="main"
       aria-label="Main content"
@@ -35,7 +35,7 @@ const DarkBanner = () => {
       <div className="absolute top-3/4 right-1/4 w-40 h-40 bg-gradient-to-r from-purple-400/20 to-indigo-400/20 dark:from-purple-400/20 dark:to-indigo-400/20 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '1s'}}></div>
       <div className="absolute bottom-1/4 left-1/3 w-28 h-28 bg-gradient-to-r from-indigo-400/20 to-cyan-400/20 dark:from-indigo-400/20 dark:to-cyan-400/20 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
       
-      {/* Floating Tech Icons */}
+      {/* Floating Tech Icons - Banner Specific */}
       <div className="absolute top-32 right-32 text-blue-300/40 dark:text-blue-300/40 text-2xl animate-bounce-slow hover:text-blue-400 dark:hover:text-blue-400 hover:scale-125 transition-all duration-300 cursor-pointer">
         <i className="fas fa-laptop-code"></i>
       </div>
@@ -65,9 +65,9 @@ const DarkBanner = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-6xl mx-auto text-center pt-16 sm:pt-24 md:pt-32">
+      <div className="relative z-10 max-w-6xl mx-auto text-center pt-8 sm:pt-12 md:pt-16">
         {/* Greeting */}
-        <div className="mb-4 sm:mb-6 md:mb-8 mt-2 sm:mt-4 md:mt-6">
+        <div className="mb-4 sm:mb-6 md:mb-8">
           <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-blue-900/40 to-purple-900/40 dark:from-blue-900/40 dark:to-purple-900/40 border border-blue-700/50 dark:border-blue-700/50 backdrop-blur-xl shadow-lg">
             <div className="relative">
               <div className="w-2.5 sm:w-3 h-2.5 sm:h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse shadow-lg"></div>
@@ -95,7 +95,7 @@ const DarkBanner = () => {
         </p>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16 px-4 animate-fade-in-up animate-stagger-2">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 px-4 animate-fade-in-up animate-stagger-2">
           <a 
             href="#portfolio" 
             className="btn-primary group touch-manipulation flex items-center justify-center gap-3 hover-lift"
@@ -135,7 +135,7 @@ const DarkBanner = () => {
       </div>
 
       {/* Enhanced Scroll Indicator */}
-      <div className="absolute bottom-8 sm:bottom-12 md:bottom-16 left-1/2 transform -translate-x-1/2">
+      <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2">
         <div className="flex flex-col items-center gap-3 text-slate-400 dark:text-slate-400">
           {/* <span className="text-sm font-medium tracking-wider uppercase animate-pulse">Scroll to explore</span> */}
           <div className="w-6 h-10 border-2 border-slate-400/50 dark:border-slate-400/50 rounded-full flex justify-center relative overflow-hidden">

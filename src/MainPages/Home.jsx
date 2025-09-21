@@ -20,10 +20,10 @@ import DarkBanner from '../Component/DarkBanner';
 import FormTesting from '../Component/FormTesting';
 import useCustomUltraSmoothScroll from '../hooks/useCustomUltraSmoothScroll';
 import useUltraSmoothPerformance from '../hooks/useUltraSmoothPerformance';
-import FiverrIcon from '../Component/FiverrIcon';
 import { generatePortfolioStructuredData, generateWebsiteStructuredData } from '../utils/seoData';
 import UltraSmoothLoader from '../Component/UltraSmoothLoader';
 import BackgroundAnimations from '../Component/BackgroundAnimations';
+import useAppStore from '../store/useAppStore';
 
 
 // useEffect(() => {
@@ -33,20 +33,26 @@ import BackgroundAnimations from '../Component/BackgroundAnimations';
 // }, []);
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const { hasSeenLoader, setHasSeenLoader } = useAppStore();
+  const [isLoading, setIsLoading] = useState(!hasSeenLoader);
   
   // Initialize custom ultra-smooth scroll and performance optimizations
   useCustomUltraSmoothScroll();
   useUltraSmoothPerformance();
 
   useEffect(() => {
-    // Ultra-smooth scroll to top on mount
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 100);
-  }, []);
+    if (!hasSeenLoader) {
+      // Show loader only on first visit in this session
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 100);
+    }
+  }, [hasSeenLoader]);
 
   const handleLoaderComplete = () => {
+    // Mark that loader has been seen in this session
+    setHasSeenLoader(true);
+    
     // Ultra-smooth transition
     setTimeout(() => {
       setIsLoading(false);
@@ -58,7 +64,7 @@ const Home = () => {
       {/* Loader */}
       {isLoading && <UltraSmoothLoader onComplete={handleLoaderComplete} />}
       
-          <div className={`main-wrapper scrollable-content min-h-screen bg-slate-900 dark:bg-slate-900 transition-all duration-1000 ease-out ${isLoading ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+          <div className={`main-wrapper scrollable-content min-h-screen bg-slate-900 dark:bg-slate-900 transition-opacity duration-500 ease-out ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
             {/* Background Animations */}
             <BackgroundAnimations />
             
@@ -109,13 +115,8 @@ const Home = () => {
       <div className='footer-section'>
         <Footer />
       </div>
-      <div className='backtotop-section'>
-       <ScrollToTop />
       </div>
-        {/* Floating Social Icons */}
-        <FiverrIcon />
-        <WhatAppIcon />
-      </div>
+      
     </ToastProvider>
   );
 };

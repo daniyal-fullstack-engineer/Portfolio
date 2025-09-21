@@ -4,7 +4,9 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "./Button";
-import ImageWithSkeleton from "./ImageWithSkeleton";
+import ShareButton from "./ShareButton";
+import FavoriteButton from "./FavoriteButton";
+import useAppStore from "../store/useAppStore";
 import Image from "next/image";
 
 const projects = [
@@ -129,42 +131,67 @@ const categories = [
 ];
 
 export default function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState("all");
   const [hoveredProject, setHoveredProject] = useState(null);
-  const [viewMode, setViewMode] = useState("grid"); // grid or list
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Zustand state
+  const { 
+    selectedCategory, 
+    setSelectedCategory, 
+    portfolioViewMode, 
+    setPortfolioViewMode,
+    favoriteProjects,
+    trackProjectView
+  } = useAppStore();
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const filterRef = useRef(null);
   const projectsRef = useRef(null);
 
-  // Filter projects based on active category
-  const filteredProjects = activeCategory === "all" 
+  // Filter projects based on selected category
+  const filteredProjects = selectedCategory === "all" 
     ? projects 
-    : projects.filter(project => project.category === activeCategory);
+    : projects.filter(project => project.category === selectedCategory);
 
   const featuredProjects = projects.filter(project => project.featured);
+
+  // Track project view when component mounts
+  useEffect(() => {
+    featuredProjects.forEach(project => {
+      trackProjectView(project.title);
+    });
+  }, []);
 
   // GSAP Animations
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Title animation
-      gsap.fromTo(titleRef.current, 
-        { opacity: 0, y: 50 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 0.8, 
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
+      // Title animation with fallback
+      if (titleRef.current) {
+        gsap.fromTo(titleRef.current, 
+          { opacity: 0, y: 50 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.8, 
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: titleRef.current,
+              start: "top 80%",
+              end: "bottom 20%",
+              toggleActions: "play none none reverse"
+            },
+            onComplete: () => {
+              // Ensure element is visible even if ScrollTrigger fails
+              if (titleRef.current) {
+                titleRef.current.style.opacity = '1';
+                titleRef.current.style.transform = 'translateY(0)';
+              }
+            }
           }
-        }
-      );
+        );
+      }
 
       // Filter animation
       gsap.fromTo(filterRef.current, 
@@ -204,8 +231,31 @@ export default function Portfolio() {
       );
     }, sectionRef);
 
-    return () => ctx.revert();
+    // Fallback: Ensure heading is visible after 2 seconds
+    const fallbackTimeout = setTimeout(() => {
+      if (titleRef.current) {
+        titleRef.current.style.opacity = '1';
+        titleRef.current.style.transform = 'translateY(0)';
+      }
+    }, 2000);
+    
+    return () => {
+      ctx.revert();
+      clearTimeout(fallbackTimeout);
+    };
   }, [filteredProjects]);
+
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -253,7 +303,7 @@ export default function Portfolio() {
 
       <div className="relative max-w-7xl mx-auto">
         {/* Section Header */}
-        <div ref={titleRef} className="text-center mb-12 sm:mb-16">
+        <div ref={titleRef} className="text-center mb-12 sm:mb-16 opacity-100">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 dark:border-purple-500/20 mb-6">
             <i className="fas fa-code text-blue-500 dark:text-blue-400 text-sm"></i>
             <span className="text-sm font-medium text-blue-600 dark:text-blue-400">Portfolio</span>
@@ -263,7 +313,7 @@ export default function Portfolio() {
             My <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Creative</span> Works
           </h2>
           
-          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
             Explore my collection of innovative projects that showcase modern web development, 
             mobile applications, and creative solutions for real-world challenges.
           </p>
@@ -276,41 +326,47 @@ export default function Portfolio() {
               Featured Projects
             </h3>
             
-            {/* Debug info - remove this after testing */}
-            <div className="text-xs text-slate-500 dark:text-slate-400">
-              Debug: {projects.length} projects loaded
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-slate-500 dark:text-slate-400">View Mode:</span>
-              <button
-                onClick={() => setViewMode("grid")}
-                className={`p-2 rounded-lg transition-all duration-300 ${
-                  viewMode === "grid" 
-                    ? "bg-blue-500 text-white" 
-                    : "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600"
-                }`}
-              >
-                <i className="fas fa-th"></i>
-              </button>
-              <button
-                onClick={() => setViewMode("list")}
-                className={`p-2 rounded-lg transition-all duration-300 ${
-                  viewMode === "list" 
-                    ? "bg-blue-500 text-white" 
-                    : "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600"
-                }`}
-              >
-                <i className="fas fa-list"></i>
-              </button>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-slate-500 dark:text-slate-400">View Mode:</span>
+                <button
+                  onClick={() => setPortfolioViewMode("grid")}
+                  className={`p-2 rounded-lg transition-all duration-300 ${
+                    portfolioViewMode === "grid" 
+                      ? "bg-blue-500 text-white" 
+                      : "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600"
+                  }`}
+                >
+                  <i className="fas fa-th"></i>
+                </button>
+                <button
+                  onClick={() => setPortfolioViewMode("list")}
+                  className={`p-2 rounded-lg transition-all duration-300 ${
+                    portfolioViewMode === "list" 
+                      ? "bg-blue-500 text-white" 
+                      : "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600"
+                  }`}
+                >
+                  <i className="fas fa-list"></i>
+                </button>
+              </div>
+              
+              {/* Favorites Link */}
+              <Link href="/favorites">
+                <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-lg font-medium hover:from-red-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-red-500/25">
+                  <i className="fas fa-heart"></i>
+                  <span className="text-sm">Favorites ({favoriteProjects.length})</span>
+                </button>
+              </Link>
             </div>
           </div>
 
           <div className={`grid gap-6 sm:gap-8 ${
-            viewMode === "grid" 
+            portfolioViewMode === "grid" 
               ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" 
               : "grid-cols-1"
           }`}>
-            {featuredProjects.slice(0, 6).map((project, index) => (
+            {projects.slice(0, isMobile ? 4 : 6).map((project, index) => (
               <div
                 key={index}
                 className="group relative bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
@@ -326,14 +382,13 @@ export default function Portfolio() {
                     height={400}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     onError={(e) => {
-                      console.log('❌ Image error:', project.img);
                       // Show fallback content
                       e.target.style.display = 'none';
                       const fallback = e.target.nextElementSibling;
                       if (fallback) fallback.style.display = 'flex';
                     }}
                     onLoad={() => {
-                      console.log('✅ Image loaded successfully:', project.img);
+                      // Image loaded successfully
                     }}
                     priority={index < 3} // Prioritize first 3 images
                     unoptimized={true} // Disable Next.js optimization temporarily
@@ -394,6 +449,12 @@ export default function Portfolio() {
                       <i className="fas fa-info-circle"></i>
                       Details
                     </button>
+                  </div>
+                  
+                  {/* Action Buttons - Always Visible */}
+                  <div className="absolute top-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <ShareButton project={project} size="sm" />
+                    <FavoriteButton project={project} size="sm" />
                   </div>
                 </div>
                 

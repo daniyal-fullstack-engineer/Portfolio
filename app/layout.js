@@ -2,6 +2,7 @@ import { Inter, Roboto, Poppins } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
+import GlobalFloatingIcons from '../src/Component/GlobalFloatingIcons'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const roboto = Roboto({ 
@@ -137,7 +138,11 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${inter.variable} ${roboto.variable} ${poppins.variable}`}>
         {children}
+        <GlobalFloatingIcons />
         <ToastContainer />
+        
+        {/* Global Floating Icons - Visible on All Pages */}
+        
       </body>
     </html>
   )

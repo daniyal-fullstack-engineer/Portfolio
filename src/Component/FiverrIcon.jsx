@@ -8,7 +8,7 @@ const FiverrIcon = () => {
   };
 
   return (
-    <div className="fixed bottom-20 left-6 z-[9998]">
+    <div className="fixed bottom-32 left-6 z-[9998]">
       <button
         onClick={handleFiverr}
         onMouseEnter={() => setIsHovered(true)}

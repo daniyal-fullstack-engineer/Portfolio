@@ -17,11 +17,9 @@ const ImageWithSkeleton = ({
     retryAttempts: 3,
     retryDelay: 1000,
     onLoad: () => {
-      console.log('Image loaded successfully:', src);
       if (onLoad) onLoad();
     },
     onError: () => {
-      console.log('Image failed to load:', src);
       if (onError) onError();
     },
     fallbackSrc
@@ -127,7 +125,7 @@ const ImageWithSkeleton = ({
         alt={alt}
         width={500}
         height={300}
-        className={`w-full h-full object-cover transition-opacity duration-500 ${
+        className={`w-full h-full object-cover transition-opacity duration-500 ${borderRadiusClass} ${
           isLoaded ? 'opacity-100' : 'opacity-0 absolute inset-0'
         }`}
         {...props}
