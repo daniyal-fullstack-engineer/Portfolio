@@ -119,6 +119,13 @@ const Home = () => {
         <Footer />
       </div>
       </div> {/* Close padding div */}
+      
+      {/* Floating Icons */}
+      <WhatAppIcon />
+      
+      {/* Scroll to Top */}
+      <ScrollToTop />
+      
       </div> {/* Close main wrapper */}
       
     </ToastProvider>

@@ -110,11 +110,11 @@ const About = () => {
             <span className="text-sm font-semibold text-blue-300 tracking-wide">About Me</span>
             </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8 px-4 scroll-animate">
             About <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Me</span>
           </h2>
           
-          <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed px-4">
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed px-4 scroll-animate">
                 I&apos;m a passionate full-stack developer with expertise in modern web technologies, 
             dedicated to creating exceptional digital experiences that drive business growth.
           </p>
@@ -123,14 +123,14 @@ const About = () => {
         {/* Modern Card Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {/* Main Story Card */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 scroll-animate-left">
             <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-slate-700/30 shadow-2xl overflow-hidden">
               {/* Card Background Effects */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-2xl"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-purple-500/20 to-pink-500/20 rounded-full blur-2xl"></div>
               
               <div className="relative z-10">
-                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6 fade-in-up stagger-1">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center">
                     <i className="fas fa-user text-white text-lg sm:text-xl"></i>
                   </div>
@@ -141,16 +141,16 @@ const About = () => {
                 </div>
                 
                 <div className="space-y-4 sm:space-y-6 text-slate-300 leading-relaxed">
-                  <p className="text-sm sm:text-base lg:text-lg">
+                  <p className="text-sm sm:text-base lg:text-lg fade-in-up stagger-2">
                     With over <span className="text-blue-400 font-semibold">5 years of experience</span> in full-stack development, 
                     I&apos;ve had the privilege of working with diverse clients and creating solutions that make a real impact.
                 </p>
-                <p className="text-sm sm:text-base">
+                <p className="text-sm sm:text-base fade-in-up stagger-3">
                     My journey began with a curiosity about how websites work, which evolved into a passion for building 
                     digital experiences that combine <span className="text-purple-400 font-semibold">technical expertise</span> with 
                     <span className="text-pink-400 font-semibold"> creative problem-solving</span>.
                 </p>
-                <p className="text-sm sm:text-base">
+                <p className="text-sm sm:text-base fade-in-up stagger-4">
                     I specialize in modern web and mobile technologies including React, Next.js, React Native, Node.js, and Python. 
                     From responsive web applications to cross-platform mobile apps, I create solutions that work seamlessly across all devices.
                   When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to open-source 
@@ -158,7 +158,7 @@ const About = () => {
                     </p>
                   </div>
                   
-                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mt-6 sm:mt-8">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mt-6 sm:mt-8 fade-in-up stagger-5">
                 <button 
                   onClick={() => scrollToSection('contact', -80)}
                     className="btn-primary group flex items-center justify-center gap-3"
@@ -188,9 +188,9 @@ const About = () => {
                 </div>
 
           {/* Quick Stats Card */}
-          <div className="space-y-6">
+          <div className="space-y-6 scroll-animate-right">
             <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-3xl p-6 border border-slate-700/30 shadow-2xl">
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-6 fade-in-up stagger-1">
                 <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
                   <i className="fas fa-chart-line text-white"></i>
                 </div>
@@ -198,19 +198,19 @@ const About = () => {
               </div>
               
               <div className="space-y-4">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center fade-in-up stagger-2">
                   <span className="text-slate-400 text-sm">Experience</span>
                   <span className="text-white font-semibold">5+ Years</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center fade-in-up stagger-3">
                   <span className="text-slate-400 text-sm">Projects</span>
                   <span className="text-white font-semibold">50+</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center fade-in-up stagger-4">
                   <span className="text-slate-400 text-sm">Clients</span>
                   <span className="text-white font-semibold">30+</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center fade-in-up stagger-5">
                   <span className="text-slate-400 text-sm">Satisfaction</span>
                   <span className="text-green-400 font-semibold">100%</span>
                 </div>
@@ -219,7 +219,7 @@ const About = () => {
 
             {/* Skills Preview */}
             <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-3xl p-6 border border-slate-700/30 shadow-2xl">
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-6 fade-in-up stagger-1">
                 <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
                   <i className="fas fa-code text-white"></i>
                 </div>
@@ -228,7 +228,7 @@ const About = () => {
               
               <div className="space-y-3">
                 {['React.js', 'Next.js', 'React Native', 'Node.js', 'Ant Design', 'WordPress'].map((skill, index) => (
-                  <div key={index} className="flex items-center gap-3">
+                  <div key={index} className={`flex items-center gap-3 fade-in-up stagger-${index + 2}`}>
                     <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
                     <span className="text-slate-300 text-sm">{skill}</span>
                   </div>
@@ -242,22 +242,22 @@ const About = () => {
         {/* Tech Skills Section */}
         <div id="tech-skills" className="mb-16">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-900/30 to-pink-900/30 dark:from-purple-900/30 dark:to-pink-900/30 border border-purple-700/50 dark:border-purple-700/50 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-900/30 to-pink-900/30 dark:from-purple-900/30 dark:to-pink-900/30 border border-purple-700/50 dark:border-purple-700/50 mb-6 fade-in-scale stagger-1">
               <i className="fas fa-code text-purple-400 dark:text-purple-400"></i>
               <span className="text-sm font-medium text-purple-300 dark:text-purple-300">Technical Expertise</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-white dark:text-white mb-4">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white dark:text-white mb-4 fade-in-up stagger-2">
               My <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Tech Skills</span>
             </h3>
-            <p className="text-slate-300 dark:text-slate-300 max-w-2xl mx-auto">
+            <p className="text-slate-300 dark:text-slate-300 max-w-2xl mx-auto fade-in-up stagger-3">
               A comprehensive overview of the technologies and tools I use to bring ideas to life.
             </p>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Frontend Technologies */}
-            <div className="bg-white/5 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-white/10 dark:border-slate-700/50">
-              <div className="flex items-center gap-3 mb-6">
+            <div className="bg-white/5 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-white/10 dark:border-slate-700/50 fade-in-left stagger-1">
+              <div className="flex items-center gap-3 mb-6 fade-in-up stagger-2">
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
                   <i className="fas fa-palette text-white text-xl"></i>
                 </div>
@@ -265,7 +265,7 @@ const About = () => {
               </div>
               <div className="space-y-3">
                   {techStack.frontend.map((tech, index) => (
-                  <div key={index} className="flex items-center gap-3 p-3 bg-slate-800/30 rounded-lg border border-slate-700/50 hover:bg-slate-700/30 transition-colors duration-300">
+                  <div key={index} className={`flex items-center gap-3 p-3 bg-slate-800/30 rounded-lg border border-slate-700/50 hover:bg-slate-700/30 transition-colors duration-300 fade-in-up stagger-${index + 3}`}>
                     <div className={`w-8 h-8 bg-gradient-to-r ${tech.color} rounded-lg flex items-center justify-center`}>
                       <i className={`${tech.icon} text-white text-sm`}></i>
               </div>
@@ -279,8 +279,8 @@ const About = () => {
               </div>
               
               {/* Backend Technologies */}
-            <div className="bg-white/5 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-white/10 dark:border-slate-700/50">
-              <div className="flex items-center gap-3 mb-6">
+            <div className="bg-white/5 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-white/10 dark:border-slate-700/50 fade-in-up stagger-2">
+              <div className="flex items-center gap-3 mb-6 fade-in-up stagger-3">
                 <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
                   <i className="fas fa-server text-white text-xl"></i>
                 </div>
@@ -288,7 +288,7 @@ const About = () => {
               </div>
               <div className="space-y-3">
                   {techStack.backend.map((tech, index) => (
-                  <div key={index} className="flex items-center gap-3 p-3 bg-slate-800/30 rounded-lg border border-slate-700/50 hover:bg-slate-700/30 transition-colors duration-300">
+                  <div key={index} className={`flex items-center gap-3 p-3 bg-slate-800/30 rounded-lg border border-slate-700/50 hover:bg-slate-700/30 transition-colors duration-300 fade-in-up stagger-${index + 4}`}>
                     <div className={`w-8 h-8 bg-gradient-to-r ${tech.color} rounded-lg flex items-center justify-center`}>
                       <i className={`${tech.icon} text-white text-sm`}></i>
                       </div>
@@ -302,8 +302,8 @@ const About = () => {
                 </div>
                 
               {/* Tools & Technologies */}
-            <div className="bg-white/5 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-white/10 dark:border-slate-700/50">
-              <div className="flex items-center gap-3 mb-6">
+            <div className="bg-white/5 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-white/10 dark:border-slate-700/50 fade-in-right stagger-3">
+              <div className="flex items-center gap-3 mb-6 fade-in-up stagger-4">
                 <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
                   <i className="fas fa-tools text-white text-xl"></i>
                 </div>
@@ -311,7 +311,7 @@ const About = () => {
               </div>
               <div className="space-y-3">
                   {techStack.tools.map((tech, index) => (
-                  <div key={index} className="flex items-center gap-3 p-3 bg-slate-800/30 rounded-lg border border-slate-700/50 hover:bg-slate-700/30 transition-colors duration-300">
+                  <div key={index} className={`flex items-center gap-3 p-3 bg-slate-800/30 rounded-lg border border-slate-700/50 hover:bg-slate-700/30 transition-colors duration-300 fade-in-up stagger-${index + 5}`}>
                     <div className={`w-8 h-8 bg-gradient-to-r ${tech.color} rounded-lg flex items-center justify-center`}>
                       <i className={`${tech.icon} text-white text-sm`}></i>
                   </div>
@@ -329,32 +329,37 @@ const About = () => {
         {/* Modern Achievements Section */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-green-900/40 to-emerald-900/40 backdrop-blur-xl border border-green-700/30 mb-8">
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-green-900/40 to-emerald-900/40 backdrop-blur-xl border border-green-700/30 mb-8 fade-in-scale stagger-1">
               <div className="w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full animate-pulse"></div>
               <i className="fas fa-trophy text-green-400 text-lg"></i>
               <span className="text-sm font-semibold text-green-300 tracking-wide">Achievements</span>
             </div>
             
-            <h3 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            <h3 className="text-3xl sm:text-4xl font-bold text-white mb-6 fade-in-up stagger-2">
               My <span className="bg-gradient-to-r from-green-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent">Achievements</span>
             </h3>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto fade-in-up stagger-3">
               Numbers that reflect my dedication and expertise in delivering exceptional results.
             </p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {achievements.map((achievement, index) => (
-              <div key={index} className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-3xl p-6 border border-slate-700/30 shadow-2xl text-center hover:scale-105 transition-all duration-300 overflow-hidden">
+              <div key={index} className={`relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-3xl p-6 border border-slate-700/30 shadow-2xl text-center hover:scale-105 transition-all duration-300 overflow-hidden ${
+                index % 4 === 0 ? 'fade-in-left' :
+                index % 4 === 1 ? 'fade-in-up' :
+                index % 4 === 2 ? 'fade-in-right' :
+                'fade-in-scale'
+              } stagger-${index + 1}`}>
                 {/* Card Background Effect */}
                 <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${achievement.color} opacity-20 rounded-full blur-xl`}></div>
                 
                 <div className="relative z-10">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${achievement.color} rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg`}>
+                  <div className={`w-16 h-16 bg-gradient-to-r ${achievement.color} rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg fade-in-scale stagger-${index + 2}`}>
                   <i className={`${achievement.icon} text-white text-2xl`}></i>
                   </div>
-                  <h4 className="text-xl font-bold text-white mb-2">{achievement.title}</h4>
-                  <p className="text-slate-300 text-sm leading-relaxed">{achievement.description}</p>
+                  <h4 className={`text-xl font-bold text-white mb-2 fade-in-up stagger-${index + 3}`}>{achievement.title}</h4>
+                  <p className={`text-slate-300 text-sm leading-relaxed fade-in-up stagger-${index + 4}`}>{achievement.description}</p>
                 </div>
                   </div>
           ))}
@@ -363,7 +368,7 @@ const About = () => {
 
         {/* Modern Call to Action */}
         <div className="text-center">
-          <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-2xl rounded-3xl p-8 sm:p-12 md:p-16 border border-slate-700/30 shadow-2xl overflow-hidden">
+          <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-2xl rounded-3xl p-8 sm:p-12 md:p-16 border border-slate-700/30 shadow-2xl overflow-hidden fade-in-scale stagger-1">
             {/* Background Effects */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10"></div>
             <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"></div>
@@ -371,25 +376,25 @@ const About = () => {
             
             <div className="relative z-10">
               <div className="flex flex-col items-center justify-center gap-6 mb-8">
-                <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl flex items-center justify-center shadow-2xl">
+                <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl flex items-center justify-center shadow-2xl fade-in-scale stagger-2">
                   <i className="fas fa-rocket text-white text-3xl"></i>
                 </div>
                 <div className="text-center">
-                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 fade-in-up stagger-3">
                     Ready to Start Your <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Project?</span>
               </h3>
-                  <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+                  <p className="text-xl text-slate-300 max-w-2xl mx-auto fade-in-up stagger-4">
                     Let&apos;s create something amazing together
                   </p>
                 </div>
               </div>
               
-              <p className="text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed text-lg">
+              <p className="text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed text-lg fade-in-up stagger-5">
                 I&apos;m always excited to work on new projects and help bring your ideas to life. 
                 Whether you need a simple website or a complex web application, I&apos;m here to help you succeed.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up stagger-6">
                 <button 
                   onClick={() => scrollToSection('contact', -80)}
                   className="btn-primary group px-8 py-4 text-lg min-h-[56px] flex items-center justify-center gap-3"

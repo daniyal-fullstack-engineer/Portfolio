@@ -67,7 +67,7 @@ const DarkBanner = () => {
       {/* Main Content */}
       <div className="relative z-10 max-w-6xl mx-auto text-center pt-8 sm:pt-12 md:pt-16">
         {/* Greeting */}
-        <div className="mb-4 sm:mb-6 md:mb-8">
+        <div className="mb-4 sm:mb-6 md:mb-8 scroll-animate-scale">
           <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-blue-900/40 to-purple-900/40 dark:from-blue-900/40 dark:to-purple-900/40 border border-blue-700/50 dark:border-blue-700/50 backdrop-blur-xl shadow-lg">
             <div className="relative">
               <div className="w-2.5 sm:w-3 h-2.5 sm:h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse shadow-lg"></div>
@@ -81,7 +81,7 @@ const DarkBanner = () => {
         </div>
 
         {/* Main Title */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 animate-fade-in-up">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 scroll-animate">
           <span className="block text-white dark:text-white">M Daniyal</span>
           <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">
             Full-Stack Developer
@@ -89,13 +89,13 @@ const DarkBanner = () => {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg sm:text-xl md:text-2xl text-slate-300 dark:text-slate-300 mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-4 animate-fade-in-up animate-stagger-1">
+        <p className="text-lg sm:text-xl md:text-2xl text-slate-300 dark:text-slate-300 mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-4 scroll-animate">
           I craft exceptional digital experiences through modern web and mobile development, 
           combining creativity with cutting-edge technology to bring your ideas to life.
         </p>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 px-4 animate-fade-in-up animate-stagger-2">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 px-4 scroll-animate">
           <a 
             href="#portfolio" 
             className="btn-primary group touch-manipulation flex items-center justify-center gap-3 hover-lift"

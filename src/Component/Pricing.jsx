@@ -283,26 +283,26 @@ export default function Pricing() {
 
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Section Title */}
-          <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-4 sm:mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-4 sm:mb-6 fade-in-scale stagger-1">
               <i className="fas fa-tag text-blue-600 dark:text-blue-400 text-sm sm:text-base"></i>
               <span className="text-xs sm:text-sm font-medium text-blue-700 dark:text-blue-300">Pricing Plans</span>
             </div>
             
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 px-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 px-4 fade-in-up stagger-2">
               Choose Your <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Perfect</span> Plan
             </h2>
             
-            <div className="flex justify-center mb-6 sm:mb-8">
+            <div className="flex justify-center mb-6 sm:mb-8 fade-in-up stagger-3">
               <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
             </div>
             
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4 fade-in-up stagger-4">
               Professional website and mobile app development packages tailored to your business needs. From simple websites to complex mobile applications.
             </p>
 
             {/* Service Tabs */}
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-4">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-4 fade-in-up stagger-5">
               {serviceCategories.map((category, index) => (
                 <button
                   key={index}
@@ -350,13 +350,13 @@ export default function Pricing() {
               >
                 {/* Category Header */}
                 <div className="text-center mb-12">
-                  <div className={`w-20 h-20 bg-gradient-to-r ${category.color} rounded-3xl flex items-center justify-center mx-auto mb-6`}>
+                  <div className={`w-20 h-20 bg-gradient-to-r ${category.color} rounded-3xl flex items-center justify-center mx-auto mb-6 fade-in-scale stagger-1`}>
                     <i className={`${category.icon} text-white text-3xl`}></i>
                   </div>
-                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 fade-in-up stagger-2">
                     {category.title}
                   </h3>
-                  <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto"></div>
+                  <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto fade-in-up stagger-3"></div>
                 </div>
 
                 {/* Packages Grid */}
@@ -366,12 +366,16 @@ export default function Pricing() {
                       key={pkgIndex}
                       className={`relative group cursor-pointer transition-all duration-300 ${
                         pkg.popular ? 'lg:scale-105' : ''
-                      }`}
+                      } ${
+                        pkgIndex % 3 === 0 ? 'fade-in-left' : 
+                        pkgIndex % 3 === 1 ? 'fade-in-up' : 
+                        'fade-in-right'
+                      } stagger-${pkgIndex + 4}`}
                       onClick={() => handleContactClick(`${category.title} - ${pkg.title}`)}
                     >
                       {/* Popular Badge */}
                       {pkg.popular && (
-                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
+                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 fade-in-scale stagger-1">
                           <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 shadow-lg">
                             <i className="fas fa-star"></i>
                             <span>Most Popular</span>
@@ -387,29 +391,29 @@ export default function Pricing() {
                         
                         {/* Package Header */}
                         <div className="text-center mb-6 sm:mb-8">
-                          <h4 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2">{pkg.title}</h4>
+                          <h4 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 fade-in-up stagger-1">{pkg.title}</h4>
                         </div>
 
                         {/* Pricing */}
                         <div className="text-center mb-6 sm:mb-8">
-                          <div className="flex items-baseline justify-center mb-2">
+                          <div className="flex items-baseline justify-center mb-2 fade-in-up stagger-2">
                             <span className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">$</span>
                             <span className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">
                               {pkg.price}
                             </span>
                           </div>
-                          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">One-time payment</p>
+                          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 fade-in-up stagger-3">One-time payment</p>
                         </div>
 
                         {/* Features */}
                         <div className="mb-6 sm:mb-8">
                           <ul className="space-y-3">
                             {pkg.features.map((feature, featureIndex) => (
-                              <li key={featureIndex} className="flex items-start gap-3">
-                                <div className="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <li key={featureIndex} className={`flex items-start gap-3 fade-in-up stagger-${featureIndex + 4}`}>
+                                <div className="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 fade-in-scale stagger-1">
                                   <i className="fas fa-check text-white text-xs"></i>
                                 </div>
-                                <span className="text-slate-600 dark:text-slate-300 text-sm sm:text-base">{feature}</span>
+                                <span className="text-slate-600 dark:text-slate-300 text-sm sm:text-base fade-in-up stagger-2">{feature}</span>
                               </li>
                             ))}
                           </ul>
@@ -417,7 +421,7 @@ export default function Pricing() {
 
                         {/* Action Button */}
                         <button
-                          className={`w-full py-3 sm:py-4 px-4 sm:px-6 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 cursor-pointer min-h-[48px] ${
+                          className={`w-full py-3 sm:py-4 px-4 sm:px-6 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 cursor-pointer min-h-[48px] fade-in-up stagger-${pkg.features.length + 4} ${
                             pkg.popular
                               ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-xl hover:shadow-blue-500/25 hover:scale-105'
                               : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 hover:scale-105'
@@ -442,55 +446,55 @@ export default function Pricing() {
             <div className="relative bg-gradient-to-br from-white via-slate-50 to-blue-50 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 rounded-3xl p-8 md:p-12 lg:p-16 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl overflow-hidden">
               {/* Subtle Background Pattern */}
               <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-10 right-10 w-40 h-40 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-3xl"></div>
+                <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full blur-3xl fade-in-scale stagger-1"></div>
+                <div className="absolute bottom-10 right-10 w-40 h-40 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-3xl fade-in-scale stagger-2"></div>
               </div>
               
               <div className="relative z-10">
                 {/* Custom Development Icon */}
-                <div className="w-24 h-24 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-purple-500/25">
+                <div className="w-24 h-24 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-purple-500/25 fade-in-scale stagger-1">
                   <i className="fas fa-cogs text-white text-4xl"></i>
                 </div>
                 
                 {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/30 dark:to-indigo-900/30 border border-purple-200/50 dark:border-purple-700/50 mb-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/30 dark:to-indigo-900/30 border border-purple-200/50 dark:border-purple-700/50 mb-6 fade-in-scale stagger-2">
                   <i className="fas fa-star text-purple-600 dark:text-purple-400"></i>
                   <span className="text-sm font-medium text-purple-700 dark:text-purple-300">Premium Service</span>
                 </div>
                 
-                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6 fade-in-up stagger-3">
                   <span className="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 dark:from-purple-400 dark:via-indigo-400 dark:to-blue-400 bg-clip-text text-transparent">Custom Development</span>
                 </h3>
                 
-                <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mx-auto mb-8"></div>
+                <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mx-auto mb-8 fade-in-up stagger-4"></div>
                 
-                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed fade-in-up stagger-5">
                   Have a unique project that doesn&apos;t fit my standard packages? Let&apos;s discuss your specific requirements and create a completely custom solution tailored to your business needs.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
-                  <div className="bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm rounded-3xl p-8 border border-white/50 dark:border-slate-600/50 shadow-xl">
-                    <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <div className="bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm rounded-3xl p-8 border border-white/50 dark:border-slate-600/50 shadow-xl fade-in-left stagger-6">
+                    <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg fade-in-scale stagger-1">
                       <i className="fas fa-lightbulb text-white text-2xl"></i>
                     </div>
-                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Unique Ideas</h4>
-                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed">Complex business logic, custom integrations, or innovative features that require specialized development expertise.</p>
+                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-4 fade-in-up stagger-2">Unique Ideas</h4>
+                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed fade-in-up stagger-3">Complex business logic, custom integrations, or innovative features that require specialized development expertise.</p>
                   </div>
-                  <div className="bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm rounded-3xl p-8 border border-white/50 dark:border-slate-600/50 shadow-xl">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <div className="bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm rounded-3xl p-8 border border-white/50 dark:border-slate-600/50 shadow-xl fade-in-right stagger-7">
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg fade-in-scale stagger-1">
                       <i className="fas fa-rocket text-white text-2xl"></i>
                     </div>
-                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Scalable Solutions</h4>
-                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed">Enterprise-grade applications with advanced architecture designed to grow with your business needs.</p>
+                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-4 fade-in-up stagger-2">Scalable Solutions</h4>
+                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed fade-in-up stagger-3">Enterprise-grade applications with advanced architecture designed to grow with your business needs.</p>
                   </div>
                 </div>
                 
                 {/* Enhanced CTA Section */}
-                <div className="bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 mb-8">
-                  <h4 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">Ready to Start Your Custom Project?</h4>
-                  <p className="text-slate-600 dark:text-slate-300 mb-6">Let&apos;s discuss your vision and bring it to life with a tailored solution.</p>
+                <div className="bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8 mb-8 fade-in-scale stagger-8">
+                  <h4 className="text-xl font-semibold text-slate-900 dark:text-white mb-4 fade-in-up stagger-1">Ready to Start Your Custom Project?</h4>
+                  <p className="text-slate-600 dark:text-slate-300 mb-6 fade-in-up stagger-2">Let&apos;s discuss your vision and bring it to life with a tailored solution.</p>
                   
-                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center fade-in-up stagger-3">
                   <button 
                     onClick={() => scrollToElement(document.getElementById('contact'), -80)}
                       className="btn-primary group flex items-center justify-center gap-3 cursor-pointer shadow-lg"
@@ -510,26 +514,26 @@ export default function Pricing() {
                 
                 {/* Additional Info */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-3">
+                  <div className="flex flex-col items-center fade-in-left stagger-9">
+                    <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-3 fade-in-scale stagger-1">
                       <i className="fas fa-clock text-white text-lg"></i>
                     </div>
-                    <h5 className="font-semibold text-slate-900 dark:text-white mb-2">Fast Delivery</h5>
-                    <p className="text-sm text-slate-600 dark:text-slate-300">Quick turnaround times</p>
+                    <h5 className="font-semibold text-slate-900 dark:text-white mb-2 fade-in-up stagger-2">Fast Delivery</h5>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 fade-in-up stagger-3">Quick turnaround times</p>
                   </div>
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-3">
+                  <div className="flex flex-col items-center fade-in-up stagger-10">
+                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-3 fade-in-scale stagger-1">
                       <i className="fas fa-shield-alt text-white text-lg"></i>
                     </div>
-                    <h5 className="font-semibold text-slate-900 dark:text-white mb-2">Quality Assured</h5>
-                    <p className="text-sm text-slate-600 dark:text-slate-300">Professional development</p>
+                    <h5 className="font-semibold text-slate-900 dark:text-white mb-2 fade-in-up stagger-2">Quality Assured</h5>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 fade-in-up stagger-3">Professional development</p>
                   </div>
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-3">
+                  <div className="flex flex-col items-center fade-in-right stagger-11">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-3 fade-in-scale stagger-1">
                       <i className="fas fa-headset text-white text-lg"></i>
                     </div>
-                    <h5 className="font-semibold text-slate-900 dark:text-white mb-2">24/7 Support</h5>
-                    <p className="text-sm text-slate-600 dark:text-slate-300">Continuous communication</p>
+                    <h5 className="font-semibold text-slate-900 dark:text-white mb-2 fade-in-up stagger-2">24/7 Support</h5>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 fade-in-up stagger-3">Continuous communication</p>
                   </div>
                 </div>
               </div>

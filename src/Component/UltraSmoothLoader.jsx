@@ -19,6 +19,9 @@ const UltraSmoothLoader = ({ onComplete }) => {
   ];
 
   useEffect(() => {
+    // Add loading class to body to hide scrollbar
+    document.body.classList.add('loading');
+    
     let progressInterval;
     let phaseIndex = 0;
 
@@ -53,7 +56,11 @@ const UltraSmoothLoader = ({ onComplete }) => {
 
     progressInterval = setInterval(updateProgress, 40);
 
-    return () => clearInterval(progressInterval);
+    return () => {
+      clearInterval(progressInterval);
+      // Remove loading class from body when component unmounts
+      document.body.classList.remove('loading');
+    };
   }, [onComplete]);
 
   // Animate progress
@@ -75,6 +82,11 @@ const UltraSmoothLoader = ({ onComplete }) => {
         display: 'none',
         duration: 0
       });
+      
+      // Remove loading class from body when animation completes
+      setTimeout(() => {
+        document.body.classList.remove('loading');
+      }, 500);
     }
   }, [isComplete]);
 

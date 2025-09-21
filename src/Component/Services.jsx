@@ -95,14 +95,14 @@ export default function Services() {
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Enhanced Section Title */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-900/30 to-purple-900/30 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-700/50 dark:border-blue-700/50 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-900/30 to-purple-900/30 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-700/50 dark:border-blue-700/50 mb-6 scroll-animate-scale">
             <i className="fas fa-cogs text-blue-400 dark:text-blue-400"></i>
             <span className="text-sm font-medium text-blue-300 dark:text-blue-300">Services</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white dark:text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white dark:text-white mb-6 scroll-animate">
             My <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Services</span>
           </h2>
-          <p className="text-lg text-slate-300 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-slate-300 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed scroll-animate">
             I offer comprehensive development services to help you build, scale, and maintain your digital presence. 
             From concept to deployment, I&apos;m here to bring your ideas to life.
           </p>
@@ -111,7 +111,11 @@ export default function Services() {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => (
-            <div key={index} className="group bg-white/5 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-white/10 dark:border-slate-700/50 hover:border-white/20 dark:hover:border-slate-600/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/10 animate-fade-in-up hover-lift" style={{animationDelay: `${index * 0.1}s`}}>
+            <div key={index} className={`group bg-white/5 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-white/10 dark:border-slate-700/50 hover:border-white/20 dark:hover:border-slate-600/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/10 hover-lift ${
+              index % 3 === 0 ? 'scroll-animate' : 
+              index % 3 === 1 ? 'scroll-animate-left' : 
+              'scroll-animate-right'
+            }`}>
               {/* Service Icon */}
               <div className="relative mb-6">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-indigo-500/10"></div>
@@ -131,17 +135,17 @@ export default function Services() {
               </div>
 
               {/* Service Content */}
-              <h3 className="text-xl font-bold text-white dark:text-white mb-4 group-hover:text-blue-400 dark:group-hover:text-blue-400 transition-colors duration-300">
+              <h3 className="text-xl font-bold text-white dark:text-white mb-4 group-hover:text-blue-400 dark:group-hover:text-blue-400 transition-colors duration-300 fade-in-up stagger-1">
                 {service.title}
               </h3>
-              <p className="text-slate-300 dark:text-slate-300 mb-6 leading-relaxed">
+              <p className="text-slate-300 dark:text-slate-300 mb-6 leading-relaxed fade-in-up stagger-2">
                 {service.description}
               </p>
 
               {/* Service Features */}
               <div className="space-y-2">
                 {service.features.map((feature, featureIndex) => (
-                  <div key={featureIndex} className="flex items-center gap-2">
+                  <div key={featureIndex} className={`flex items-center gap-2 fade-in-up stagger-${featureIndex + 3}`}>
                     <div className={`w-2 h-2 bg-gradient-to-r ${service.color} rounded-full`}></div>
                     <span className="text-slate-300 dark:text-slate-300 text-sm">{feature}</span>
                   </div>
@@ -167,14 +171,14 @@ export default function Services() {
             </div>
             
             <div className="relative z-10">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 fade-in-up stagger-1">
                 Ready to Get Started?
               </h3>
-              <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed fade-in-up stagger-2">
                 Let&apos;s discuss your project requirements and create something amazing together. 
                 I&apos;m here to help you achieve your digital goals.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center fade-in-up stagger-3">
                 <button 
                   onClick={() => scrollToElement(document.getElementById('contact'), -80)}
                   className="btn-primary animate-fade-in-up"

@@ -78,23 +78,23 @@ export default function HireMe() {
             
             {/* Enhanced Header Section */}
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-6 fade-in-scale stagger-1">
                 <i className="fas fa-handshake text-blue-600 dark:text-blue-400 animate-pulse"></i>
                 <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Let&apos;s Work Together</span>
               </div>
               
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6 fade-in-up stagger-2">
                 Have Any <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Project</span> in Mind?
               </h2>
               
-              <div className="flex justify-center mb-8">
+              <div className="flex justify-center mb-8 fade-in-up stagger-3">
                 <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
               </div>
             </div>
 
             {/* Enhanced Description Section */}
             <div className="text-center mb-12">
-              <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed fade-in-up stagger-4">
                 I&apos;d love to hear about it! Whether it&apos;s a small idea or a grand vision, 
                 I&apos;m ready to bring it to life. Let&apos;s collaborate and create something amazing together.
               </p>
@@ -102,13 +102,17 @@ export default function HireMe() {
               {/* Enhanced Features Grid */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 {features.map((feature, index) => (
-                  <div key={index} className="group p-6 rounded-3xl bg-white/80 dark:bg-slate-700/80 backdrop-blur-xl border border-white/30 dark:border-slate-600/40 shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <div key={index} className={`group p-6 rounded-3xl bg-white/80 dark:bg-slate-700/80 backdrop-blur-xl border border-white/30 dark:border-slate-600/40 shadow-xl hover:shadow-2xl transition-all duration-300 ${
+                    index % 3 === 0 ? 'fade-in-left' : 
+                    index % 3 === 1 ? 'fade-in-up' : 
+                    'fade-in-right'
+                  } stagger-${index + 5}`}>
                     <div className="flex flex-col items-center text-center">
-                      <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 fade-in-scale stagger-1">
                         <i className={`${feature.icon} text-white text-xl`}></i>
                       </div>
-                      <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">{feature.title}</h4>
-                      <p className="text-sm text-slate-600 dark:text-slate-300">{feature.description}</p>
+                      <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-2 fade-in-up stagger-2">{feature.title}</h4>
+                      <p className="text-sm text-slate-600 dark:text-slate-300 fade-in-up stagger-3">{feature.description}</p>
                     </div>
                   </div>
                 ))}
@@ -117,7 +121,7 @@ export default function HireMe() {
 
             {/* Enhanced Action Buttons */}
             <div className="text-center mb-12">
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 fade-in-up stagger-8">
                 <button 
                   onClick={handleViewCV} 
                   className="btn-primary group flex items-center justify-center gap-3"
@@ -137,7 +141,7 @@ export default function HireMe() {
                 </button>
               </div>
               
-              <div className="text-center">
+              <div className="text-center fade-in-up stagger-9">
                 <p className="text-slate-600 dark:text-slate-300 mb-4 text-sm sm:text-base">Or reach out directly:</p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <a 
@@ -161,11 +165,16 @@ export default function HireMe() {
             {/* Enhanced Stats Section */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center group">
-                  <div className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                <div key={index} className={`text-center group ${
+                  index % 4 === 0 ? 'fade-in-left' :
+                  index % 4 === 1 ? 'fade-in-up' :
+                  index % 4 === 2 ? 'fade-in-right' :
+                  'fade-in-scale'
+                } stagger-${index + 10}`}>
+                  <div className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 fade-in-up stagger-1">
                     {stat.number}
                   </div>
-                  <div className="text-sm text-slate-600 dark:text-slate-300 mt-1">
+                  <div className="text-sm text-slate-600 dark:text-slate-300 mt-1 fade-in-up stagger-2">
                     {stat.label}
                   </div>
                 </div>

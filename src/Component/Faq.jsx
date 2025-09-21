@@ -85,20 +85,20 @@ export default function Faq() {
         <div className="relative z-10 max-w-5xl mx-auto">
           {/* Section Title */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200/50 dark:border-blue-700/50 mb-6 fade-in-scale stagger-1">
               <i className="fas fa-question-circle text-blue-600 dark:text-blue-400"></i>
               <span className="text-sm font-medium text-blue-700 dark:text-blue-300">FAQ&apos;s</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6 fade-in-up stagger-2">
               Frequently Asked <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Questions</span>
             </h2>
             
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-8 fade-in-up stagger-3">
               <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
             </div>
             
-            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed fade-in-up stagger-4">
               Got questions? I&apos;ve got answers! Here are some common questions about my services and development process.
             </p>
           </div>
@@ -108,7 +108,9 @@ export default function Faq() {
             {faqs.map((faq, index) => (
               <div
                 key={faq.id}
-                className="group"
+                className={`group ${
+                  index % 2 === 0 ? 'fade-in-left' : 'fade-in-right'
+                } stagger-${index + 5}`}
               >
                 <div className="relative bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-lg overflow-hidden">
                   <button
@@ -146,23 +148,23 @@ export default function Faq() {
 
           {/* CTA Section */}
           <div className="text-center">
-            <div className="bg-gradient-to-br from-white via-slate-50 to-blue-50 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 rounded-3xl p-8 md:p-12 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl">
+            <div className="bg-gradient-to-br from-white via-slate-50 to-blue-50 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 rounded-3xl p-8 md:p-12 border border-slate-200/50 dark:border-slate-700/50 shadow-2xl fade-in-scale stagger-1">
               {/* Icon */}
-              <div className="w-20 h-20 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl">
+              <div className="w-20 h-20 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl fade-in-scale stagger-2">
                 <i className="fas fa-comments text-white text-3xl"></i>
               </div>
               
-              <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 fade-in-up stagger-3">
                 Still Have Questions?
               </h3>
               
-              <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mx-auto mb-6"></div>
+              <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mx-auto mb-6 fade-in-up stagger-4"></div>
               
-              <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed fade-in-up stagger-5">
                 Can&apos;t find the answer you&apos;re looking for? Feel free to reach out and I&apos;ll be happy to help!
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center fade-in-up stagger-6">
                 <button 
                   onClick={() => scrollToElement(document.getElementById('contact'), -80)}
                   className="btn-primary group flex items-center justify-center gap-3 cursor-pointer"

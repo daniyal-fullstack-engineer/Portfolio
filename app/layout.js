@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 import GlobalFloatingIcons from '../src/Component/GlobalFloatingIcons'
+import ScrollAnimations from '../src/Component/ScrollAnimations'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const roboto = Roboto({ 
@@ -138,7 +139,8 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${inter.variable} ${roboto.variable} ${poppins.variable}`}>
         {children}
-        <GlobalFloatingIcons />
+        {/* <GlobalFloatingIcons /> */}
+        <ScrollAnimations />
         <ToastContainer />
         
         {/* Global Floating Icons - Visible on All Pages */}

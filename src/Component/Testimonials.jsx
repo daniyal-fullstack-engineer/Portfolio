@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Button from "./Button";
-import ImageWithSkeleton from "./ImageWithSkeleton";
+import Image from "next/image";
 import useCustomUltraSmoothScroll from "../hooks/useCustomUltraSmoothScroll";
 
 const testimonials = [
@@ -106,7 +106,7 @@ const testimonials = [
 
 export default function Testimonials() {
   const { scrollToElement } = useCustomUltraSmoothScroll();
-  const [displayedTestimonials, setDisplayedTestimonials] = useState([]);
+  const [displayedTestimonials, setDisplayedTestimonials] = useState(testimonials.slice(0, 6));
   const [isMobile, setIsMobile] = useState(false);
 
   // Handle responsive testimonials display
@@ -175,7 +175,7 @@ export default function Testimonials() {
             <i className="fas fa-quote-left text-blue-600 dark:text-blue-400 animate-pulse"></i>
             <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Client Reviews</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6 fade-in-up stagger-1">
             What Our <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Clients</span> Say
           </h2>
           <div className="flex justify-center mb-6">
@@ -196,7 +196,7 @@ export default function Testimonials() {
             <div 
               key={index}
               className="relative bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-slate-200/50 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:border-blue-300 dark:hover:border-blue-600 group"
-          >
+            >
                 {/* Quote Icon */}
               <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
                 <i className="fas fa-quote-right text-3xl text-blue-500"></i>
@@ -218,18 +218,32 @@ export default function Testimonials() {
                   
                   {/* Client Info */}
               <div className="flex flex-col items-center text-center">
-                <div className="relative mb-4">
-                  <ImageWithSkeleton 
-                    src={testimonial.img} 
-                    alt={testimonial.name}
-                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-3 border-blue-200 dark:border-blue-700 shadow-lg group-hover:border-blue-300 dark:group-hover:border-blue-600 transition-colors duration-300"
-                    skeletonClassName="w-14 h-14 sm:w-16 sm:h-16 rounded-full"
-                  />
+                <div className="relative mb-4 fade-in-scale stagger-1">
+                  <div className="relative w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center border-3 border-blue-200 dark:border-blue-700 shadow-lg">
+                    <Image 
+                      src={testimonial.img} 
+                      alt={testimonial.name}
+                      fill
+                      className="rounded-full object-cover"
+                      sizes="(max-width: 640px) 56px, 64px"
+                      onError={(e) => {
+                        console.log('Image failed to load:', testimonial.img);
+                        e.target.style.display = 'none';
+                      }}
+                      onLoad={() => {
+                        console.log('Image loaded successfully:', testimonial.img);
+                      }}
+                    />
+                    {/* Fallback initial */}
+                    <span className="text-white font-bold text-lg sm:text-xl relative z-10">
+                      {testimonial.name.charAt(0)}
+                    </span>
+                  </div>
                   <div className="absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center border-2 border-white dark:border-slate-800 group-hover:scale-110 transition-transform duration-300">
                     <i className="fas fa-check text-white text-xs"></i>
                       </div>
                     </div>
-                <div>
+                <div className="fade-in-up stagger-2">
                   <h4 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                     {testimonial.name}
                       </h4>

@@ -4,8 +4,8 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "./Button";
-import ShareButton from "./ShareButton";
 import FavoriteButton from "./FavoriteButton";
+import ShareButton from "./ShareButton";
 import useAppStore from "../store/useAppStore";
 import Image from "next/image";
 
@@ -131,7 +131,6 @@ const categories = [
 ];
 
 export default function Portfolio() {
-  const [hoveredProject, setHoveredProject] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   
   // Zustand state
@@ -304,16 +303,16 @@ export default function Portfolio() {
       <div className="relative max-w-7xl mx-auto">
         {/* Section Header */}
         <div ref={titleRef} className="text-center mb-12 sm:mb-16 opacity-100">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 dark:border-purple-500/20 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 dark:border-purple-500/20 mb-6 scroll-animate-scale">
             <i className="fas fa-code text-blue-500 dark:text-blue-400 text-sm"></i>
             <span className="text-sm font-medium text-blue-600 dark:text-blue-400">Portfolio</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 scroll-animate">
             My <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent">Creative</span> Works
           </h2>
           
-          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
+          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed px-4 scroll-animate">
             Explore my collection of innovative projects that showcase modern web development, 
             mobile applications, and creative solutions for real-world challenges.
           </p>
@@ -322,7 +321,7 @@ export default function Portfolio() {
         {/* Featured Projects Section */}
         <div className="mb-16">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white scroll-animate">
               Featured Projects
             </h3>
             
@@ -351,13 +350,16 @@ export default function Portfolio() {
                 </button>
               </div>
               
-              {/* Favorites Link */}
-              <Link href="/favorites">
-                <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-lg font-medium hover:from-red-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-red-500/25">
-                  <i className="fas fa-heart"></i>
-                  <span className="text-sm">Favorites ({favoriteProjects.length})</span>
-                </button>
-              </Link>
+              {/* Action Buttons */}
+              <div className="flex items-center gap-3">
+                <ShareButton variant="portfolio" size="md" />
+                <Link href="/favorites">
+                  <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-lg font-medium hover:from-red-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-red-500/25">
+                    <i className="fas fa-heart"></i>
+                    <span className="text-sm">Favorites ({favoriteProjects.length})</span>
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -370,8 +372,6 @@ export default function Portfolio() {
               <div
                 key={index}
                 className="group relative bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                onMouseEnter={() => setHoveredProject(index)}
-                onMouseLeave={() => setHoveredProject(null)}
               >
                 {/* Project Image */}
                 <div className="relative h-48 sm:h-56 overflow-hidden">
@@ -430,32 +430,30 @@ export default function Portfolio() {
                       <i className="fas fa-calendar"></i>
                       {project.year}
                     </span>
-                    </div>
+                  </div>
                   
-                  {/* Hover Actions */}
-                  <div className={`absolute inset-0 flex items-center justify-center gap-4 transition-all duration-300 ${
-                    hoveredProject === index ? 'opacity-100' : 'opacity-0'
-                  }`}>
+                  {/* Hover Preview Icons */}
+                  <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/20 backdrop-blur-sm">
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-900 rounded-full font-medium hover:bg-blue-50 transition-colors duration-300 shadow-lg"
+                      className="group/preview inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-900 rounded-full font-medium hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                      title="View Live Project"
                     >
-                      <i className="fas fa-external-link-alt"></i>
-                      View Live
+                      <i className="fas fa-external-link-alt text-blue-600 group-hover/preview:rotate-12 transition-transform duration-300"></i>
+                      <span>View Live</span>
                     </a>
-                    <button className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-colors duration-300 shadow-lg">
-                      <i className="fas fa-info-circle"></i>
-                      Details
+                    <button
+                      onClick={() => window.open(project.link, '_blank')}
+                      className="group/preview inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                      title="Open in New Tab"
+                    >
+                      <i className="fas fa-eye group-hover/preview:scale-110 transition-transform duration-300"></i>
+                      <span>Preview</span>
                     </button>
                   </div>
                   
-                  {/* Action Buttons - Always Visible */}
-                  <div className="absolute top-4 left-1/2 transform -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <ShareButton project={project} size="sm" />
-                    <FavoriteButton project={project} size="sm" />
-                  </div>
                 </div>
                 
                 {/* Project Content */}
@@ -493,12 +491,8 @@ export default function Portfolio() {
                     </a>
                     
                     <div className="flex items-center gap-2">
-                      <button className="p-2 text-slate-400 hover:text-blue-500 transition-colors duration-300">
-                        <i className="fas fa-heart"></i>
-                      </button>
-                      <button className="p-2 text-slate-400 hover:text-blue-500 transition-colors duration-300">
-                        <i className="fas fa-share"></i>
-                      </button>
+                      <ShareButton project={project} size="sm" />
+                      <FavoriteButton project={project} size="sm" />
                   </div>
                 </div>
               </div>
@@ -529,16 +523,16 @@ export default function Portfolio() {
         
             
         {/* CTA Section */}
-        <div className="text-center bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 rounded-3xl p-8 sm:p-12 border border-blue-500/20 dark:border-purple-500/20">
+        <div className="text-center bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 rounded-3xl p-8 sm:p-12 border border-blue-500/20 dark:border-purple-500/20 fade-in-scale stagger-1">
           <div className="max-w-3xl mx-auto">
-            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4 fade-in-up stagger-2">
               Ready to Start Your Project?
             </h3>
-            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
+            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 fade-in-up stagger-3">
               Let's collaborate and bring your ideas to life with cutting-edge technology and creative solutions.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center fade-in-up stagger-4">
               <Button
                 variant="primary"
                 size="lg"
