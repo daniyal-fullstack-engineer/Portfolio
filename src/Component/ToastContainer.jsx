@@ -5,21 +5,21 @@ const Toast = ({ message, type = 'success', duration = 5000, onClose }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isLeaving, setIsLeaving] = useState(false);
 
+  const handleClose = useCallback(() => {
+    setIsLeaving(true);
+    setTimeout(() => {
+      setIsVisible(false);
+      if (onClose) onClose();
+    }, 300);
+  }, [onClose]);
+
   React.useEffect(() => {
     const timer = setTimeout(() => {
       handleClose();
     }, duration);
 
     return () => clearTimeout(timer);
-  }, [duration]);
-
-  const handleClose = () => {
-    setIsLeaving(true);
-    setTimeout(() => {
-      setIsVisible(false);
-      if (onClose) onClose();
-    }, 300);
-  };
+  }, [duration, handleClose]);
 
   if (!isVisible) return null;
 

@@ -160,7 +160,7 @@ export default function Portfolio() {
     featuredProjects.forEach(project => {
       trackProjectView(project.title);
     });
-  }, []);
+  }, [featuredProjects, trackProjectView]);
 
   // GSAP Animations
   useEffect(() => {

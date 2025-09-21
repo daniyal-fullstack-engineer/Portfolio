@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import useAppStore from '../store/useAppStore';
 import ShareButton from './ShareButton';
 import FavoriteButton from './FavoriteButton';
@@ -87,10 +88,12 @@ const FavoritesPage = () => {
             >
               {/* Project Image */}
               <div className="relative h-48 sm:h-56 overflow-hidden">
-                <img
+                <Image
                   src={project.img}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 
                 {/* Overlay */}
