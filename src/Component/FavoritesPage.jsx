@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useAppStore } from '../store/useAppStore';
+import useAppStore from '../store/useAppStore';
 import ShareButton from './ShareButton';
 import FavoriteButton from './FavoriteButton';
 import Button from './Button';

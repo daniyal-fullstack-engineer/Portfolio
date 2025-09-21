@@ -82,6 +82,9 @@ const Home = () => {
       <div className='navbar-section'>
       <Header />
       </div>
+      
+      {/* Add padding to account for fixed navbar */}
+      <div className="pt-16 md:pt-20">
       {/* <div className='banner-section'>
         <Banner />
       </div> */}
@@ -115,7 +118,8 @@ const Home = () => {
       <div className='footer-section'>
         <Footer />
       </div>
-      </div>
+      </div> {/* Close padding div */}
+      </div> {/* Close main wrapper */}
       
     </ToastProvider>
   );
