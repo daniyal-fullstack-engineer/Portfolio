@@ -22,7 +22,7 @@ const GlobalFloatingIcons = () => {
 
       {/* Global Floating Social Icons - Visible on All Pages */}
       {/* Fiverr Icon */}
-      <div className=" bottom-20 left-6 z-[9998]" style={{ position: 'fixed' }}>
+      <div className=" bottom-20 left-6 z-[9998]" style={{ position: 'sticky' }}>
         <button
           onClick={() => window.open("https://www.fiverr.com/daniyalamjad14", "_blank", "noopener,noreferrer")}
           className="group relative w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl shadow-2xl hover:shadow-green-500/25 transition-all duration-300 hover:scale-110 hover:rotate-3 flex items-center justify-center cursor-pointer"
